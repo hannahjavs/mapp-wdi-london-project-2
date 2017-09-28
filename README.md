@@ -22,3 +22,4 @@ $resource('/api/birds/:id', { id: '@id' }, {
 ## Team Members
 Daniel
 Hannah
+William
