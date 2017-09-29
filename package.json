@@ -54,7 +54,11 @@
     }
   },
   "dependencies": {
-    "express": "^4.14.0"
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "express": "^4.14.0",
+    "jsonwebtoken": "^8.0.1",
+    "mongoose": "^4.11.13"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
