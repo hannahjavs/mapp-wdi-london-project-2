@@ -7,15 +7,20 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
   $locationProvider.html5Mode(true);
 
   $stateProvider
-    .state('homeIndex', {
-      url: '/',
-      templateUrl: 'js/views/home.html',
-      controller: 'HomeIndexCtrl as homeIndex'
-    })
     .state('login', {
       url: '/login',
       templateUrl: 'js/views/auth/login.html',
       controller: 'LoginCtrl as login'
+    })
+    .state('register', {
+      url: '/register',
+      templateUrl: '/js/views/auth/register.html',
+      controller: 'RegisterCtrl as register'
+    })
+    .state('placesIndex', {
+      url: '/places',
+      templateUrl: 'js/views/places/index.html',
+      controller: 'PlacesIndexCtrl as places'
     });
 
   $urlRouterProvider.otherwise('/');

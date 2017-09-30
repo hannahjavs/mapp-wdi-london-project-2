@@ -1,0 +1,18 @@
+
+<section class="section">
+  <form ng-submit="register.submit()">
+    <label class="label" for="email">Username</label>
+    <input class="input" type="text" name="username" id="username" ng-model="register.user.username">
+
+    <label class="label" for="email">Email</label>
+    <input class="input" type="text" name="email" id="email" ng-model="register.user.email">
+
+    <label class="label" for="password">Password</label>
+    <input class="input" type="password" name="password" id="password" ng-model="register.user.password">
+
+    <label class="label" for="passwordConfirmation">Password Confirmation</label>
+    <input class="input" type="password" name="passwordConfirmation" id="passwordConfirmation" ng-model="register.user.passwordConfirmation">
+    
+    <input type="submit" class="button is-primary is-fullwidth" value="Register">
+  </form>
+</section>
