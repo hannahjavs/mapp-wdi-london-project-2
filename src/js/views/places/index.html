@@ -1,5 +1,8 @@
+<div ng-controller="PlacesIndexCtrl as index">
+
 <h1>You're on the map page</h1>
-<google-map></google-map>
-<form ng-controller="PlacesIndexCtrl as index">
-  <input ng-change="index.search()" ng-model="place" name="place" id="place" />
+<google-map center="index.location"></google-map>
+<form>
+  <input autocomplete location="index.location" ng-change="index.autocomplete()" ng-model="place" name="place" id="place" />
 </form>
+</div>
