@@ -9,14 +9,13 @@ function PlacesIndexCtrl() {
   vm.search = search;
 
   function search(){
+    console.log('hello');
+    const input = document.querySelector('#place');
+    const autocomplete = new google.maps.places.Autocomplete(input, { types: ['establishment'] });
 
-    document.addEventListener('DOMContentLoaded', () => {
-      const input = document.querySelector('#place');
-      const autocomplete = new google.maps.places.Autocomplete(input, { types: ['establishment'] });
-
-      autocomplete.addListener('place_changed', () => {
-        console.log(autocomplete.getPlace());
-      });
+    autocomplete.addListener('place_changed', () => {
+      console.log(autocomplete.getPlace());
     });
+
   }
 }
