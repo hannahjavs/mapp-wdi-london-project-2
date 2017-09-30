@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const itemSchema = new mongoose.Schema({
-  place: { type: mongoose.schema.ObjectId, ref: 'Place', required: true },
+  place: { type: mongoose.Schema.ObjectId, ref: 'Place', required: true },
   time: Date
 });
 

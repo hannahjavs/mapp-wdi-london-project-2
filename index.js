@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const routes = require('./config/routes');
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
+mongoose.plugin(require('./lib/globalToJSON'));
 const { port, dbURI } = require('./config/environment');
 const customResponses = require('./lib/customResponses');
 

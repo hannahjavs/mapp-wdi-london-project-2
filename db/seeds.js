@@ -10,8 +10,8 @@ User.collection.drop();
 // Seeds here
 User
   .create([{
-    username: 'ajay',
-    email: 'ajay.lard@ga.co',
+    username: 'will',
+    email: 'w@w.com',
     password: 'password',
     passwordConfirmation: 'password'
   }])
