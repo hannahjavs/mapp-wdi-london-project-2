@@ -9,7 +9,6 @@ function MainCtrl($rootScope, $state, $auth) {
   vm.isAuthenticated = $auth.isAuthenticated;
 
   function logout() {
-    console.log('hello');
     $auth.logout();
     $state.go('login');
   }
