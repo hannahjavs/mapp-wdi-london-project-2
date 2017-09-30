@@ -1,9 +1,22 @@
-<form ng-submit="login.submit()">
-  <label class="label" for="email">Email</label>
-  <input class="input" type="text" name="email" id="email" ng-model="login.credentials.email">
+<form ng-submit="login.submit()" name-"loginForm" novalidate>
 
-  <label class="label" for="password">Password</label>
-  <input class="input" type="password" name="password" id="password" ng-model="login.credentials.password">
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="text" class="form-control" name="email" id="email" ng-model="login.credentials.email" required>
+    <div ng-messages="loginForm.email.$error" class="my-messages" role="alert" ng-if="loginForm.email.$touched || loginForm.$submitted">
+      <div ng-message="required" class="some-message">This field is required</div>
+    </div>
 
-  <input type="submit" class="button is-primary is-fullwidth" value="Login">
-</form>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" name="password" id="password" ng-model="login.credentials.password" required>
+      <div ng-messages="loginForm.password.$error" class="my-messages" role="alert" ng-if="loginForm.password.$touched || loginForm.$submitted">
+        <div ng-message="required" class="some-message">This field is required</div>
+      </div>
+    </div>
+
+    <!-- <input type="submit" class="button is-primary is-fullwidth" value="Login"> -->
+
+    <button class="btn btn-primary btn-block">Login</button>
+
+  </form>

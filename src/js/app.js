@@ -1,2 +1,2 @@
 angular
-  .module('itineraryApp', ['ui.router', 'satellizer']);
+  .module('itineraryApp', ['ui.router', 'satellizer', 'ngMessages']);
