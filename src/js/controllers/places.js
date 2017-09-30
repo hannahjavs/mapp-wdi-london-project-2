@@ -15,6 +15,10 @@ function PlacesIndexCtrl() {
 
     autocomplete.addListener('place_changed', () => {
       console.log(autocomplete.getPlace());
+      var marker = new google.maps.Marker({
+        position: myLatlng,
+        title: 'Hello World!'
+      });
     });
 
   }
