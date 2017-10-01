@@ -26,6 +26,11 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/profile',
       templateUrl: 'js/views/users/profile.html',
       controller: 'ProfileIndexCtrl as profile'
+    })
+    .state('plan', {
+      url: '/plan',
+      templateUrl: 'js/views/plans/plan.html',
+      controller: 'PlanIndexCtrl as plan'
     });
 
   $urlRouterProvider.otherwise('/');
