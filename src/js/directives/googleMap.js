@@ -20,6 +20,7 @@ function googleMap() {
         center: { lat: 51.52, lng: -0.082 },
         zoom: 10
       });
+
       const placesService = new google.maps.places.PlacesService(map);
       let markers = [];
 
@@ -29,18 +30,24 @@ function googleMap() {
       }
 
       map.addListener('click', (e) => {
-
-        removeMarkers();
+        const establishment = document.getElementById('establishment').value;
+        const radius = document.getElementById('radius').value;
+        const price = document.getElementById('price').value;
         
+
+        console.log(establishment);
+        removeMarkers();
+
         map.panTo(e.latLng); // Animation pan to location clicked
 
         placesService.nearbySearch({
           location: e.latLng,
-          radius: 2000,
+          radius: radius,
           openNow: true,
-          type: 'bar'
+          type: establishment,
+          minprice: price
         }, (results, status) => {
-          if(status !== 'OK') return false;
+          if(status !== 'OK ' && establishment === '') return false;
 
           markers = results.map(result => {
             return new google.maps.Marker({

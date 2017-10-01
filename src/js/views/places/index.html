@@ -3,7 +3,21 @@
 <h1>You're on the map page</h1>
 <google-map center="index.location"></google-map>
 <form>
-  <input autocomplete location="index.location" ng-change="index.autocomplete()" ng-model="place" name="place" id="place" />
-  
+  <div>
+    <label for="place">Place</label>
+    <input autocomplete location="index.location" ng-change="index.autocomplete()" ng-model="place" name="place" id="place" />
+  </div>
+  <div>
+    <label for="establishment">Type of establishment</label>
+    <select name="establishment" id="establishment">
+      <option ng-repeat="(key, establishment) in index.places" value="{{ establishment }}" name="establishment">{{ key }}</option>
+    </select>
+  </div>
+  <div>
+    <label for="radius">Distance range</label>
+    <input type="range" id="radius" ng-model="radius" name="radius" step="100" min="200" max="2500">{{ radius }} </input>
+    <label for="price">Price range</label>
+    <input type="range" id="price" ng-model="price" name="price" step="1" min="0" max="4"/>
+  </div>
 </form>
 </div>
