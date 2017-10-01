@@ -12,11 +12,11 @@ function googleMap() {
     template: '<div class="map">Google map div</div>',
     replace: true,
     scope: {
-      center: '='
+      center: '=',
+      fromDirectiveFn: '=method'
     },
-    link($scope, $element) {
-      console.log($scope);
-      const map = new google.maps.Map($element[0], {
+    link(scope, element) {
+      const map = new google.maps.Map(element[0], {
         center: { lat: 51.52, lng: -0.082 },
         zoom: 10
       });
@@ -33,7 +33,7 @@ function googleMap() {
         const establishment = document.getElementById('establishment').value;
         const radius = document.getElementById('radius').value;
         const price = document.getElementById('price').value;
-        
+        scope.places = [];
 
         console.log(establishment);
         removeMarkers();
@@ -48,7 +48,10 @@ function googleMap() {
           minprice: price
         }, (results, status) => {
           if(status !== 'OK ' && establishment === '') return false;
-
+          results.forEach((element)=>{
+            scope.places.push(element);
+          });
+          console.log(scope.places);
           markers = results.map(result => {
             return new google.maps.Marker({
               position: result.geometry.location,
@@ -66,10 +69,10 @@ function googleMap() {
       });
 
 
-      $scope.$watch('center', () => {
-        if(!$scope.center) return false;
-        map.setCenter($scope.center);
-        marker.setPosition($scope.center);
+      scope.$watch('center', () => {
+        if(!scope.center) return false;
+        map.setCenter(scope.center);
+        marker.setPosition(scope.center);
       });
     }
   };
