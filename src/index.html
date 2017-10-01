@@ -18,6 +18,7 @@
   <a href="/" ng-click="main.logout()" ng-if="main.isAuthenticated()">Logout</a>
   <a ui-sref="placesIndex" ui-sref-active="active" ng-if="main.isAuthenticated()">Places</a>
   <a ui-sref="profile" ui-sref-active="active" ng-if="main.isAuthenticated()">Profile</a>
+  <a ui-sref="plan" ui-sref-active="active" ng-if="main.isAuthenticated()">Plan</a>
 
   <main ui-view></main>
 </body>
