@@ -3,6 +3,7 @@ const auth = require('../controllers/auth');
 const plans = require('../controllers/plans');
 const items = require('../controllers/items');
 const secureRoute = require('../lib/secureRoute.js');
+const weather = require('../controllers/weather');
 
 router.route('/plans')
   .all(secureRoute)
@@ -27,6 +28,8 @@ router.route('/register')
 
 router.route('/login')
   .post(auth.login);
+
+router.get('/weather', weather.proxy);
 
 router.all('/*', (req, res) => res.notFound());
 
