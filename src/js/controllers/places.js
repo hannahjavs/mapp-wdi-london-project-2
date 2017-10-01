@@ -1,4 +1,3 @@
-/* global google */
 angular
   .module('itineraryApp')
   .controller('PlacesIndexCtrl', PlacesIndexCtrl);
@@ -6,5 +5,5 @@ angular
 
 function PlacesIndexCtrl() {
   const vm = this;
-  
+
 }

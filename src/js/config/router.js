@@ -21,6 +21,11 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/places',
       templateUrl: 'js/views/places/index.html',
       controller: 'PlacesIndexCtrl as places'
+    })
+    .state('profile', {
+      url: '/profile',
+      templateUrl: 'js/views/users/profile.html',
+      controller: 'ProfileIndexCtrl as profile'
     });
 
   $urlRouterProvider.otherwise('/');
