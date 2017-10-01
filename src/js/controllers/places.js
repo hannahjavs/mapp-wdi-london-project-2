@@ -1,4 +1,3 @@
-/* global google */
 angular
   .module('itineraryApp')
   .controller('PlacesIndexCtrl', PlacesIndexCtrl);

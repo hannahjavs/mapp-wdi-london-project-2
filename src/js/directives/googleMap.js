@@ -23,7 +23,7 @@ function googleMap() {
 
       const latLng = { lat: location.lat, lng: location.lng};
       const marker = new google.maps.Marker({
-        postion: latLng,
+        position: latLng,
         map: map
       });
 
