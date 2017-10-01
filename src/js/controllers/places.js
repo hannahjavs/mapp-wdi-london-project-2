@@ -6,5 +6,5 @@ angular
 
 function PlacesIndexCtrl() {
   const vm = this;
-  
+
 }
