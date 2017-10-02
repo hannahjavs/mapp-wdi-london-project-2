@@ -15,7 +15,7 @@ function autocomplete(){
       const autocomplete = new google.maps.places.Autocomplete(input,{ types: ['establishment'] });
       autocomplete.addListener('place_changed', () => {
         scope.location = autocomplete.getPlace().geometry.location.toJSON();
-        console.log(scope.location);
+        console.log(autocomplete.getPlace());
         ngModel.$setViewValue(element.val());
       });
     }

@@ -13,7 +13,10 @@ function googleMap() {
     replace: true,
     scope: {
       center: '=',
-      placesResults: '='
+      placesResults: '=',
+      establishment: '=',
+      radius: '=',
+      price: '='
     },
     link(scope, element) {
       const map = new google.maps.Map(element[0], {
@@ -31,26 +34,24 @@ function googleMap() {
         markers = [];
       }
 
+      const marker = new google.maps.Marker({
+        map: map
+      });
+
       map.addListener('click', (e) => {
-        const establishment = document.getElementById('establishment').value;
-        const radius = document.getElementById('radius').value;
-        const price = document.getElementById('price').value;
-
-        console.log(establishment);
         removeMarkers();
-
+        marker.setPosition(e.latLng);
         map.panTo(e.latLng); // Animation pan to location clicked
-
+        if(!scope.establishment) return false;
         placesService.nearbySearch({
           location: e.latLng,
-          radius: radius,
+          radius: scope.radius,
           openNow: true,
-          type: establishment,
-          maxPriceLevel: price
+          type: scope.establishment,
+          maxPriceLevel: scope.price
         }, (results, status) => {
-          if(status !== 'OK ' && establishment === '') return false;
+          console.log(status, results);
           populateImages(results);
-          console.log(scope);
           markers = results.map(result => {
             return new google.maps.Marker({
               position: result.geometry.location,
@@ -62,18 +63,11 @@ function googleMap() {
 
       });
 
-      const latLng = { lat: location.lat, lng: location.lng};
-
-      const marker = new google.maps.Marker({
-        position: latLng,
-        map: map
-      });
-
       function populateImages(results) {
         results.forEach((result) => {
           const url = result.photos[0].getUrl({maxHeight: 200});
           result.imageUrl = url;
-          
+
         });
 
         scope.placesResults = results;
