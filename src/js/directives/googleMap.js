@@ -72,6 +72,7 @@ function googleMap() {
         results.forEach((result) => {
           const url = result.photos[0].getUrl({maxHeight: 200});
           result.imageUrl = url;
+          
         });
 
         scope.placesResults = results;
