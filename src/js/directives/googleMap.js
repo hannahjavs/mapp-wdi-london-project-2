@@ -38,6 +38,7 @@ function googleMap() {
         map: map
       });
 
+      // Creating circle
       const cityCircle = new google.maps.Circle({
         strokeColor: 'green',
         strokeOpacity: 0.8,
@@ -49,11 +50,11 @@ function googleMap() {
 
       map.addListener('click', (e) => {
         removeMarkers();
-        cityCircle.setCenter(e.latLng);
-        cityCircle.setRadius(scope.radius);
+        cityCircle.setCenter(e.latLng); // Creating circle radius - setting center point
+        cityCircle.setRadius(scope.radius); // Settig the circle radius
         map.panTo(e.latLng); // Animation pan to location clicked
         if(!scope.establishment) return false;
-        placesService.nearbySearch({
+        placesService.nearbySearch({ // search places with the filters on the page
           location: e.latLng,
           radius: scope.radius,
           openNow: true,
@@ -62,7 +63,7 @@ function googleMap() {
         }, (results, status) => {
           console.log(status, results);
           populateImages(results);
-          markers = results.map(result => {
+          markers = results.map(result => { //set markers on the map with the result of the search
             return new google.maps.Marker({
               position: result.geometry.location,
               map: map,
@@ -73,7 +74,7 @@ function googleMap() {
 
       });
 
-      function populateImages(results) {
+      function populateImages(results) { // function to get the image of the objects (places) recieved by using the function getUrl() within the object (place)
         results.forEach((result) => {
           const url = result.photos[0].getUrl({maxHeight: 200});
           result.imageUrl = url;
@@ -86,7 +87,7 @@ function googleMap() {
 
 
 
-      scope.$watch('center', () => {
+      scope.$watch('center', () => { // get the center when you click
         if(!scope.center) return false;
         map.setCenter(scope.center);
         marker.setPosition(scope.center);
