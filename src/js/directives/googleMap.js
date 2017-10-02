@@ -50,6 +50,7 @@ function googleMap() {
       });
 
       map.addListener('click', (e) => {
+        console.log(scope.establishment);
         removeMarkers();
         cityCircle.setCenter(e.latLng); // Creating circle radius - setting center point
         cityCircle.setRadius(scope.radius); // Settig the circle radius
@@ -77,9 +78,7 @@ function googleMap() {
 
       function populateImages(results) { // function to get the image of the objects (places) recieved by using the function getUrl() within the object (place)
         results.forEach((result) => {
-          const url = result.photos[0].getUrl({maxHeight: 200});
-          result.imageUrl = url;
-
+          result.imageUrl = result.photos ? result.photos[0].getUrl({maxHeight: 200}) : null; //if the object (place) doesn't have any image it will return NULL
         });
 
         scope.placesResults = results;
