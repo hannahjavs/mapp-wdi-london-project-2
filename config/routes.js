@@ -4,16 +4,19 @@ const plans = require('../controllers/plans');
 const items = require('../controllers/items');
 const secureRoute = require('../lib/secureRoute.js');
 const weather = require('../controllers/weather');
+const imageUpload = require('../lib/imageUpload');
 
 router.route('/plans')
   .all(secureRoute)
   .get(plans.index)
-  .post(plans.create);
+  .post(plans.create)
+  .post(imageUpload, plans.create); // User image upload
 
 router.route('/plans/:id')
   .all(secureRoute)
   .get(plans.show)
-  .delete(plans.delete);
+  .delete(plans.delete)
+  .put(imageUpload, plans.update); // User editing image
 
 router.route('/plans/:id/items')
   .all(secureRoute)

@@ -9,6 +9,10 @@ function indexRoute(req, res, next) {
 }
 
 function createRoute(req, res, next) {
+
+  // this is for uploading an image
+  if(req.file) req.body.image = req.file.filename;
+
   Plan
     .create(req.body)
     .then((plan) => res.status(201).json(plan))
