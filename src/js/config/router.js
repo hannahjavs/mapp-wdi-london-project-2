@@ -20,7 +20,7 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('placesIndex', {
       url: '/places',
       templateUrl: 'js/views/places/index.html',
-      controller: 'PlacesIndexCtrl as places'
+      controller: 'PlacesIndexCtrl as placesIndex'
     })
     .state('profile', {
       url: '/profile',
