@@ -1,13 +1,17 @@
 // Import all of your scss files here
+@import 'bootstrap/bootstrap-grid';
 
 .map {
   height: 400px;
   width: 600px;
 }
 
+// nav
+.active {
+  color: red;
+}
 
 // profile page
-
 .container {
   margin: 0 50px;
 }
@@ -26,5 +30,14 @@
   display: inline-block;
   height: 200px;
   width: 200px;
+  background-color: grey;
+}
+
+// plan page
+
+.box {
+  height: 300px;
+  width: 300px;
+  display: inline-block;
   background-color: grey;
 }
