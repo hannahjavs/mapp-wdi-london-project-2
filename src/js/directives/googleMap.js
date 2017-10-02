@@ -45,6 +45,7 @@ function googleMap() {
         strokeWeight: 2,
         fillColor: 'green',
         fillOpacity: 0.35,
+        draggable: true,
         map: map
       });
 
