@@ -1,6 +1,11 @@
 // Import all of your scss files here
 @import 'bootstrap/bootstrap-grid';
 
+.container {
+  margin: 50px;
+}
+
+// places
 .map {
   height: 400px;
   width: 600px;
@@ -12,9 +17,6 @@
 }
 
 // profile page
-.container {
-  margin: 0 50px;
-}
 
 .sideBar {
   margin-top: 10px;
@@ -34,10 +36,32 @@
 }
 
 // plan page
-
 .box {
   height: 300px;
   width: 300px;
   display: inline-block;
   background-color: grey;
+}
+
+// general styling
+.btn-type1 {
+  background-color: grey;
+  margin: 5px;
+  padding: 12px;
+  min-width: 75px;
+
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+
+  color: #fff;
+  border: 1px solid black;
+  border-radius: 4px;
+
+  font-size: 15px;
+  font-weight: 500;
+
+  -webkit-box-shadow: 0px 0px 0.5px 1px rgba(0,0,0,0.55);
+  -moz-box-shadow: 0px 0px 0.5px 1px rgba(0,0,0,0.55);
+  box-shadow: 0px 0px 0.5px 1px rgba(0,0,0,0.55);
 }
