@@ -1,31 +1,32 @@
 <div>
 
 <h1>You're on the map page</h1>
-<google-map center="placesIndex.location" places-results="placesIndex.placesResults"></google-map>
+<google-map center="placesIndex.location" places-results="placesIndex.placesResults" radius="placesIndex.radius" establishment="placesIndex.establishment"></google-map>
 <form>
   <div>
     <label for="place">Place</label>
-    <input autocomplete location="placesIndex.location" ng-change="placesIndex.autocomplete()" ng-model="place" name="place" id="place" />
+    <input autocomplete location="placesIndex.location" ng-change="placesIndex.autocomplete()" ng-model="placesIndex.place" name="place" id="place" />
   </div>
   <div>
     <label for="establishment">Type of establishment</label>
-    <select name="establishment" id="establishment">
+    <select name="establishment" id="establishment" ng-model="placesIndex.establishment">
+      <option selected disabled value="">Choose</option>
       <option ng-repeat="(key, establishment) in placesIndex.places" value="{{ establishment }}" name="establishment">{{ key }}</option>
     </select>
   </div>
   <div>
     <label for="radius">Distance range</label>
-    <input type="range" id="radius" ng-model="radius" name="radius" step="100" min="200" max="2500"/>{{ radius }}
+    <input type="range" id="radius" ng-model="placesIndex.radius" name="radius" step="100" min="200" max="2500"/>{{ radius }}
     <label for="price">Price range</label>
-    <input type="range" id="price" ng-model="price" name="price" step="1" min="0" max="4"/>
+    <input type="range" id="price" ng-model="placesIndex.price" name="price" step="1" min="0" max="4"/>
   </div>
 </form>
 </div>
 
 <ul ng-repeat="place in placesIndex.placesResults track by $index">
-  <li ><img src="{{ place.imageUrl }}"/></li>
-  <li >{{ place.name }}</li>
-  <li >{{ place.rating }}</li>
-  <li >{{ place.vicinity }}</li>
+  <li><img src="{{ place.imageUrl }}"/></li>
+  <li>{{ place.name }}</li>
+  <li>{{ place.rating }}</li>
+  <li>{{ place.vicinity }}</li>
   <button type="button" name="button">+</button>
 </ul>
