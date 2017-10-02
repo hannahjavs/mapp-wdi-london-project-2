@@ -61,11 +61,12 @@ function googleMap() {
         });
 
       });
+
       const latLng = { lat: location.lat, lng: location.lng};
+
       const marker = new google.maps.Marker({
         position: latLng,
         map: map
-
       });
 
       function populateImages(results) {

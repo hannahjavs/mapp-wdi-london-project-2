@@ -5,7 +5,9 @@ const s3 = require('../lib/s3');
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true },
   email: { type: String, required: true, unique: true },
-  password: { type: String, required: true }
+  password: { type: String },
+  facebookId: { type: String, unique: true },
+  image: { type: String }
 });
 
 userSchema
@@ -15,7 +17,8 @@ userSchema
   });
 
 userSchema.pre('validate', function checkPassword(next) {
-  if(!this._passwordConfirmation || this._passwordConfirmation !== this.password) {
+  if(!this.password && !this.facebookId) this.invalidate('password', 'required');
+  if(this.isModified('password') && this._passwordConfirmation !== this.password) {
     this.invalidate('passwordConfirmation', 'does not match');
   }
   next();
