@@ -38,9 +38,19 @@ function googleMap() {
         map: map
       });
 
+      const cityCircle = new google.maps.Circle({
+        strokeColor: 'green',
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: 'green',
+        fillOpacity: 0.35,
+        map: map
+      });
+
       map.addListener('click', (e) => {
         removeMarkers();
-        marker.setPosition(e.latLng);
+        cityCircle.setCenter(e.latLng);
+        cityCircle.setRadius(scope.radius);
         map.panTo(e.latLng); // Animation pan to location clicked
         if(!scope.establishment) return false;
         placesService.nearbySearch({
