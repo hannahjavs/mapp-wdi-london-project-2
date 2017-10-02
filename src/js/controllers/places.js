@@ -2,8 +2,8 @@ angular
   .module('itineraryApp')
   .controller('PlacesIndexCtrl', PlacesIndexCtrl);
 
-PlacesIndexCtrl.$inject= [];
-function PlacesIndexCtrl() {
+PlacesIndexCtrl.$inject= ['$http'];
+function PlacesIndexCtrl($http) {
   const vm = this;
   vm.all =[];
   vm.places= {
@@ -14,4 +14,5 @@ function PlacesIndexCtrl() {
     Casino: 'casino',
     Club: 'night_club'
   };
+  
 }

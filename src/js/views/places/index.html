@@ -15,7 +15,7 @@
   </div>
   <div>
     <label for="radius">Distance range</label>
-    <input type="range" id="radius" ng-model="radius" name="radius" step="100" min="200" max="2500">{{ radius }} </input>
+    <input type="range" id="radius" ng-model="radius" name="radius" step="100" min="200" max="2500"/>{{ radius }}
     <label for="price">Price range</label>
     <input type="range" id="price" ng-model="price" name="price" step="1" min="0" max="4"/>
   </div>
@@ -23,6 +23,9 @@
 </div>
 
 <ul ng-repeat="place in placesIndex.placesResults track by $index">
+  <li ><img src="{{ place.imageUrl }}"/></li>
   <li >{{ place.name }}</li>
-  <li >{{ place.photos }}</li>
+  <li >{{ place.rating }}</li>
+  <li >{{ place.vicinity }}</li>
+  <button type="button" name="button">+</button>
 </ul>

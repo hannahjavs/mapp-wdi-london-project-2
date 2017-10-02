@@ -21,6 +21,8 @@ function googleMap() {
         zoom: 12
       });
 
+      // scope.placesResults = [];
+
       const placesService = new google.maps.places.PlacesService(map);
       let markers = [];
 
@@ -44,11 +46,10 @@ function googleMap() {
           radius: radius,
           openNow: true,
           type: establishment,
-          minprice: price
+          maxPriceLevel: price
         }, (results, status) => {
           if(status !== 'OK ' && establishment === '') return false;
-          scope.placesResults = results;
-          scope.$apply();
+          populateImages(results);
           console.log(scope);
           markers = results.map(result => {
             return new google.maps.Marker({
@@ -66,6 +67,16 @@ function googleMap() {
         map: map
 
       });
+
+      function populateImages(results) {
+        results.forEach((result) => {
+          const url = result.photos[0].getUrl({maxHeight: 200});
+          result.imageUrl = url;
+        });
+
+        scope.placesResults = results;
+        scope.$apply();
+      }
 
 
 
