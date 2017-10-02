@@ -2,6 +2,7 @@ const router = require('express').Router();
 const auth = require('../controllers/auth');
 const plans = require('../controllers/plans');
 const items = require('../controllers/items');
+// const places = require('../controllers/places');
 const users = require('../controllers/users');
 const oauth = require('../controllers/oauth');
 const secureRoute = require('../lib/secureRoute.js');
@@ -17,6 +18,9 @@ router.route('/plans/:id')
   .all(secureRoute)
   .get(plans.show)
   .delete(plans.delete);
+
+router.route('/places')
+  .all(secureRoute);
 
 router.route('/plans/:id/items')
   .all(secureRoute)

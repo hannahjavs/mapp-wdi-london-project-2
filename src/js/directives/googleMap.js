@@ -30,6 +30,7 @@ function googleMap() {
       let markers = [];
 
       function removeMarkers() {
+        console.log('hola');
         markers.forEach(marker => marker.setMap(null));
         markers = [];
       }
@@ -39,7 +40,7 @@ function googleMap() {
       });
 
       // Creating circle
-      const cityCircle = new google.maps.Circle({
+      const circle = new google.maps.Circle({
         strokeColor: 'green',
         strokeOpacity: 0.8,
         strokeWeight: 2,
@@ -48,15 +49,36 @@ function googleMap() {
         draggable: true,
         map: map
       });
-
-      map.addListener('click', (e) => {
+      circle.addListener('dragend', () => {
+        console.log(circle.getCenter());
+        getPlaces(circle.getCenter());
         removeMarkers();
-        cityCircle.setCenter(e.latLng); // Creating circle radius - setting center point
-        cityCircle.setRadius(scope.radius); // Settig the circle radius
+      });
+
+      circle.addListener('radius_changed', () => {
+        console.log(circle.getRadius());
+        // get the center of the circle
+        // call a fuction and pass in latlng
+      });
+
+      map.addListener('click', (e) => mapClicked(e));
+
+      function mapClicked(e) {
+        if(!e) return false;
+        console.log('e', e);
+        console.log(scope.establishment);
+        getPlaces(e.latLng);
+        removeMarkers();
+        circle.setCenter(e.latLng); // Creating circle radius - setting center point
+        circle.setRadius(scope.radius); // Settig the circle radius
         map.panTo(e.latLng); // Animation pan to location clicked
+
+      }
+
+      function getPlaces(latLng){
         if(!scope.establishment) return false;
         placesService.nearbySearch({ // search places with the filters on the page
-          location: e.latLng,
+          location: latLng,
           radius: scope.radius,
           openNow: true,
           type: scope.establishment,
@@ -72,14 +94,11 @@ function googleMap() {
             });
           });
         });
-
-      });
+      }
 
       function populateImages(results) { // function to get the image of the objects (places) recieved by using the function getUrl() within the object (place)
         results.forEach((result) => {
-          const url = result.photos[0].getUrl({maxHeight: 200});
-          result.imageUrl = url;
-
+          result.imageUrl = result.photos ? result.photos[0].getUrl({maxHeight: 200}) : null; //if the object (place) doesn't have any image it will return NULL
         });
 
         scope.placesResults = results;
