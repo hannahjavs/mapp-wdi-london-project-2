@@ -22,10 +22,10 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
       templateUrl: 'js/views/places/index.html',
       controller: 'PlacesIndexCtrl as places'
     })
-    .state('profile', {
-      url: '/profile',
-      templateUrl: 'js/views/users/profile.html',
-      controller: 'ProfileIndexCtrl as profile'
+    .state('usersShow', {
+      url: '/users/:id',
+      templateUrl: 'js/views/users/show.html',
+      controller: 'UsersShowCtrl as profile'
     })
     .state('plan', {
       url: '/plan',

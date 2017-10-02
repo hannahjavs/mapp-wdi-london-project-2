@@ -2,12 +2,12 @@ angular
   .module('itineraryApp')
   .service('weather', weather);
 
-weather.$inject = ['$http', 'API'];
-function weather($http, API) {
+weather.$inject = ['$http'];
+function weather($http) {
 
   function getForecast() {
     return $http
-      .get(`${API}/weather`)
+      .get('/api/weather')
       .then((response) => {
         return response.data;
       });

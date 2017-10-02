@@ -6,8 +6,6 @@
   <title>WDI Project 3</title>
   <!-- Google Maps API Key -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAj87Dn_MWQSjYABgPtGZ0gvPCWSSHhKGU&libraries=places"></script>
-  <!-- Image Uploading Tag -->
-  <script src="/path/to/bower_components/mh-dragdrop-image/dist/mh-dragdrop-image.min.js"></script>
   <!-- inject:js -->
   <!-- endinject -->
   <!-- inject:css -->
@@ -17,9 +15,9 @@
 
   <a ui-sref="login" ui-sref-active="active" ng-if="!main.isAuthenticated()">Login</a>
   <a ui-sref="register" ui-sref-active="active" ng-if="!main.isAuthenticated()">Register</a>
-  <a href="/" ng-click="main.logout()" ng-if="main.isAuthenticated()">Logout</a>
+  <a href="#" ng-click="main.logout()" ng-if="main.isAuthenticated()">Logout</a>
   <a ui-sref="placesIndex" ui-sref-active="active" ng-if="main.isAuthenticated()">Places</a>
-  <a ui-sref="profile" ui-sref-active="active" ng-if="main.isAuthenticated()">Profile</a>
+  <a ui-sref="usersShow({ id: main.getUserId() })" ui-sref-active="active" ng-if="main.isAuthenticated()">Profile</a>
   <a ui-sref="plan" ui-sref-active="active" ng-if="main.isAuthenticated()">Plan</a>
 
   <main ui-view></main>

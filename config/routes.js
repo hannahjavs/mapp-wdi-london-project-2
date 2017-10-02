@@ -2,6 +2,7 @@ const router = require('express').Router();
 const auth = require('../controllers/auth');
 const plans = require('../controllers/plans');
 const items = require('../controllers/items');
+const users = require('../controllers/users');
 const secureRoute = require('../lib/secureRoute.js');
 const weather = require('../controllers/weather');
 const imageUpload = require('../lib/imageUpload');
@@ -9,14 +10,12 @@ const imageUpload = require('../lib/imageUpload');
 router.route('/plans')
   .all(secureRoute)
   .get(plans.index)
-  .post(plans.create)
-  .post(imageUpload, plans.create); // User image upload
+  .post(plans.create);
 
 router.route('/plans/:id')
   .all(secureRoute)
   .get(plans.show)
-  .delete(plans.delete)
-  .put(imageUpload, plans.update); // User editing image
+  .delete(plans.delete);
 
 router.route('/plans/:id/items')
   .all(secureRoute)
@@ -25,6 +24,11 @@ router.route('/plans/:id/items')
 router.route('/plans/:id/items/:itemId')
   .all(secureRoute)
   .delete(items.delete);
+
+router.route('/profile/:id')
+  .all(secureRoute)
+  .get(users.show)
+  .put(imageUpload, users.update); // User editing image
 
 router.route('/register')
   .post(auth.register);

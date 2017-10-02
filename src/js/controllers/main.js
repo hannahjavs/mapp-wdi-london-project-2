@@ -26,4 +26,10 @@ function MainCtrl($rootScope, $state, $auth, weather) {
 
   weather.getForecast()
     .then(data => vm.weather = data);
+
+  function getUserId() {
+    return $auth.getPayload().userId;
+  }
+
+  vm.getUserId = getUserId;
 }
