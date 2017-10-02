@@ -5,8 +5,9 @@ const s3 = require('../lib/s3');
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true },
   email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  image: { type: String } // Required for image uploading
+  password: { type: String },
+  facebookId: { type: String, unique: true },
+  image: { type: String }
 });
 
 userSchema
@@ -16,9 +17,9 @@ userSchema
   });
 
 userSchema.pre('validate', function checkPassword(next) {
-  // Check password verification in order to enable image uploading and other functionalities of the app.
-  if(this.isModified('password') && (!this._passwordConfirmation || this._passwordConfirmation !== this.password)) {
-    this.invalidate('passwordConfirmation', 'does not match'); // kick the user out if passwords dont match
+  if(!this.password && !this.facebookId) this.invalidate('password', 'required');
+  if(this.isModified('password') && this._passwordConfirmation !== this.password) {
+    this.invalidate('passwordConfirmation', 'does not match');
   }
   next();
 });

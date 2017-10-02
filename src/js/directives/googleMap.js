@@ -13,7 +13,10 @@ function googleMap() {
     replace: true,
     scope: {
       center: '=',
-      placesResults: '='
+      placesResults: '=',
+      establishment: '=',
+      radius: '=',
+      price: '='
     },
     link(scope, element) {
       const map = new google.maps.Map(element[0], {
@@ -31,27 +34,37 @@ function googleMap() {
         markers = [];
       }
 
+      const marker = new google.maps.Marker({
+        map: map
+      });
+
+      // Creating circle
+      const cityCircle = new google.maps.Circle({
+        strokeColor: 'green',
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: 'green',
+        fillOpacity: 0.35,
+        draggable: true,
+        map: map
+      });
+
       map.addListener('click', (e) => {
-        const establishment = document.getElementById('establishment').value;
-        const radius = document.getElementById('radius').value;
-        const price = document.getElementById('price').value;
-
-        console.log(establishment);
         removeMarkers();
-
+        cityCircle.setCenter(e.latLng); // Creating circle radius - setting center point
+        cityCircle.setRadius(scope.radius); // Settig the circle radius
         map.panTo(e.latLng); // Animation pan to location clicked
-
-        placesService.nearbySearch({
+        if(!scope.establishment) return false;
+        placesService.nearbySearch({ // search places with the filters on the page
           location: e.latLng,
-          radius: radius,
+          radius: scope.radius,
           openNow: true,
-          type: establishment,
-          maxPriceLevel: price
+          type: scope.establishment,
+          maxPriceLevel: scope.price
         }, (results, status) => {
-          if(status !== 'OK ' && establishment === '') return false;
+          console.log(status, results);
           populateImages(results);
-          console.log(scope);
-          markers = results.map(result => {
+          markers = results.map(result => { //set markers on the map with the result of the search
             return new google.maps.Marker({
               position: result.geometry.location,
               map: map,
@@ -61,17 +74,12 @@ function googleMap() {
         });
 
       });
-      const latLng = { lat: location.lat, lng: location.lng};
-      const marker = new google.maps.Marker({
-        position: latLng,
-        map: map
 
-      });
-
-      function populateImages(results) {
+      function populateImages(results) { // function to get the image of the objects (places) recieved by using the function getUrl() within the object (place)
         results.forEach((result) => {
           const url = result.photos[0].getUrl({maxHeight: 200});
           result.imageUrl = url;
+
         });
 
         scope.placesResults = results;
@@ -80,7 +88,7 @@ function googleMap() {
 
 
 
-      scope.$watch('center', () => {
+      scope.$watch('center', () => { // get the center when you click
         if(!scope.center) return false;
         map.setCenter(scope.center);
         marker.setPosition(scope.center);
