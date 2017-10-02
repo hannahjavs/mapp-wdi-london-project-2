@@ -26,12 +26,16 @@ function LoginCtrl($auth, $state) {
   vm.credentials = {};
 
   function submit() {
-
     $auth.login(vm.credentials)
       .then(() => $state.go('placesIndex'))
       .catch(() => $state.go('login'));
-
   }
 
+  function authenticate(provider) {
+    $auth.authenticate(provider)
+      .then(()=> $state.go('placesIndex'));
+  }
+
+  vm.authenticate = authenticate;
   vm.submit = submit;
 }
