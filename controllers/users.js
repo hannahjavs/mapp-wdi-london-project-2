@@ -12,10 +12,19 @@ function showRoute(req, res, next) {
     .catch(next);
 }
 
-function updateRoute(req, res, next) {
-
-  // this is for uploading an image
+function createRoute(req, res, next) {
   if(req.file) req.body.image = req.file.filename;
+
+  User
+    .create(req.body)
+    .then((user) => res.status(201).json(user))
+    .catch(next);
+}
+
+function updateRoute(req, res, next) {
+  if(req.file) req.body.image = req.file.filename;
+
+  console.log(req.body);
 
   User
     .findById(req.params.id)
@@ -32,5 +41,6 @@ function updateRoute(req, res, next) {
 
 module.exports = {
   show: showRoute,
+  create: createRoute,
   update: updateRoute
 };

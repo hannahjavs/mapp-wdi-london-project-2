@@ -5,7 +5,8 @@ const s3 = require('../lib/s3');
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true },
   email: { type: String, required: true, unique: true },
-  password: { type: String, required: true }
+  password: { type: String, required: true },
+  image: { type: String } // Required for image uploading
 });
 
 userSchema
@@ -15,8 +16,9 @@ userSchema
   });
 
 userSchema.pre('validate', function checkPassword(next) {
-  if(!this._passwordConfirmation || this._passwordConfirmation !== this.password) {
-    this.invalidate('passwordConfirmation', 'does not match');
+  // Check password verification in order to enable image uploading and other functionalities of the app.
+  if(this.isModified('password') && (!this._passwordConfirmation || this._passwordConfirmation !== this.password)) {
+    this.invalidate('passwordConfirmation', 'does not match'); // kick the user out if passwords dont match
   }
   next();
 });
@@ -34,19 +36,19 @@ userSchema.methods.validatePassword = function validatePassword(password) {
 
 
 // User profile image controllers
-userSchema.virtual('imageSRC')
+userSchema
+  .virtual('imageSRC')
   .get(function getImageSRC() {
     if(!this.image) return null;
-    if(this.image.match(/^http/)) return this.image;
     return `https://s3-eu-west-1.amazonaws.com/willtds-wdi/${this.image}`;
   });
 
-// userSchema.pre('remove', function removeImage(next) {
-//   if(this.image && !this.image.match(/^http/)) {
-//     return s3.deleteObject({ Key: this.image }, next);
-//   }
-//   next();
-// });
+userSchema.pre('remove', function removeImage(next) {
+  if(this.image && !this.image.match(/^http/)) {
+    return s3.deleteObject({ Key: this.image }, next);
+  }
+  next();
+});
 
 userSchema.pre('save', function checkPreviousImage(next) {
   if(this.isModified('image') && this._image && !this._image.match(/^http/)) {
