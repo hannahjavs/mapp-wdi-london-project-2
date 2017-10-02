@@ -1,8 +1,31 @@
-<div ng-controller="PlacesIndexCtrl as index">
+<div>
 
 <h1>You're on the map page</h1>
-<google-map center="index.location"></google-map>
+<google-map center="placesIndex.location" places-results="placesIndex.placesResults"></google-map>
 <form>
-  <input autocomplete location="index.location" ng-change="index.autocomplete()" ng-model="place" name="place" id="place" />
+  <div>
+    <label for="place">Place</label>
+    <input autocomplete location="placesIndex.location" ng-change="placesIndex.autocomplete()" ng-model="place" name="place" id="place" />
+  </div>
+  <div>
+    <label for="establishment">Type of establishment</label>
+    <select name="establishment" id="establishment">
+      <option ng-repeat="(key, establishment) in placesIndex.places" value="{{ establishment }}" name="establishment">{{ key }}</option>
+    </select>
+  </div>
+  <div>
+    <label for="radius">Distance range</label>
+    <input type="range" id="radius" ng-model="radius" name="radius" step="100" min="200" max="2500"/>{{ radius }}
+    <label for="price">Price range</label>
+    <input type="range" id="price" ng-model="price" name="price" step="1" min="0" max="4"/>
+  </div>
 </form>
 </div>
+
+<ul ng-repeat="place in placesIndex.placesResults track by $index">
+  <li ><img src="{{ place.imageUrl }}"/></li>
+  <li >{{ place.name }}</li>
+  <li >{{ place.rating }}</li>
+  <li >{{ place.vicinity }}</li>
+  <button type="button" name="button">+</button>
+</ul>
