@@ -6,15 +6,48 @@ html {
   font-family: 'Open Sans', sans-serif;
 }
 
+footer {
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+// nav
 nav {
   height: 50px;
   display: flex;
   align-items: center;
 }
 
+.navItem {
+    margin: 0 5px;
+}
+
 // places
 .map {
-  height: calc(100vh - 50px);
+  height: calc(100vh - 100px);
+  width: 100%;
+}
+
+.right {
+  padding-right: 30px;
+}
+
+label {
+  padding-right: 5px;
+}
+
+.filter {
+  margin: 20px 0;
+  width: 100%;
+  padding: 5px 0;
+}
+
+.search {
+  width: calc(100% - 50px);
+}
+
+.slider {
   width: 100%;
 }
 
@@ -23,8 +56,19 @@ nav {
   color: red;
 }
 
-// profile page
+// facebook login
+.facebook {
+  background-image: url('/images/fbicon.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: white;
+  border: none;
+  width: 60px;
+  height: 60px;
+  background-clip: border-box;
+}
 
+// profile page
 .sideBar {
   margin-top: 10px;
   margin-right: 30px;

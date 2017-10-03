@@ -16,23 +16,31 @@
 
     <div class="right col-md-3">
       <form>
-        <div>
+
+        <div class="filter">
           <label for="place">Place</label>
-          <input autocomplete location="placesIndex.location" ng-change="placesIndex.autocomplete()" ng-model="placesIndex.place" name="place" id="place" />
+          <input class="search" autocomplete location="placesIndex.location" ng-change="placesIndex.autocomplete()" ng-model="placesIndex.place" name="place" id="place" />
         </div>
-        <div>
+
+        <div class="filter">
           <label for="establishment">Type of establishment</label>
           <select name="establishment" id="establishment" ng-model="placesIndex.establishment">
             <option selected disabled value="">Choose</option>
             <option ng-repeat="(key, establishment) in placesIndex.places" value="{{ establishment }}" name="establishment">{{ key }}</option>
           </select>
         </div>
-        <div>
-          <label for="radius">Distance range</label>
-          <input type="range" id="radius" ng-model="placesIndex.radius" name="radius" step="100" min="200" max="2500"/>{{ radius }}
-          <label for="price">Price range</label>
-          <input type="range" id="price" ng-model="placesIndex.price" name="price" step="1" min="0" max="4"/>
+
+        <div class="filter">
+          <label for="radius">Distance</label>
+          <input class="slider" type="range" id="radius" ng-model="placesIndex.radius" name="radius" step="100" min="200" max="2500"/>{{ radius }}
         </div>
+
+        <div class="filter">
+          <label for="price">Price</label>
+          <input class="slider" type="range" id="price" ng-model="placesIndex.price" name="price" step="1" min="0" max="4"/>
+        </div>
+
+
       </form>
     </div>
 
