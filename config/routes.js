@@ -19,6 +19,10 @@ router.route('/plans/:id')
   .get(plans.show)
   .delete(plans.delete);
 
+router.route('/plan/:id/edit')
+  .all(secureRoute)
+  .put(plans.update);
+
 router.route('/places')
   .all(secureRoute);
 
@@ -28,6 +32,7 @@ router.route('/plans/:id/items')
 
 router.route('/plans/:id/items/:itemId')
   .all(secureRoute)
+  .put(items.update)
   .delete(items.delete);
 
 router.route('/users/:id')
