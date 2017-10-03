@@ -28,7 +28,7 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('usersShow', {
       url: '/users/:id',
       templateUrl: 'js/views/users/show.html',
-      controller: 'UsersShowCtrl as profile'
+      controller: 'UsersShowCtrl as usersShow'
     })
     .state('plan', {
       url: '/plan',

@@ -30,10 +30,10 @@ router.route('/plans/:id/items/:itemId')
   .all(secureRoute)
   .delete(items.delete);
 
-router.route('/profile/:id')
+router.route('/users/:id')
   .all(secureRoute)
   .get(users.show)
-  .put(imageUpload, users.update); // User editing image
+  .put(imageUpload, users.update); // User updating image and uploading to users/show.html page
 
 router.route('/register')
   .post(auth.register);
