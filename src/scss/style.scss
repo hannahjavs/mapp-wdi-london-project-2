@@ -8,16 +8,41 @@ html {
   background: #fafafa;
 }
 
+body {
+  height: 100vh;
+}
+
 footer {
   height: 50px;
   display: flex;
   align-items: center;
 }
 
-form {
-  padding: 10px;
-  padding-left: 20px;
-  width: 100%;
+// home
+.homePage {
+  height: calc(100vh - 110px);
+}
+
+h1 {
+  margin: 0 auto;
+}
+
+.row {
+  text-align: center;
+}
+
+.center {
+    margin: 0 auto;
+    width: 80%;
+}
+
+
+.planBtn {
+  text-align: center;
+  border: 2px solid black;
+  padding: 40px 20px;
+  border-radius: 8px;
+  background-color: white;
 }
 
 // nav
@@ -83,6 +108,12 @@ label {
   width: 100%;
 }
 
+form {
+  padding: 10px;
+  padding-left: 20px;
+  width: 100%;
+}
+
 // facebook login
 .facebook {
   background-image: url('/images/fbicon.png');
@@ -122,7 +153,6 @@ label {
 }
 
 // nav bar buttons!!
-
 .link-wrap {
   border-radius: 3px;
   margin-right: 10px;

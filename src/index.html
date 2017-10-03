@@ -13,9 +13,13 @@
   <!-- endinject -->
 </head>
 <body ng-controller="MainCtrl as main">
+  <div class="container-fluid homePage">
 
-  <div class="container-fluid">
     <nav>
+      <div class="link-wrap">
+        <span class="cover">Home</span>
+        <a class="btn1 navItem" ui-sref="home" ui-sref-active="active">Home</a>
+      </div>
 
       <div class="link-wrap" ng-if="!main.isAuthenticated()">
         <span class="cover">Login</span>
@@ -46,13 +50,14 @@
         <span class="cover">Plan</span>
         <a class="btn1" ui-sref="plan" ui-sref-active="active">Plan</a>
       </div>
-
     </nav>
 
-  <main ui-view></main>
-  <footer>
-    <p>Hannah, William & Daniel</p>
-  </footer>
-</div>
+    <main ui-view></main>
+
+    <footer>
+      <p>Hannah, William & Daniel</p>
+    </footer>
+
+  </div>
 </body>
 </html>

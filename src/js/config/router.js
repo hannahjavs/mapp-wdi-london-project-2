@@ -8,7 +8,8 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
 
   $stateProvider
     .state('home', {
-      url: '/'
+      url: '/home',
+      templateUrl: 'js/views/home.html'
     })
     .state('login', {
       url: '/login',
@@ -51,5 +52,5 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
       controller: 'PlansEditCtrl as plansEdit'
     });
 
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/home');
 }
