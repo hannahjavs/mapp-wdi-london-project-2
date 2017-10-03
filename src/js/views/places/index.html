@@ -11,7 +11,13 @@
       </ul>
     </div>
     <div class="center col-md-6">
-      <google-map center="placesIndex.location" places-results="placesIndex.placesResults" radius="placesIndex.radius" establishment="placesIndex.establishment"></google-map>
+      <google-map
+        center="placesIndex.location"
+        places-results="placesIndex.placesResults"
+        radius="placesIndex.radius"
+        establishment="placesIndex.establishment"
+        price="placesIndex.price">
+      </google-map>
     </div>
 
     <div class="right col-md-3">
@@ -32,12 +38,16 @@
 
         <div class="filter">
           <label for="radius">Distance</label>
+<<<<<<< HEAD
           <input class="slider" type="range" id="radius" ng-model="placesIndex.radius" name="radius" step="100" min="200" max="2500" value="200"/>{{ radius }}
+=======
+          <input class="slider" type="range" id="radius" ng-model="placesIndex.radius" name="radius" step="100" min="200" max="2500" ng-model-options="{ debounce: 250 }"/>{{ radius }}
+>>>>>>> development
         </div>
 
         <div class="filter">
           <label for="price">Price</label>
-          <input class="slider" type="range" id="price" ng-model="placesIndex.price" name="price" step="1" min="0" max="4"/>
+          <input class="slider" type="range" id="price" ng-model="placesIndex.price" name="price" step="1" min="0" max="4" ng-model-options="{ debounce: 250 }"/>
         </div>
 
 
