@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <title>WDI Project 3</title>
   <!-- Google Maps API Key -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4N4nXhT6FwDYaVf1OIW6J06_K9ZL-y3A&libraries=places"></script>
   <!-- inject:js -->
   <!-- endinject -->
@@ -13,8 +14,9 @@
 </head>
 <body ng-controller="MainCtrl as main">
 
-  <div class="container">
-    <div class="wrap">
+  <div class="container-fluid">
+    <nav>
+
       <a class="btn-type1" ui-sref="login" ui-sref-active="active" ng-if="!main.isAuthenticated()">Login</a>
 
       <a class="btn-type1" ui-sref="register" ui-sref-active="active" ng-if="!main.isAuthenticated()">Register</a>
@@ -26,7 +28,7 @@
       <a class="btn-type1" ui-sref="usersShow({ id: main.getUserId() })" ui-sref-active="active" ng-if="main.isAuthenticated()">Profile</a>
 
       <a class="btn-type1" ui-sref="plan" ui-sref-active="active" ng-if="main.isAuthenticated()">Plan</a>
-    </div>
+    </nav>
   </div>
 
   <main ui-view></main>

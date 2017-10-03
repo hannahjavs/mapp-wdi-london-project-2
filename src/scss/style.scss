@@ -1,14 +1,21 @@
 // Import all of your scss files here
+@import 'normalize/normalize';
 @import 'bootstrap/bootstrap-grid';
 
-.container {
-  margin: 50px;
+html {
+  font-family: 'Open Sans', sans-serif;
+}
+
+nav {
+  height: 50px;
+  display: flex;
+  align-items: center;
 }
 
 // places
 .map {
-  height: 400px;
-  width: 600px;
+  height: calc(100vh - 50px);
+  width: 100%;
 }
 
 // nav
@@ -44,24 +51,24 @@
 }
 
 // general styling
-.btn-type1 {
-  background-color: grey;
-  margin: 5px;
-  padding: 12px;
-  min-width: 75px;
-
-  text-align: center;
-  text-decoration: none;
-  text-transform: none;
-
-  color: #fff;
-  border: 1px solid black;
-  border-radius: 4px;
-
-  font-size: 15px;
-  font-weight: 500;
-
-  -webkit-box-shadow: 0px 0px 0.5px 1px rgba(0,0,0,0.55);
-  -moz-box-shadow: 0px 0px 0.5px 1px rgba(0,0,0,0.55);
-  box-shadow: 0px 0px 0.5px 1px rgba(0,0,0,0.55);
-}
+// .btn-type1 {
+//   margin: 5px;
+//   padding: 12px;
+//
+//   text-align: center;
+//   text-decoration: none;
+//   text-transform: none;
+//
+//   color: #565676;
+//   border-radius: 4px;
+//
+//   font-size: 15px;
+//   font-weight: 500;
+//
+//   background:linear-gradient(to bottom, #A2C7E5 5%, #D8DCFF 100%);
+//   box-shadow: 0px 0px 0.5px 1px rgba(86,86,118,0.55);
+// }
+//
+// .btn-type1:hover {
+//   background:linear-gradient(to bottom, #D8DCFF 5%, #A2C7E5 100%);
+// }
