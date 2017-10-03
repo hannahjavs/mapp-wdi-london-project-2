@@ -17,20 +17,22 @@
   <div class="container-fluid">
     <nav>
 
-      <a class="btn-type1" ui-sref="login" ui-sref-active="active" ng-if="!main.isAuthenticated()">Login</a>
+      <a class="btn-type1 navItem" ui-sref="login" ui-sref-active="active" ng-if="!main.isAuthenticated()">Login</a>
 
-      <a class="btn-type1" ui-sref="register" ui-sref-active="active" ng-if="!main.isAuthenticated()">Register</a>
+      <a class="btn-type1 navItem" ui-sref="register" ui-sref-active="active" ng-if="!main.isAuthenticated()">Register</a>
 
-      <a class="btn-type1" href="#" ng-click="main.logout()" ng-if="main.isAuthenticated()">Logout</a>
+      <a class="btn-type1 navItem" href="#" ng-click="main.logout()" ng-if="main.isAuthenticated()">Logout</a>
 
-      <a class="btn-type1" ui-sref="placesIndex" ui-sref-active="active" ng-if="main.isAuthenticated()">Places</a>
+      <a class="btn-type1 navItem" ui-sref="placesIndex" ui-sref-active="active" ng-if="main.isAuthenticated()">Places</a>
 
-      <a class="btn-type1" ui-sref="usersShow({ id: main.getUserId() })" ui-sref-active="active" ng-if="main.isAuthenticated()">Profile</a>
+      <a class="btn-type1 navItem" ui-sref="usersShow({ id: main.getUserId() })" ui-sref-active="active" ng-if="main.isAuthenticated()">Profile</a>
 
       <a class="btn-type1" ui-sref="plan" ui-sref-active="active" ng-if="main.isAuthenticated()">Plan</a>
     </nav>
+    <main ui-view></main>
+    <footer>
+      <p>Hannah, William & Daniel</p>
+    </footer>
   </div>
-
-  <main ui-view></main>
 </body>
 </html>
