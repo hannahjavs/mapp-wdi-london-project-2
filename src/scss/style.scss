@@ -1,9 +1,54 @@
 // Import all of your scss files here
+@import 'normalize/normalize';
 @import 'bootstrap/bootstrap-grid';
 
+html {
+  font-family: 'Open Sans', sans-serif;
+}
+
+footer {
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+// nav
+nav {
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.navItem {
+    margin: 0 5px;
+}
+
+// places
 .map {
-  height: 400px;
-  width: 600px;
+  height: calc(100vh - 100px);
+  width: 100%;
+}
+
+.right {
+  padding-right: 30px;
+}
+
+label {
+  padding-right: 5px;
+}
+
+.filter {
+  margin: 20px 0;
+  width: 100%;
+  padding: 5px 0;
+}
+
+.search {
+  width: calc(100% - 50px);
+}
+
+.slider {
+  width: 100%;
 }
 
 // nav
@@ -11,11 +56,19 @@
   color: red;
 }
 
-// profile page
-.container {
-  margin: 0 50px;
+// facebook login
+.facebook {
+  background-image: url('/images/fbicon.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: white;
+  border: none;
+  width: 60px;
+  height: 60px;
+  background-clip: border-box;
 }
 
+// profile page
 .sideBar {
   margin-top: 10px;
   margin-right: 30px;
@@ -34,10 +87,32 @@
 }
 
 // plan page
-
 .box {
   height: 300px;
   width: 300px;
   display: inline-block;
   background-color: grey;
 }
+
+// general styling
+// .btn-type1 {
+//   margin: 5px;
+//   padding: 12px;
+//
+//   text-align: center;
+//   text-decoration: none;
+//   text-transform: none;
+//
+//   color: #565676;
+//   border-radius: 4px;
+//
+//   font-size: 15px;
+//   font-weight: 500;
+//
+//   background:linear-gradient(to bottom, #A2C7E5 5%, #D8DCFF 100%);
+//   box-shadow: 0px 0px 0.5px 1px rgba(86,86,118,0.55);
+// }
+//
+// .btn-type1:hover {
+//   background:linear-gradient(to bottom, #D8DCFF 5%, #A2C7E5 100%);
+// }
