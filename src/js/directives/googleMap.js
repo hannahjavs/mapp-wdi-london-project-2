@@ -29,18 +29,17 @@ function googleMap($window) {
       const options = {
         enableHighAccuracy: true
       };
-
-      const map = new google.maps.Map(element[0], {
-        center: { lat: 51.52, lng: -0.082 },
-        zoom: 15
-      });
-
       function success(pos) {
-        console.log(pos);
-        const center = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+        const crd = pos.coords;
+        console.log(pos.coords);
 
-        new google.maps.Marker({
-          position: center,
+        console.log('Users current position is:');
+        console.log(`Latitude : ${crd.latitude}`);
+        console.log(`Longitude: ${crd.longitude}`);
+        console.log(`More or less ${crd.accuracy} meters.`);
+
+        geolocationMarker = new $window.google.maps.Marker({
+          position: { lat: pos.coords.latitude, lng: pos.coords.longitude },
           map: map,
           title: 'You\'re here',
           // Green user location custom marker
@@ -51,10 +50,8 @@ function googleMap($window) {
         });
         // DRAWING ROUTE LINE ^^^
 
-        circle.setCenter(center);
+        circle.setCenter({ lat: pos.coords.latitude, lng: pos.coords.longitude });
         circle.setRadius(scope.radius);
-        map.setCenter(center);
-
       }
 
       function error(err) {
@@ -63,7 +60,10 @@ function googleMap($window) {
 
       navigator.geolocation.getCurrentPosition(success, error, options);
 
-
+      const map = new google.maps.Map(element[0], {
+        center: { lat: 51.52, lng: -0.082 },
+        zoom: 15
+      });
       const placesService = new google.maps.places.PlacesService(map);
 
 
@@ -161,11 +161,11 @@ function googleMap($window) {
 
             // INFO LABEL ON MARKER
             marker.addListener('mouseover', () => {
-
+              console.log('hover');
               toggleInfoWindow(marker, result);
             });
             marker.addListener('mouseout', () => {
-
+              console.log('hover');
               toggleInfoWindow();
             });
 
@@ -205,10 +205,17 @@ function googleMap($window) {
 
       scope.$watch('radius', () => {
         circle.setRadius(scope.radius);
-        getPlaces(circle.getCenter());
+        const range = document.getElementById('radius');
+        range.onmouseup= function(){
+          getPlaces(circle.getCenter());
+        };
       });
       scope.$watch('price', () => {
-        getPlaces(circle.getCenter());
+        const range = document.getElementById('price');
+        range.onmouseup= function(){
+          getPlaces(circle.getCenter());
+        };
+
       });
     }
   };
