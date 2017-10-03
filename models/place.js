@@ -7,6 +7,8 @@ const reviewSchema = new mongoose.Schema({
 
 const placeSchema = new mongoose.Schema({
   googlePlaceId: { type: String, required: true },
+  name: { type: String },
+  address: { type: String },
   location: {
     lat: Number,
     lng: Number

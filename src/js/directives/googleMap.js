@@ -57,6 +57,9 @@ function googleMap() {
         center: { lat: 51.52, lng: -0.082 },
         zoom: 13
       });
+      const placesService = new google.maps.places.PlacesService(map);
+
+
 
 
 
@@ -81,11 +84,10 @@ function googleMap() {
 
       // scope.placesResults = [];
 
-      const placesService = new google.maps.places.PlacesService(map);
+
       let markers = [];
 
       function removeMarkers() {
-        console.log('hola');
         markers.forEach(marker => marker.setMap(null));
         markers = [];
       }
@@ -121,13 +123,11 @@ function googleMap() {
         map: map
       });
       circle.addListener('dragend', () => {
-        console.log(circle.getCenter());
         getPlaces(circle.getCenter());
-        removeMarkers();
       });
 
-      circle.addListener('radius_changed', () => {
-        console.log(circle.getRadius());
+      circle.addListener('change', () => {
+        console.log('changed');
         // get the center of the circle
         // call a fuction and pass in latlng
       });
@@ -136,10 +136,8 @@ function googleMap() {
 
       function mapClicked(e) {
         if(!e) return false;
-        console.log('e', e);
-        console.log(scope.establishment);
         getPlaces(e.latLng);
-        removeMarkers();
+
         circle.setCenter(e.latLng); // Creating circle radius - setting center point
         circle.setRadius(scope.radius); // Setting the circle radius
         map.panTo(e.latLng); // Animation pan to location clicked
@@ -147,6 +145,7 @@ function googleMap() {
       }
 
       function getPlaces(latLng){
+        removeMarkers();
         if(!scope.establishment) return false;
         placesService.nearbySearch({ // search places with the filters on the page
           location: latLng,
@@ -154,8 +153,7 @@ function googleMap() {
           openNow: true,
           type: scope.establishment,
           maxPriceLevel: scope.price
-        }, (results, status) => {
-          console.log(status, results);
+        }, (results) => {
           populateImages(results);
           markers = results.map(result => { //set markers on the map with the result of the search
             const marker = new google.maps.Marker({
@@ -191,8 +189,19 @@ function googleMap() {
       scope.$watch('center', () => { // get the center when you click
         if(!scope.center) return false;
         map.setCenter(scope.center);
-        marker.setPosition(scope.center);
+        // marker.setPosition(scope.center);
+      });
+
+      scope.$watch('radius', () => {
+        console.log(scope.radius);
+        circle.setRadius(scope.radius);
+        const range = document.getElementById('radius');
+        range.onmouseup= function(){
+          getPlaces(circle.getCenter());
+        };
+
       });
     }
   };
+
 }
