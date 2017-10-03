@@ -6,28 +6,52 @@ function createRoute(req, res, next) {
   Place
     .findOne({ googlePlaceId: req.body.googlePlaceId })
     .then(place => {
-      if(!place) return Place.create({ googlePlaceId: req.body.googlePlaceId });
+      if(!place) return Place.create(req.body);
       return place;
     })
     .then(place => {
-
-      req.body.place = place;
 
       return Plan
         .findById(req.params.id)
         .exec()
         .then(plan => {
-          const item = plan.items.create(req.body);
+          const item = plan.items.create({ place: place.id });
           plan.items.push(item);
 
-          return plan.save()
-            .then(() => res.status(201).json(item));
+          // add item to the plan.items array and save it
+          return plan.save();
+        })
+        .then((plan) => {
+          // then populate the plan items places, and send the whole plan back as json
+          Plan.populate(plan, { path: 'items.place' },(err, plan) => {
+            return res.json(plan);
+          });
         });
     })
     .catch(next);
 }
 
+function updateRoute(req, res, next) {
+  console.log('inside updateRoute');
+  Plan
+    .findById(req.params.id)
+    .exec()
+    .then(plan => {
+      if(!plan) return res.notFound();
+
+      let item = plan.items.id(req.params.itemId);
+      if(!item) return res.notFound();
+
+      item = Object.assign(item, req.body);
+      console.log('item to be saved', item);
+      return plan.save();
+    })
+    .then(() => res.status(204).end())
+    .catch(next);
+}
+
 function deleteRoute(req, res, next) {
+  console.log('inside delete');
   Plan
     .findById(req.params.id)
     .exec()
@@ -37,7 +61,8 @@ function deleteRoute(req, res, next) {
       const item = plan.items.id(req.params.itemId);
       if(!item) return res.notFound();
 
-      return item.remove();
+      item.remove();
+      return plan.save();
     })
     .then(() => res.status(204).end())
     .catch(next);
@@ -45,5 +70,6 @@ function deleteRoute(req, res, next) {
 
 module.exports = {
   create: createRoute,
+  update: updateRoute,
   delete: deleteRoute
 };

@@ -19,6 +19,7 @@ function createRoute(req, res, next) {
 function showRoute(req, res, next) {
   Plan
     .findById(req.params.id)
+    .populate('items.place')
     .exec()
     .then((plan) => {
       if(!plan) return res.notFound();
@@ -41,9 +42,27 @@ function deleteRoute(req, res, next) {
     .catch(next);
 }
 
+function updateRoute(req, res, next) {
+  if(req.file) req.body.image = req.file.filename;
+
+  Plan
+    .findById(req.params.id)
+    .exec()
+    .then((plan) => {
+      if(!plan) return res.notFound();
+
+      plan = Object.assign(plan, req.body);
+      return plan.save();
+    })
+    .then((plan) => res.json(plan))
+    .catch(next);
+}
+
+
 module.exports = {
   index: indexRoute,
   create: createRoute,
   show: showRoute,
-  delete: deleteRoute
+  delete: deleteRoute,
+  update: updateRoute
 };

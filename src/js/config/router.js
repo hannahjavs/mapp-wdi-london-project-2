@@ -28,12 +28,27 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('usersShow', {
       url: '/users/:id',
       templateUrl: 'js/views/users/show.html',
-      controller: 'UsersShowCtrl as profile'
+      controller: 'UsersShowCtrl as usersShow'
     })
-    .state('plan', {
-      url: '/plan',
-      templateUrl: 'js/views/plans/plan.html',
-      controller: 'PlanIndexCtrl as plan'
+    .state('plansIndex', {
+      url: '/plans',
+      templateUrl: '/js/views/plans/index.html',
+      controller: 'PlansIndexCtrl as plansIndex'
+    })
+    .state('plansNew', {
+      url: '/plans/new',
+      templateUrl: '/js/views/plans/new.html',
+      controller: 'PlansNewCtrl as plansNew'
+    })
+    .state('plansShow', {
+      url: '/plans/:id',
+      templateUrl: '/js/views/plans/show.html',
+      controller: 'PlansShowCtrl as plansShow'
+    })
+    .state('plansEdit', {
+      url: '/plans/:id/edit',
+      templateUrl: '/js/views/plans/edit.html',
+      controller: 'PlansEditCtrl as plansEdit'
     });
 
   $urlRouterProvider.otherwise('/');
