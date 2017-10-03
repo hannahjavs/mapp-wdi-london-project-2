@@ -45,6 +45,9 @@ function googleMap() {
             scaledSize: new google.maps.Size(40,45)
           }
         });
+
+        circle.setCenter({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+        circle.setRadius(scope.radius);
       }
 
       function error(err) {
@@ -191,9 +194,15 @@ function googleMap() {
       });
 
       scope.$watch('radius', () => {
-        console.log(scope.radius);
         circle.setRadius(scope.radius);
         const range = document.getElementById('radius');
+        range.onmouseup= function(){
+          getPlaces(circle.getCenter());
+        };
+
+      });
+      scope.$watch('price', () => {
+        const range = document.getElementById('price');
         range.onmouseup= function(){
           getPlaces(circle.getCenter());
         };
