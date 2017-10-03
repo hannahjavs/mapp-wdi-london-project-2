@@ -61,9 +61,6 @@ function googleMap() {
 
 
 
-
-
-
       // DRAWING ROUTE LINE
       // Invoke Line Func.
       // const directionsService = new google.maps.DirectionsService();
@@ -78,7 +75,6 @@ function googleMap() {
       //   walk.distance = response.routes[0].legs[0].distance.text;
       //   walk.distance = response.routes[0].legs[0].duration.text;
       // }, true);
-
 
 
 
@@ -106,11 +102,6 @@ function googleMap() {
         });
         infowindow.open(map, marker);
       }
-
-      // For all the markers dont delete
-      const marker = new google.maps.Marker({
-        map: map
-      });
 
       // Creating circle
       const circle = new google.maps.Circle({
@@ -155,7 +146,7 @@ function googleMap() {
           maxPriceLevel: scope.price
         }, (results) => {
           populateImages(results);
-          markers = results.map(result => { //set markers on the map with the result of the search
+          markers = results.map(result => { // Set markers on map with the result of the search
             const marker = new google.maps.Marker({
               position: result.geometry.location,
               map: map,
@@ -199,9 +190,8 @@ function googleMap() {
         range.onmouseup= function(){
           getPlaces(circle.getCenter());
         };
-
       });
-    }
-  };
 
-}
+    } // Closing link
+  }; // Closing return
+} // Closing google map function
