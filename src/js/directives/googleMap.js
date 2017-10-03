@@ -4,7 +4,6 @@ angular
   .module('itineraryApp')
   .directive('googleMap', googleMap);
 
-
 function googleMap() {
 
   return {
@@ -16,14 +15,13 @@ function googleMap() {
       placesResults: '=',
       establishment: '=',
       radius: '=',
-      price: '='
-      // user: '=' // Drawing route line
+      price: '=',
+      user: '=' // Drawing route line
     },
     link(scope, element) {
+      let infowindow = null;
 
-
-
-      // GELOCATION
+      // GEOLOCATION
       const options = {
         enableHighAccuracy: true
       };
@@ -55,20 +53,31 @@ function googleMap() {
       //
       navigator.geolocation.getCurrentPosition(success, error, options);
 
-
       const map = new google.maps.Map(element[0], {
         center: { lat: 51.52, lng: -0.082 },
         zoom: 13
       });
 
-      // Drawing route line
+
+
+
+      // DRAWING ROUTE LINE
+      // Invoke Line Func.
       // const directionsService = new google.maps.DirectionsService();
       //
-      // $scope.$watch('user', () => {
-      //   if(!$scope.user) return false;
-      //   map.setCenter({ lat: 51.52, lng: -0.82 });
-      //
-      // })
+      // directionsService.route({
+      //   origin: start.getMarker(),
+      //   destination: end.getMarker(),
+      //   travelMode: 'WALKING'
+      // }, response => {
+      //   console.log(response);
+      //   directionsDisplay.setDirections(response);
+      //   walk.distance = response.routes[0].legs[0].distance.text;
+      //   walk.distance = response.routes[0].legs[0].duration.text;
+      // }, true);
+
+
+
 
       // scope.placesResults = [];
 
@@ -81,9 +90,20 @@ function googleMap() {
         markers = [];
       }
 
-      const marker = new google.maps.Marker({
-        map: map
-      });
+      function toggleInfoWindow(marker, place) {
+        if(infowindow) infowindow.close();
+        // const description = scope.description;
+        // const images = scope.images;
+        if(!marker) return false;
+        infowindow = new google.maps.InfoWindow({
+          content: `
+          <div class="infowindow">
+            <h2><strong>${place.name}</strong></h2>
+          </div>
+          `
+        });
+        infowindow.open(map, marker);
+      }
 
       // Creating circle
       const circle = new google.maps.Circle({
@@ -107,7 +127,7 @@ function googleMap() {
         // call a fuction and pass in latlng
       });
 
-      map.addListener('click', (e) => mapClicked(e));
+      map.addListener('click', mapClicked);
 
       function mapClicked(e) {
         if(!e) return false;
@@ -133,11 +153,23 @@ function googleMap() {
           console.log(status, results);
           populateImages(results);
           markers = results.map(result => { //set markers on the map with the result of the search
-            return new google.maps.Marker({
+            const marker = new google.maps.Marker({
               position: result.geometry.location,
               map: map,
               animation: google.maps.Animation.DROP
             });
+
+            // INFO LABEL ON MARKER
+            marker.addListener('mouseover', () => {
+              console.log('hover');
+              toggleInfoWindow(marker, result);
+            });
+            marker.addListener('mouseout', () => {
+              console.log('hover');
+              toggleInfoWindow();
+            });
+
+            return marker;
           });
         });
       }
