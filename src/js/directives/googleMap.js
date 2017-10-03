@@ -17,12 +17,58 @@ function googleMap() {
       establishment: '=',
       radius: '=',
       price: '='
+      // user: '=' // Drawing route line
     },
     link(scope, element) {
+
+
+
+      // GELOCATION
+      const options = {
+        enableHighAccuracy: true
+      };
+
+      function success(pos) {
+        const crd = pos.coords;
+        console.log(pos.coords);
+
+        console.log('Users current position is:');
+        console.log(`Latitude : ${crd.latitude}`);
+        console.log(`Longitude: ${crd.longitude}`);
+        console.log(`More or less ${crd.accuracy} meters.`);
+
+        new google.maps.Marker({
+          position: { lat: pos.coords.latitude, lng: pos.coords.longitude },
+          map: map,
+          title: 'Hello World!',
+          // Green user location custom marker
+          icon: {
+            url: 'http://icon-park.com/imagefiles/location_map_pin_light_green7.png',
+            scaledSize: new google.maps.Size(40,45)
+          }
+        });
+      }
+
+      function error(err) {
+        console.warn(`ERROR(${err.code}): ${err.message}`);
+      }
+      //
+      navigator.geolocation.getCurrentPosition(success, error, options);
+
+
       const map = new google.maps.Map(element[0], {
         center: { lat: 51.52, lng: -0.082 },
-        zoom: 12
+        zoom: 13
       });
+
+      // Drawing route line
+      // const directionsService = new google.maps.DirectionsService();
+      //
+      // $scope.$watch('user', () => {
+      //   if(!$scope.user) return false;
+      //   map.setCenter({ lat: 51.52, lng: -0.82 });
+      //
+      // })
 
       // scope.placesResults = [];
 
@@ -70,7 +116,7 @@ function googleMap() {
         getPlaces(e.latLng);
         removeMarkers();
         circle.setCenter(e.latLng); // Creating circle radius - setting center point
-        circle.setRadius(scope.radius); // Settig the circle radius
+        circle.setRadius(scope.radius); // Setting the circle radius
         map.panTo(e.latLng); // Animation pan to location clicked
 
       }
@@ -104,8 +150,6 @@ function googleMap() {
         scope.placesResults = results;
         scope.$apply();
       }
-
-
 
       scope.$watch('center', () => { // get the center when you click
         if(!scope.center) return false;
