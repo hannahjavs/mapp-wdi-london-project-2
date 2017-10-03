@@ -105,6 +105,11 @@ function googleMap() {
         infowindow.open(map, marker);
       }
 
+      // For all the markers dont delete
+      const marker = new google.maps.Marker({
+        map: map
+      });
+
       // Creating circle
       const circle = new google.maps.Circle({
         strokeColor: 'green',
