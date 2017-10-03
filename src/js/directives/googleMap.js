@@ -20,8 +20,6 @@ function googleMap() {
     },
     link(scope, element) {
 
-      console.log(scope);
-
       const map = new google.maps.Map(element[0], {
         center: { lat: 51.52, lng: -0.082 },
         zoom: 12
@@ -55,9 +53,7 @@ function googleMap() {
         map: map
       });
       circle.addListener('dragend', () => {
-        console.log(circle.getCenter());
         getPlaces(circle.getCenter());
-        removeMarkers();
       });
 
       circle.addListener('change', () => {
@@ -72,7 +68,7 @@ function googleMap() {
       function mapClicked(e) {
         if(!e) return false;
         getPlaces(e.latLng);
-        removeMarkers();
+
         circle.setCenter(e.latLng); // Creating circle radius - setting center point
         circle.setRadius(scope.radius); // Settig the circle radius
         map.panTo(e.latLng); // Animation pan to location clicked
@@ -80,6 +76,7 @@ function googleMap() {
       }
 
       function getPlaces(latLng){
+        removeMarkers();
         if(!scope.establishment) return false;
         placesService.nearbySearch({ // search places with the filters on the page
           location: latLng,
@@ -116,6 +113,12 @@ function googleMap() {
 
       scope.$watch('radius', () => {
         console.log(scope.radius);
+        circle.setRadius(scope.radius);
+        const range = document.getElementById('radius');
+        range.onmouseup= function(){
+          getPlaces(circle.getCenter());
+        };
+
       });
     }
   };
