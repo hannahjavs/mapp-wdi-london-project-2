@@ -4,7 +4,8 @@ angular
   .module('itineraryApp')
   .directive('googleMap', googleMap);
 
-function googleMap() {
+googleMap.inject = ['$window'];
+function googleMap($window) {
 
   return {
     restrict: 'E',
@@ -20,12 +21,14 @@ function googleMap() {
     },
     link(scope, element) {
       let infowindow = null;
+      let geolocationMarker = null;
+      const colorArray = ['green'];
+
 
       // GEOLOCATION
       const options = {
         enableHighAccuracy: true
       };
-
       function success(pos) {
         const crd = pos.coords;
         console.log(pos.coords);
@@ -35,49 +38,47 @@ function googleMap() {
         console.log(`Longitude: ${crd.longitude}`);
         console.log(`More or less ${crd.accuracy} meters.`);
 
-        new google.maps.Marker({
+        geolocationMarker = new $window.google.maps.Marker({
           position: { lat: pos.coords.latitude, lng: pos.coords.longitude },
           map: map,
-          title: 'Hello World!',
+          title: 'You\'re here',
           // Green user location custom marker
           icon: {
             url: 'http://icon-park.com/imagefiles/location_map_pin_light_green7.png',
             scaledSize: new google.maps.Size(40,45)
           }
         });
+        // DRAWING ROUTE LINE ^^^
+
+        circle.setCenter({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+        circle.setRadius(scope.radius);
       }
 
       function error(err) {
         console.warn(`ERROR(${err.code}): ${err.message}`);
       }
-      //
+
       navigator.geolocation.getCurrentPosition(success, error, options);
 
       const map = new google.maps.Map(element[0], {
         center: { lat: 51.52, lng: -0.082 },
-        zoom: 13
+        zoom: 15
       });
       const placesService = new google.maps.places.PlacesService(map);
 
 
 
-
-
-
       // DRAWING ROUTE LINE
-      // Invoke Line Func.
-      // const directionsService = new google.maps.DirectionsService();
-      //
-      // directionsService.route({
-      //   origin: start.getMarker(),
-      //   destination: end.getMarker(),
-      //   travelMode: 'WALKING'
-      // }, response => {
-      //   console.log(response);
-      //   directionsDisplay.setDirections(response);
-      //   walk.distance = response.routes[0].legs[0].distance.text;
-      //   walk.distance = response.routes[0].legs[0].duration.text;
-      // }, true);
+      const directionsService = new google.maps.DirectionsService(); // invoking line func.
+      const directionsDisplay = new google.maps.DirectionsRenderer({
+        polylineOptions: {
+          strokeColor: colorArray[0],
+          strokeOpacity: 1.0
+        },
+        suppressMarkers: true
+      });
+
+      directionsDisplay.setMap(map);
 
 
 
@@ -107,11 +108,6 @@ function googleMap() {
         infowindow.open(map, marker);
       }
 
-      // For all the markers dont delete
-      const marker = new google.maps.Marker({
-        map: map
-      });
-
       // Creating circle
       const circle = new google.maps.Circle({
         strokeColor: 'green',
@@ -133,15 +129,16 @@ function googleMap() {
       });
 
       map.addListener('click', mapClicked);
+      circle.addListener('click', mapClicked);
 
       function mapClicked(e) {
+        console.log('clicked');
         if(!e) return false;
         getPlaces(e.latLng);
 
         circle.setCenter(e.latLng); // Creating circle radius - setting center point
         circle.setRadius(scope.radius); // Setting the circle radius
         map.panTo(e.latLng); // Animation pan to location clicked
-
       }
 
       function getPlaces(latLng){
@@ -155,7 +152,7 @@ function googleMap() {
           maxPriceLevel: scope.price
         }, (results) => {
           populateImages(results);
-          markers = results.map(result => { //set markers on the map with the result of the search
+          markers = results.map(result => { // Set markers on map with the result of the search
             const marker = new google.maps.Marker({
               position: result.geometry.location,
               map: map,
@@ -170,6 +167,20 @@ function googleMap() {
             marker.addListener('mouseout', () => {
               console.log('hover');
               toggleInfoWindow();
+            });
+
+            marker.addListener('click', () => {
+              directionsService.route({
+                origin: geolocationMarker.getPosition(),
+                destination: marker.getPosition(),
+                travelMode: 'WALKING'
+              }, response => {
+                console.log(response);
+                directionsDisplay.setDirections(response);
+                // element.distance = response.routes[0].legs[0].distance.text;
+                // element.distance = response.routes[0].legs[0].duration.text;
+                // console.log(element);
+              }, true);
             });
 
             return marker;
@@ -193,9 +204,14 @@ function googleMap() {
       });
 
       scope.$watch('radius', () => {
-        console.log(scope.radius);
         circle.setRadius(scope.radius);
         const range = document.getElementById('radius');
+        range.onmouseup= function(){
+          getPlaces(circle.getCenter());
+        };
+      });
+      scope.$watch('price', () => {
+        const range = document.getElementById('price');
         range.onmouseup= function(){
           getPlaces(circle.getCenter());
         };
@@ -204,4 +220,4 @@ function googleMap() {
     }
   };
 
-}
+} // Closing google map function
