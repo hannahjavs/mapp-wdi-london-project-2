@@ -4,6 +4,7 @@ const plans = require('../controllers/plans');
 const items = require('../controllers/items');
 // const places = require('../controllers/places');
 const users = require('../controllers/users');
+const invites = require('../controllers/invites');
 const oauth = require('../controllers/oauth');
 const secureRoute = require('../lib/secureRoute.js');
 const weather = require('../controllers/weather');
@@ -26,6 +27,9 @@ router.route('/plans/:id/edit')
   .all(secureRoute)
   .put(plans.update);
 
+router.route('/plans/:id/send')
+  .post(invites.send);
+
 router.route('/places')
   .all(secureRoute);
 
@@ -42,6 +46,11 @@ router.route('/users/:id')
   .all(secureRoute)
   .get(users.show)
   .put(imageUpload, users.update); // User updating image and uploading to users/show.html page
+
+router.route('/plans/:id/guests')
+  .post(plans.addGuest);
+
+// add delete route here
 
 router.route('/register')
   .post(auth.register);
