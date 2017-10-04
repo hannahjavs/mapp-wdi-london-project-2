@@ -15,22 +15,21 @@
   <!-- endinject -->
 </head>
 <body ng-controller="MainCtrl as main">
-  <div class="container-fluid homePage">
-
+  <!-- <div class="container-fluid"> -->
     <nav>
-      <div class="link-wrap">
+      <div class="link-wrap" ui-sref="/" ui-sref-active="active">
         <span class="cover">Home</span>
-        <a class="btn1 navItem" ui-sref="/" ui-sref-active="active">Home</a>
+        <a class="btn1 navItem">Home</a>
       </div>
 
-      <div class="link-wrap" ng-if="!main.isAuthenticated()">
+      <div class="link-wrap" ng-if="!main.isAuthenticated()" ui-sref="login" ui-sref-active="active">
         <span class="cover">Login</span>
-        <a class="btn1 navItem" ui-sref="login" ui-sref-active="active">Login</a>
+        <a class="btn1 navItem">Login</a>
       </div>
 
-      <div class="link-wrap" ng-if="!main.isAuthenticated()">
+      <div class="link-wrap" ng-if="!main.isAuthenticated()" ui-sref="register" ui-sref-active="active">
         <span class="cover">Register</span>
-        <a class="btn1 navItem" ui-sref="register" ui-sref-active="active">Register</a>
+        <a class="btn1 navItem">Register</a>
       </div>
 
       <div class="link-wrap" ng-if="main.isAuthenticated()">
@@ -38,14 +37,14 @@
         <a class="btn1 navItem" href="#" ng-click="main.logout()">Logout</a>
       </div>
 
-      <div class="link-wrap" ng-if="main.isAuthenticated()">
+      <div class="link-wrap" ng-if="main.isAuthenticated()" ui-sref="usersShow({ id: main.getUserId() })" ui-sref-active="active">
         <span class="cover">Profile</span>
-        <a class="btn1 navItem" ui-sref="usersShow({ id: main.getUserId() })" ui-sref-active="active">Profile</a>
+        <a class="btn1 navItem">Profile</a>
       </div>
 
-      <div class="link-wrap" ng-if="main.isAuthenticated()">
+      <div class="link-wrap" ng-if="main.isAuthenticated()" ui-sref="plansNew" ui-sref-active="active">
         <span class="cover">Plan</span>
-        <a class="btn1" ui-sref="plansNew" ui-sref-active="active">Plan</a>
+        <a class="btn1">Plan</a>
       </div>
     </nav>
 
@@ -55,6 +54,6 @@
       <p>Hannah, William & Daniel</p>
     </footer>
 
-  </div>
+  <!-- </div> -->
 </body>
 </html>

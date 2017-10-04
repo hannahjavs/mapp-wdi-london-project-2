@@ -18,8 +18,11 @@ footer {
 }
 
 // home
-.homePage {
-  height: calc(100vh - 110px);
+body {
+  height: (100vh);
+  background-image: url('http://desktopwalls.net/wp-content/uploads/2015/09/London%20Night%20Lights%20Aerial%204K%20Desktop%20Wallpaper.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 h1 {
@@ -56,6 +59,9 @@ nav {
   background-color: white;
 }
 
+.one {
+  padding-left: 15px;
+}
 // places
 .map {
   border: 3px solid #053C5E;
@@ -190,9 +196,19 @@ nav {
   animation: ani2 0.7s steps(70) forwards;
 }
 
-.link-wrap .btn1:hover {
-  -webkit-animation: ani 0.7s steps(70) forwards;
-  animation: ani 0.7s steps(70) forwards;
+// .link-wrap .btn1:hover {
+//   -webkit-animation: ani 0.7s steps(70) forwards;
+//   animation: ani 0.7s steps(70) forwards;
+// }
+
+.link-wrap {
+  cursor: pointer;
+  &.active {
+    .btn1 {
+      -webkit-animation: ani 0.7s steps(70) forwards;
+      animation: ani 0.7s steps(70) forwards;
+    }
+  }
 }
 
 .cover {
