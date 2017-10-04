@@ -10,6 +10,12 @@ const userSchema = new mongoose.Schema({
   image: { type: String }
 });
 
+userSchema.virtual('plansCreated', {
+  ref: 'Plan',
+  localField: '_id',
+  foreignField: 'createdBy'
+});
+
 userSchema
   .virtual('passwordConfirmation')
   .set(function setPasswordConfirmation(passwordConfirmation) {
@@ -35,6 +41,12 @@ userSchema.methods.validatePassword = function validatePassword(password) {
   return bcrypt.compareSync(password, this.password);
 };
 
+userSchema
+  .virtual('plans', {
+    ref: 'Plan',
+    localField: '_id',
+    foreignField: 'user'
+  });
 
 // User profile image controllers
 userSchema

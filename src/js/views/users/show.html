@@ -1,18 +1,19 @@
 <h1>Your Profile Page</h1>
-
 <!-- {{ usersShow.user }} -->
-
 <!-- Printing User Profile Picture -->
 <img ng-src="{{ usersShow.user.imageSRC }}">
 
 <form ng-submit="usersShow.update()">
-
   <!-- Changed text input to a file input and added our directive attribute -->
   <input type="file" base64 name="base64" id="base64" ng-model="usersShow.user.base64" class="form-control">
-
   <!-- {{ usersShow.user.image }} -->
   <button class="btn btn-primary">Save Profile Picture</button>
 </form>
+
+<ul>
+  <li ng-repeat="plan in usersShow.user.plansCreated"><a ui-sref="plansShow({ id: plan.id })">{{ plan.name }}</a></li>
+</ul>
+
 
 <div class="container">
   <div class="sideBar"></div>
