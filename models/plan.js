@@ -8,6 +8,7 @@ const itemSchema = new mongoose.Schema({
 const planSchema =  new mongoose.Schema({
   name: { type: String, required: true },
   date: { type: Date, required: true },
+  user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
   items: [ itemSchema ]
 });
 

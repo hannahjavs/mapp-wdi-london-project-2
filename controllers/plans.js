@@ -9,7 +9,7 @@ function indexRoute(req, res, next) {
 }
 
 function createRoute(req, res, next) {
-
+  req.body.user = req.currentUser;
   Plan
     .create(req.body)
     .then((plan) => res.status(201).json(plan))

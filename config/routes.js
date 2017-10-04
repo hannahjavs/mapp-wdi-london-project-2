@@ -41,7 +41,7 @@ router.route('/plans/:id/items/:itemId')
 router.route('/users/:id')
   .all(secureRoute)
   .get(users.show)
-  .put(imageUpload, users.update); // User updating image and uploading to users/show.html page
+  .put(imageUpload, users.update); //User updating image and uploading to users/show.html page
 
 router.route('/register')
   .post(auth.register);

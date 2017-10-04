@@ -35,6 +35,12 @@ userSchema.methods.validatePassword = function validatePassword(password) {
   return bcrypt.compareSync(password, this.password);
 };
 
+userSchema
+  .virtual('plans', {
+    ref: 'Plan',
+    localField: '_id',
+    foreignField: 'user'
+  });
 
 // User profile image controllers
 userSchema
