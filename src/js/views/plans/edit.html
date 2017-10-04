@@ -1,4 +1,4 @@
-
+<h1 ng-controller="PlansShowCtrl as plan">Welcome to: {{ plan.name }}</h1>
 <div class="container-fluid">
   <div class="row">
     <div class="left col-md-3">
@@ -10,9 +10,9 @@
             <input type="time" time date="plansEdit.plan.date" ng-model="item.time">
             <button>Save</button>
           </form>
-          <button type="button" name="button" ng-click="plansEdit">ADD</button>
         </li>
       </ul>
+      <button type="button" name="button" ng-click="plansEdit.plansUpdate()">ADD</button>
     </div>
     <div class="center col-md-6">
       <google-map

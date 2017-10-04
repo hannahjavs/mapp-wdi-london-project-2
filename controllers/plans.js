@@ -9,7 +9,8 @@ function indexRoute(req, res, next) {
 }
 
 function createRoute(req, res, next) {
-
+  req.body.createdBy = req.currentUser;
+  console.log('req body', req.body);
   Plan
     .create(req.body)
     .then((plan) => res.status(201).json(plan))
@@ -19,7 +20,7 @@ function createRoute(req, res, next) {
 function showRoute(req, res, next) {
   Plan
     .findById(req.params.id)
-    .populate('items.place')
+    .populate('items.place createdBy')
     .exec()
     .then((plan) => {
       if(!plan) return res.notFound();
