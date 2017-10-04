@@ -2,6 +2,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="left col-md-3">
+      <a ui-sref="plansInvite({id: plansEdit.plan.id })">Send invites</a>
       <ul>
         <li ng-repeat="item in plansEdit.plan.items">
           {{ item.place.name }}<button ng-click="plansEdit.deleteItem(item)">Delete</button>

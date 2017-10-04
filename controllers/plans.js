@@ -58,11 +58,28 @@ function updateRoute(req, res, next) {
     .catch(next);
 }
 
+function addGuestRoute(req, res, next) {
+  Plan
+    .findById(req.params.id)
+    .exec()
+    .then((plan) => {
+      if(!plan) return res.notFound();
+
+      const guest = plan.guests.create(req.body);
+      plan.guests.push(guest);
+      return plan.save();
+    })
+    .then((plan) => res.json(plan))
+    .catch(next);
+}
+
+// add deleteGuestRoute
 
 module.exports = {
   index: indexRoute,
   create: createRoute,
   show: showRoute,
   delete: deleteRoute,
-  update: updateRoute
+  update: updateRoute,
+  addGuest: addGuestRoute
 };
