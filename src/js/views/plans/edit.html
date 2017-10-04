@@ -4,13 +4,13 @@
     <div class="left col-md-3">
       <a ui-sref="plansInvite({id: plansEdit.plan.id })">Send invites</a>
       <ul>
-        <li ng-repeat="item in plansEdit.plan.items">
-          {{ item.place.name }}<button ng-click="plansEdit.deleteItem(item)">Delete</button>
+        <li class="form-control auth" ng-repeat="item in plansEdit.plan.items">
           <form ng-submit="plansEdit.updateTime(item)">
+            {{ item.place.name }}
             <input type="time" time date="plansEdit.plan.date" ng-model="item.time">
+            <button ng-click="plansEdit.deleteItem(item)">Delete</button>
             <button>Save</button>
           </form>
-          <button type="button" name="button" ng-click="plansEdit">ADD</button>
         </li>
       </ul>
     </div>
