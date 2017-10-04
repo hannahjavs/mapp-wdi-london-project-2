@@ -6,7 +6,7 @@
         <li ng-repeat="item in plansEdit.plan.items">
           {{ item.place.name }}<button ng-click="plansEdit.deleteItem(item)">Delete</button>
           <form ng-submit="plansEdit.updateTime(item)">
-            <input type="time" date ng-model="item.time">
+            <input type="time" time date="plansEdit.plan.date" ng-model="item.time">
             <button>Save</button>
           </form>
         </li>
