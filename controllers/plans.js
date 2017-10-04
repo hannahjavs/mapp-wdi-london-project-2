@@ -9,7 +9,8 @@ function indexRoute(req, res, next) {
 }
 
 function createRoute(req, res, next) {
-  req.body.user = req.currentUser;
+  req.body.createdBy = req.currentUser;
+  console.log('req body', req.body);
   Plan
     .create(req.body)
     .then((plan) => res.status(201).json(plan))
@@ -19,7 +20,7 @@ function createRoute(req, res, next) {
 function showRoute(req, res, next) {
   Plan
     .findById(req.params.id)
-    .populate('items.place')
+    .populate('items.place createdBy')
     .exec()
     .then((plan) => {
       if(!plan) return res.notFound();
@@ -58,11 +59,28 @@ function updateRoute(req, res, next) {
     .catch(next);
 }
 
+function addGuestRoute(req, res, next) {
+  Plan
+    .findById(req.params.id)
+    .exec()
+    .then((plan) => {
+      if(!plan) return res.notFound();
+
+      const guest = plan.guests.create(req.body);
+      plan.guests.push(guest);
+      return plan.save();
+    })
+    .then((plan) => res.json(plan))
+    .catch(next);
+}
+
+// add deleteGuestRoute
 
 module.exports = {
   index: indexRoute,
   create: createRoute,
   show: showRoute,
   delete: deleteRoute,
-  update: updateRoute
+  update: updateRoute,
+  addGuest: addGuestRoute
 };

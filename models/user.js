@@ -10,6 +10,12 @@ const userSchema = new mongoose.Schema({
   image: { type: String }
 });
 
+userSchema.virtual('plansCreated', {
+  ref: 'Plan',
+  localField: '_id',
+  foreignField: 'createdBy'
+});
+
 userSchema
   .virtual('passwordConfirmation')
   .set(function setPasswordConfirmation(passwordConfirmation) {

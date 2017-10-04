@@ -14,6 +14,11 @@
   <button class="btn btn-primary">Save Profile Picture</button>
 </form>
 
+<ul>
+  <li ng-repeat="plan in usersShow.user.plansCreated"><a ui-sref="plansShow({ id: plan.id })">{{ plan.name }}</a></li>
+</ul>
+
+
 <div class="container">
   <div class="sideBar"></div>
   <div class="pic"></div>

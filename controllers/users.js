@@ -3,10 +3,11 @@ const User = require('../models/user');
 function showRoute(req, res, next) {
   User
     .findById(req.params.id)
-    .populate('plans')
+    .populate('plansCreated')
     .exec()
     .then((user) => {
       if(!user) return res.notFound();
+      console.log(user);
 
       res.json(user);
     })

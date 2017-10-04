@@ -3,7 +3,8 @@ angular
   .controller('PlansIndexCtrl', PlansIndexCtrl)
   .controller('PlansNewCtrl', PlansNewCtrl)
   .controller('PlansShowCtrl', PlansShowCtrl)
-  .controller('PlansEditCtrl', PlansEditCtrl);
+  .controller('PlansEditCtrl', PlansEditCtrl)
+  .controller('PlansInviteCtrl', PlansInviteCtrl);
 
 PlansIndexCtrl.$inject = ['Plan'];
 function PlansIndexCtrl(Plan) {
@@ -128,4 +129,37 @@ function PlansEditCtrl(Plan, Item, $state, $scope) {
   }
 
   vm.updateTime = updateTime;
+}
+
+PlansIndexCtrl.$inject = ['Plan', 'Guest', '$state'];
+function PlansInviteCtrl(Plan, Guest, $state) {
+  const vm = this;
+  vm.plan = Plan.get($state.params);
+
+  function addGuest() {
+    Guest
+      .save({ planId: vm.plan.id }, vm.guest)
+      .$promise
+      .then((plan) => {
+        vm.plan = plan;
+      });
+  }
+
+  vm.addGuest = addGuest;
+
+  function send() {
+    Plan
+      .sendInvites({ id: vm.plan.id })
+      .$promise
+      .then(() => {
+        vm.plan.guests = vm.plan.guests.map(guest => {
+          guest.invited = true;
+          return guest;
+        });
+      });
+  }
+
+  vm.send = send;
+
+  // deleteGuest
 }

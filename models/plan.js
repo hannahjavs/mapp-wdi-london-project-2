@@ -5,11 +5,20 @@ const itemSchema = new mongoose.Schema({
   time: Date
 });
 
+const guestSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  invited: { type: Boolean, default: false }
+});
+
 const planSchema =  new mongoose.Schema({
   name: { type: String, required: true },
   date: { type: Date, required: true },
-  user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
-  items: [ itemSchema ]
+  items: [ itemSchema ],
+  guests: [ guestSchema ],
+  createdBy: { type: mongoose.Schema.ObjectId, ref: 'User'}
 });
+
+
 
 module.exports = mongoose.model('Plan', planSchema);
