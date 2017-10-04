@@ -26,12 +26,12 @@
       <form>
 
         <div class="filter">
-          <label for="place">Place</label>
+          <label for="place">Location: </label>
           <input class="search" autocomplete location="plansEdit.location" ng-change="plansEdit.autocomplete()" ng-model="plansEdit.place" name="place" id="place" />
         </div>
 
         <div class="filter">
-          <label for="establishment">Type of establishment</label>
+          <label for="establishment">Venue Type:</label>
           <select name="establishment" id="establishment" ng-model="plansEdit.establishment">
             <option selected disabled value="">Choose</option>
             <option ng-repeat="(key, establishment) in plansEdit.places" value="{{ establishment }}" name="establishment">{{ key }}</option>
