@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <title>WDI Project 3</title>
   <!-- Google Maps API Key -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4N4nXhT6FwDYaVf1OIW6J06_K9ZL-y3A&libraries=places"></script>
@@ -14,44 +15,14 @@
   <!-- endinject -->
 </head>
 <body ng-controller="MainCtrl as main">
-  <!-- <div class="container-fluid"> -->
-    <nav>
-      <div class="link-wrap" ui-sref="/" ui-sref-active="active">
-        <span class="cover">Home</span>
-        <a class="btn1 navItem">Home</a>
-      </div>
 
-      <div class="link-wrap" ng-if="!main.isAuthenticated()" ui-sref="login" ui-sref-active="active">
-        <span class="cover">Login</span>
-        <a class="btn1 navItem">Login</a>
-      </div>
+  <ng-include src="'/js/views/partials/_nav.html'"></ng-include>
 
-      <div class="link-wrap" ng-if="!main.isAuthenticated()" ui-sref="register" ui-sref-active="active">
-        <span class="cover">Register</span>
-        <a class="btn1 navItem">Register</a>
-      </div>
+  <!-- VIEWS LOADED -->
+  <main ui-view></main>
 
-      <div class="link-wrap" ng-if="main.isAuthenticated()">
-        <span class="cover">Logout</span>
-        <a class="btn1 navItem" href="#" ng-click="main.logout()">Logout</a>
-      </div>
+  <!-- FOOTER -->
+  <ng-include src="'/js/views/partials/_footer.html'"></ng-include>
 
-      <div class="link-wrap" ng-if="main.isAuthenticated()" ui-sref="usersShow({ id: main.getUserId() })" ui-sref-active="active">
-        <span class="cover">Profile</span>
-        <a class="btn1 navItem">Profile</a>
-      </div>
-
-      <div class="link-wrap" ng-if="main.isAuthenticated()" ui-sref="plansNew" ui-sref-active="active">
-        <span class="cover">Plan</span>
-        <a class="btn1">Plan</a>
-      </div>
-    </nav>
-
-    <!-- VIEWS LOADED -->
-    <main ui-view></main>
-
-    <!-- FOOTER -->
-    <ng-include src="'/js/views/partials/_footer.html'"></ng-include>
-  </div>
 </body>
 </html>
