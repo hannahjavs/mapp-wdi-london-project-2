@@ -41,11 +41,12 @@ function googleMap($window) {
             scaledSize: new google.maps.Size(40,45)
           }
         });
-        // DRAWING ROUTE LINE ^^^
 
         circle.setCenter({ lat: pos.coords.latitude, lng: pos.coords.longitude });
         circle.setRadius(scope.radius);
       }
+
+
 
       function error(err) {
         console.warn(`ERROR(${err.code}): ${err.message}`);
