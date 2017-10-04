@@ -37,11 +37,6 @@
       </div>
 
       <div class="link-wrap" ng-if="main.isAuthenticated()">
-        <span class="cover">Places</span>
-        <a class="btn1 navItem" ui-sref="placesIndex" ui-sref-active="active">Places</a>
-      </div>
-
-      <div class="link-wrap" ng-if="main.isAuthenticated()">
         <span class="cover">Profile</span>
         <a class="btn1 navItem" ui-sref="usersShow({ id: main.getUserId() })" ui-sref-active="active">Profile</a>
       </div>
