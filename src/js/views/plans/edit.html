@@ -6,7 +6,7 @@
         <li ng-repeat="item in plansEdit.plan.items">
           {{ item.place.name }}<button ng-click="plansEdit.deleteItem(item)">Delete</button>
           <form ng-submit="plansEdit.updateTime(item)">
-            <input type="time" date ng-model="item.time">
+            <input type="time" time date="plansEdit.plan.date" ng-model="item.time">
             <button>Save</button>
           </form>
         </li>
@@ -47,7 +47,6 @@
           <label for="price">Price</label>
           <input class="slider" type="range" id="price" ng-model="plansEdit.price" name="price" step="1" min="0" max="4" ng-model-options="{ debounce: 250 }"/>
         </div>
-
 
       </form>
       <ul ng-repeat="place in plansEdit.placesResults track by $index">
