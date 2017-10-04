@@ -16,7 +16,8 @@
         places-results="placesIndex.placesResults"
         radius="placesIndex.radius"
         establishment="placesIndex.establishment"
-        price="placesIndex.price">
+        price="placesIndex.price"
+        establishment="placesIndex.establishment">
       </google-map>
     </div>
 
@@ -38,9 +39,7 @@
 
         <div class="filter">
           <label for="radius">Distance</label>
-          <input class="slider" type="range" id="radius" ng-model="placesIndex.radius" name="radius" step="100" min="200" max="2500" value="200"/>{{ radius }}
-          <!-- <input class="slider" type="range" id="radius" ng-model="placesIndex.radius" name="radius" step="100" min="200" max="2500" ng-model-options="{ debounce: 250 }"/>{{ radius }} -->
-          <input class="slider" type="range" id="radius" ng-model="placesIndex.radius" name="radius" step="100" min="200" max="2500" ng-model-options="{ debounce: 250 }"/>{{ radius }}
+          <input class="slider" type="range" ng-model="placesIndex.radius" name="radius" step="100" min="200" max="2500" ng-model-options="{ debounce: 250 }"/>
         </div>
 
         <div class="filter">
