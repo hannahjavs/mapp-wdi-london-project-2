@@ -47,21 +47,17 @@ function PlansShowCtrl(Plan, $state) {
   vm.plan = Plan.get($state.params);
 }
 
-PlansEditCtrl.$inject = ['Plan', 'Item', '$state'];
-function PlansEditCtrl(Plan, Item, $state) {
+PlansEditCtrl.$inject = ['Plan', 'Item', '$state', '$scope'];
+function PlansEditCtrl(Plan, Item, $state, $scope) {
   const vm = this;
+  vm.plan = {};
   Plan.get($state.params)
     .$promise
-    .then(plan => {
-      vm.plan = plan;
+    .then(plan => vm.plan = plan);
 
-      // turning item times into dates for form inputs
-      vm.plan.items = vm.plan.items.map((item) => {
-        // console.log(item);
-        item.time = new Date(item.time);
-        return item;
-      });
-    });
+  $scope.$watch(() => vm.plan, () => {
+    console.log(vm.plan);
+  }, true);
 
   vm.places= {
     Bar: 'bar',
