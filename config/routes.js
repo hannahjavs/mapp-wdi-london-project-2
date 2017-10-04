@@ -19,7 +19,10 @@ router.route('/plans/:id')
   .get(plans.show)
   .delete(plans.delete);
 
-router.route('/plan/:id/edit')
+router.route('/plans/new')
+  .all(secureRoute);
+  
+router.route('/plans/:id/edit')
   .all(secureRoute)
   .put(plans.update);
 
