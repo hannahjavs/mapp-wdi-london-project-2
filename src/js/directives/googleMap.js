@@ -21,8 +21,8 @@ function googleMap($window) {
     },
     link(scope, element) {
       let infowindow = null;
-      let geolocationMarker = null;
-      const colorArray = ['green'];
+      // let geolocationMarker = null;
+      // const colorArray = ['green'];
 
 
       // GEOLOCATION
@@ -31,7 +31,7 @@ function googleMap($window) {
       };
       function success(pos) {
 
-        geolocationMarker = new $window.google.maps.Marker({
+        new $window.google.maps.Marker({
           position: { lat: pos.coords.latitude, lng: pos.coords.longitude },
           map: map,
           title: 'You\'re here',
@@ -61,17 +61,17 @@ function googleMap($window) {
       const placesService = new google.maps.places.PlacesService(map);
 
 
-      // DRAWING ROUTE LINE
-      const directionsService = new google.maps.DirectionsService(); // invoking line func.
-      const directionsDisplay = new google.maps.DirectionsRenderer({
-        polylineOptions: {
-          strokeColor: colorArray[0],
-          strokeOpacity: 1.0
-        },
-        suppressMarkers: true
-      });
-
-      directionsDisplay.setMap(map);
+      // // DRAWING ROUTE LINE
+      // // const directionsService = new google.maps.DirectionsService(); // invoking line func.
+      // // const directionsDisplay = new google.maps.DirectionsRenderer({
+      // //   polylineOptions: {
+      // //     strokeColor: colorArray[0],
+      // //     strokeOpacity: 1.0
+      // //   },
+      // //   suppressMarkers: true
+      // // });
+      //
+      // directionsDisplay.setMap(map);
 
       // scope.placesResults = [];
 
@@ -155,15 +155,15 @@ function googleMap($window) {
               toggleInfoWindow();
             });
 
-            marker.addListener('click', () => {
-              directionsService.route({
-                origin: geolocationMarker.getPosition(),
-                destination: marker.getPosition(),
-                travelMode: 'WALKING'
-              }, response => {
-                directionsDisplay.setDirections(response);
-              }, true);
-            });
+            // marker.addListener('click', () => {
+            //   directionsService.route({
+            //     origin: geolocationMarker.getPosition(),
+            //     destination: marker.getPosition(),
+            //     travelMode: 'WALKING'
+            //   }, response => {
+            //     directionsDisplay.setDirections(response);
+            //   }, true);
+            // });
 
             return marker;
           });

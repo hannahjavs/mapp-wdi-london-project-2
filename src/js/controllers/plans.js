@@ -43,7 +43,6 @@ function PlansNewCtrl(Plan , $state) {
 PlansShowCtrl.$inject = ['Plan', '$state'];
 function PlansShowCtrl(Plan, $state) {
   console.log($state.params.id);
-
   const vm = this;
   vm.plan = Plan.get($state.params);
 }

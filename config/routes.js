@@ -13,7 +13,7 @@ const imageUpload = require('../lib/imageUpload');
 router.route('/plans')
   .all(secureRoute)
   .get(plans.index)
-  .post(plans.create);
+  .post(secureRoute, plans.create);
 
 router.route('/plans/:id')
   .all(secureRoute)
@@ -45,7 +45,7 @@ router.route('/plans/:id/items/:itemId')
 router.route('/users/:id')
   .all(secureRoute)
   .get(users.show)
-  .put(imageUpload, users.update); // User updating image and uploading to users/show.html page
+  .put(imageUpload, users.update); //User updating image and uploading to users/show.html page
 
 router.route('/plans/:id/guests')
   .post(plans.addGuest);

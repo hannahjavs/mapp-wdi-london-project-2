@@ -104,10 +104,6 @@ nav {
   background-color: #FAFAFA;
 }
 
-label {
-  padding-right: 5px;
-}
-
 .filter {
   margin: 20px 0;
   width: 100%;
@@ -122,22 +118,27 @@ label {
   width: 100%;
 }
 
-form {
-  padding: 10px;
-  padding-left: 20px;
-  width: 100%;
+.auth {
+  label, input, button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .error {
+    span {
+      color: #D8000C;
+      background-color: #FFBABA;
+      padding: 10px;
+      border-radius: 5px;
+      width: 100%;
+      display: block;
+    }
+  }
 }
 
-// facebook login
-.facebook {
-  background-image: url('/images/fbicon.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-color: white;
-  border: none;
-  width: 60px;
-  height: 60px;
-  background-clip: border-box;
+// form
+
+.css-form {
+  margin-top: 50px;
 }
 
 // profile page
