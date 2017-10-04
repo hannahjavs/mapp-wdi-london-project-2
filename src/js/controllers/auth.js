@@ -27,13 +27,13 @@ function LoginCtrl($auth, $state) {
 
   function submit() {
     $auth.login(vm.credentials)
-      .then(() => $state.go('placesIndex'))
+      .then(() => $state.go('home'))
       .catch(() => $state.go('login'));
   }
 
   function authenticate(provider) {
     $auth.authenticate(provider)
-      .then(()=> $state.go('placesIndex'));
+      .then(()=> $state.go('home'));
   }
 
   vm.authenticate = authenticate;

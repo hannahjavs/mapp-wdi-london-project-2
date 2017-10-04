@@ -47,8 +47,8 @@ function PlansShowCtrl(Plan, $state) {
   vm.plan = Plan.get($state.params);
 }
 
-PlansEditCtrl.$inject = ['Plan', 'Item', '$state', '$scope'];
-function PlansEditCtrl(Plan, Item, $state, $scope) {
+PlansEditCtrl.$inject = ['Plan', 'Item', '$state'];
+function PlansEditCtrl(Plan, Item, $state) {
   const vm = this;
   Plan.get($state.params)
     .$promise

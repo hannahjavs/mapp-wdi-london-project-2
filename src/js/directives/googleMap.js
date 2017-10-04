@@ -215,7 +215,6 @@ function googleMap($window) {
         range.onmouseup= function(){
           getPlaces(circle.getCenter());
         };
-
       });
     }
   };
