@@ -11,10 +11,25 @@ body {
   height: 100vh;
 }
 
+// FOOTER
 footer {
   height: 50px;
   display: flex;
   align-items: center;
+  background-color: coral;
+    img {
+      height: 30px;
+    }
+    // .githublink {
+    //   display: block;
+    //   margin: 0 30px;
+    // }
+    // .daniel {
+    //   padding-left: 8px;
+    // }
+    // .github {
+    //   align-items: center;
+    // }
 }
 
 // home
