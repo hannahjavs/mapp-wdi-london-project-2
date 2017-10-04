@@ -44,7 +44,7 @@ function googleMap($window) {
         // DRAWING ROUTE LINE ^^^
 
         circle.setCenter({ lat: pos.coords.latitude, lng: pos.coords.longitude });
-        circle.setRadius(scope.radius/5);
+        circle.setRadius(scope.radius);
       }
 
       function error(err) {
@@ -125,7 +125,7 @@ function googleMap($window) {
 
         circle.setCenter(e.latLng); // Creating circle radius - setting center point
         circle.setRadius(scope.radius); // Setting the circle radius
-        map.panTo(e.latLng); // Animation pan to location clicked
+        // map.panTo(e.latLng); // Animation pan to location clicked
       }
 
       function getPlaces(latLng){
@@ -148,11 +148,9 @@ function googleMap($window) {
 
             // INFO LABEL ON MARKER
             marker.addListener('mouseover', () => {
-              console.log('hover');
               toggleInfoWindow(marker, result);
             });
             marker.addListener('mouseout', () => {
-              console.log('hover');
               toggleInfoWindow();
             });
 
@@ -162,7 +160,6 @@ function googleMap($window) {
                 destination: marker.getPosition(),
                 travelMode: 'WALKING'
               }, response => {
-                console.log(response);
                 directionsDisplay.setDirections(response);
               }, true);
             });
@@ -176,7 +173,6 @@ function googleMap($window) {
         results.forEach((result) => {
           result.imageUrl = result.photos ? result.photos[0].getUrl({maxHeight: 200}) : null; //if the object (place) doesn't have any image it will return NULL
         });
-
         scope.placesResults = results;
         scope.$apply();
       }
@@ -184,16 +180,20 @@ function googleMap($window) {
       scope.$watch('center', () => { // get the center when you click
         if(!scope.center) return false;
         map.setCenter(scope.center);
-        // marker.setPosition(scope.center);
       });
 
       scope.$watch('radius', () => {
         circle.setRadius(scope.radius);
         getPlaces(circle.getCenter());
       });
+
       scope.$watch('price', () => {
         getPlaces(circle.getCenter());
       });
+      scope.$watch('establishment', () => {
+        getPlaces(circle.getCenter());
+      });
+
     }
   };
 
