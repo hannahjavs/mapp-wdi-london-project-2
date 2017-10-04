@@ -21,7 +21,7 @@ router.route('/plans/:id')
 
 router.route('/plans/new')
   .all(secureRoute);
-  
+
 router.route('/plans/:id/edit')
   .all(secureRoute)
   .put(plans.update);
