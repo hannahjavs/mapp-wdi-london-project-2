@@ -1,8 +1,6 @@
 <h1>plan edit {{ plansEdit.plan.name }}</h1>
-
 <div class="container-fluid">
   <div class="row">
-
     <div class="left col-md-3">
       <ul>
         <li ng-repeat="item in plansEdit.plan.items">
@@ -13,10 +11,16 @@
           </form>
         </li>
       </ul>
-
     </div>
     <div class="center col-md-6">
-      <google-map center="plansEdit.location" places-results="plansEdit.placesResults" radius="plansEdit.radius" establishment="plansEdit.establishment"></google-map>
+      <google-map
+        center="plansEdit.location"
+        places-results="plansEdit.placesResults"
+        radius="plansEdit.radius"
+        establishment="plansEdit.establishment"
+        price="plansEdit.price"
+        establishment="plansEdit.establishment">
+      </google-map>
     </div>
 
     <div class="right col-md-3">
@@ -37,17 +41,16 @@
 
         <div class="filter">
           <label for="radius">Distance</label>
-          <input class="slider" type="range" id="radius" ng-model="plansEdit.radius" name="radius" step="100" min="200" max="2500"/>{{ radius }}
+          <input class="slider" type="range" ng-model="plansEdit.radius" name="radius" step="100" min="200" max="2500" ng-model-options="{ debounce: 250 }"/>
         </div>
 
         <div class="filter">
           <label for="price">Price</label>
-          <input class="slider" type="range" id="price" ng-model="plansEdit.price" name="price" step="1" min="0" max="4"/>
+          <input class="slider" type="range" id="price" ng-model="plansEdit.price" name="price" step="1" min="0" max="4" ng-model-options="{ debounce: 250 }"/>
         </div>
 
 
       </form>
-
       <ul ng-repeat="place in plansEdit.placesResults track by $index">
         <li><img src="{{ place.imageUrl }}"/></li>
         <li>{{ place.name }}</li>
