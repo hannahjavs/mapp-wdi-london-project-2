@@ -30,13 +30,6 @@ function googleMap($window) {
         enableHighAccuracy: true
       };
       function success(pos) {
-        const crd = pos.coords;
-        console.log(pos.coords);
-
-        console.log('Users current position is:');
-        console.log(`Latitude : ${crd.latitude}`);
-        console.log(`Longitude: ${crd.longitude}`);
-        console.log(`More or less ${crd.accuracy} meters.`);
 
         geolocationMarker = new $window.google.maps.Marker({
           position: { lat: pos.coords.latitude, lng: pos.coords.longitude },
@@ -51,7 +44,7 @@ function googleMap($window) {
         // DRAWING ROUTE LINE ^^^
 
         circle.setCenter({ lat: pos.coords.latitude, lng: pos.coords.longitude });
-        circle.setRadius(scope.radius);
+        circle.setRadius(scope.radius/5);
       }
 
       function error(err) {
@@ -62,10 +55,9 @@ function googleMap($window) {
 
       const map = new google.maps.Map(element[0], {
         center: { lat: 51.52, lng: -0.082 },
-        zoom: 15
+        zoom: 13
       });
       const placesService = new google.maps.places.PlacesService(map);
-
 
 
       // DRAWING ROUTE LINE
@@ -80,11 +72,7 @@ function googleMap($window) {
 
       directionsDisplay.setMap(map);
 
-
-
-
       // scope.placesResults = [];
-
 
       let markers = [];
 
@@ -132,7 +120,6 @@ function googleMap($window) {
       circle.addListener('click', mapClicked);
 
       function mapClicked(e) {
-        console.log('clicked');
         if(!e) return false;
         getPlaces(e.latLng);
 
@@ -177,9 +164,6 @@ function googleMap($window) {
               }, response => {
                 console.log(response);
                 directionsDisplay.setDirections(response);
-                // element.distance = response.routes[0].legs[0].distance.text;
-                // element.distance = response.routes[0].legs[0].duration.text;
-                // console.log(element);
               }, true);
             });
 
@@ -205,16 +189,11 @@ function googleMap($window) {
 
       scope.$watch('radius', () => {
         circle.setRadius(scope.radius);
-        const range = document.getElementById('radius');
-        range.onmouseup= function(){
-          getPlaces(circle.getCenter());
-        };
+        getPlaces(circle.getCenter());
       });
+
       scope.$watch('price', () => {
-        const range = document.getElementById('price');
-        range.onmouseup= function(){
-          getPlaces(circle.getCenter());
-        };
+        getPlaces(circle.getCenter());
       });
     }
   };
