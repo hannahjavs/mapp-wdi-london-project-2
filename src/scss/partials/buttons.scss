@@ -1,6 +1,6 @@
 .btn.btn-primary {
   color: #fff;
-  background-color: rgb(73, 73, 73);
+  background-color: $footer;
 }
 
 .btn2 {
@@ -11,10 +11,26 @@
 }
 
 .btn3 {
-  background-color: #d3d0d0;
+  background-color: $edit;
   border-radius: 10px;
   width: 100%;
   height: 200px;
+}
+
+.btn-save {
+  font-size: 10px;
+  color: #fff;
+  background-color: $save;
+  border-radius: 10px;
+  width: 20%;
+  height: 100%;
+}
+
+.btn-edit {
+  background-color: $brand;
+  border-radius: 10px;
+  width: 50%;
+  height: 95px;
 }
 
 .btnGroup1 {
