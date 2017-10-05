@@ -234,6 +234,8 @@ form {
 
 .img-circle {
   border-radius: 50%;
+  height:20em;
+  width:20em;
 }
 
 
@@ -247,8 +249,11 @@ form {
 .card{
   width: 20rem;
 }
+.card-block{
+  margin-top: 5em;
+}
 .profilePic{
-  left: 33%;
+
   margin-top:5em;
 }
 
