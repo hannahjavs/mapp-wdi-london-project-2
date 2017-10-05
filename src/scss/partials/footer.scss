@@ -1,11 +1,14 @@
 // FOOTER
 footer {
-  height: 50px;
+  align-items: center;
   background-color: rgb(73, 73, 73);
   color: #fff;
   ul {
+    height: 65px;
     align-items: center;
+    justify-content: center;
     display: flex;
+    margin: 0;
     li {
       .itinerary-logo {
         font-family: Pacifico,cursive;

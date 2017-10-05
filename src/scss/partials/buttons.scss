@@ -2,3 +2,37 @@
   color: #fff;
   background-color: rgb(73, 73, 73);
 }
+
+.btn2 {
+  background-color: $brand;
+  border-radius: 10px;
+  width: 100%;
+  height: 95px;
+}
+
+.btn3 {
+  background-color: #d3d0d0;
+  border-radius: 10px;
+  width: 100%;
+  height: 200px;
+}
+
+.btnGroup1 {
+  margin-bottom: 5px;
+}
+
+.btnGroup2 {
+  margin-top: 5px;
+}
+
+.createBtnCol {
+  padding-right: 5px;
+}
+
+.userBtnCol {
+  padding-left: 5px;
+}
+
+.homePageBtnRow {
+  height: 80vh;
+}
