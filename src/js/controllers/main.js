@@ -2,8 +2,8 @@ angular
   .module('itineraryApp')
   .controller('MainCtrl', MainCtrl);
 
-MainCtrl.$inject = ['$rootScope', '$state', '$auth'];
-function MainCtrl($rootScope, $state, $auth) {
+MainCtrl.$inject = ['$rootScope', '$state', '$auth', 'Plan'];
+function MainCtrl($rootScope, $state, $auth, Plan) {
   const vm = this;
 
   vm.isAuthenticated = $auth.isAuthenticated;
@@ -29,4 +29,16 @@ function MainCtrl($rootScope, $state, $auth) {
   }
 
   vm.getUserId = getUserId;
+
+  vm.create = plansCreate;
+
+  function plansCreate() {
+    console.log(vm.plan);
+    Plan
+      .save(vm.plan)
+      .$promise
+      .then(plan => {
+        $state.go('plansEdit', { id: plan.id });
+      });
+  }
 }

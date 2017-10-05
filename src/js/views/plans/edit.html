@@ -1,4 +1,9 @@
-<h1 ng-controller="PlansShowCtrl as plan">Welcome to: {{ plan.name }}</h1>
+<!-- NAVBAR -->
+<ng-include src="'/js/views/partials/_nav.html'"></ng-include>
+
+
+<h1 ng-controller="PlansShowCtrl as plan">Event: {{ plansEdit.plan.name }}</h1>
+
 <div class="container-fluid">
   <div class="row">
     <div class="left col-md-3">
@@ -13,7 +18,6 @@
           </form>
         </li>
       </ul>
-      <button type="button" name="button" ng-click="plansEdit.plansUpdate()">ADD</button>
     </div>
     <div class="center col-md-6">
       <google-map
@@ -50,8 +54,8 @@
           <label for="price">Price</label>
           <input class="slider" type="range" id="price" ng-model="plansEdit.price" name="price" step="1" min="0" max="4" ng-model-options="{ debounce: 250 }"/>
         </div>
-
       </form>
+
       <ul ng-repeat="place in plansEdit.placesResults track by $index">
         <li><img src="{{ place.imageUrl }}"/></li>
         <li>{{ place.name }}</li>
@@ -59,6 +63,7 @@
         <li>{{ place.vicinity }}</li>
         <button type="button" name="button" ng-click="plansEdit.addItem(place)">+</button>
       </ul>
+
     </div>
   </div>
 </div>
