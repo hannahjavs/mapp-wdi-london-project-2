@@ -105,6 +105,9 @@ nav {
   border: 2px solid #4E5166;
   border-radius: 5px;
 }
+.map.ng-isolate-scope {
+  height: 695px;
+}
 
 .planTitle {
   margin-top: 5px;
@@ -163,11 +166,19 @@ nav {
 }
 
 // COLUMN
+
+.left, .right, .center {
+  margin: 8px 0;
+  height: calc(100vh - 131px);
+}
+
 .right {
   border: 3px solid #053C5E;
   border-radius: 6px;
   background: #FAFAFA;
   color: #053C5E;
+
+  overflow: scroll;
 }
 
 .left {
@@ -182,6 +193,28 @@ nav {
   margin: 20px 0;
   width: 100%;
   padding: 5px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  .radio {
+    width: calc(50% - 5px);
+    label {
+      border: 1px solid $brand;
+      background-color: white;
+      border-radius: 5px;
+      padding: 6px 8px;
+      margin-right: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+    input[type="radio"] {
+      display: none;
+      &:checked + label {
+        background-color: $brand;
+        color: white;
+      }
+    }
+  }
 }
 
 .search {
@@ -189,7 +222,13 @@ nav {
 }
 
 .slider {
-  width: 100%;
+  width: 85%;
+  height: 10px;
+}
+
+.plusMinus {
+  font-weight: bold;
+  padding-bottom: 3px;
 }
 
 .auth {
