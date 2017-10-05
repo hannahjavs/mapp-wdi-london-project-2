@@ -1,6 +1,9 @@
 <h1 ng-controller="PlansShowCtrl as plan">Welcome to: {{ plan.name }}</h1>
 <div class="container-fluid">
   <div class="row">
+
+
+
     <div class="left col-md-3">
       <a ui-sref="plansInvite({id: plansEdit.plan.id })">Send invites</a>
       <ul>
@@ -15,6 +18,9 @@
       </ul>
       <button type="button" name="button" ng-click="plansEdit.plansUpdate()">ADD</button>
     </div>
+
+
+
     <div class="center col-md-6">
       <google-map
       center="plansEdit.location"
@@ -62,7 +68,7 @@
         <div class="card-text">
           <li>Average rating: {{ place.rating }}</li>
           <li>{{ place.vicinity }}</li>
-          <button type="button" name="button" ng-click="plansEdit.addItem(place)">add to plan</button>
+          <button type="button" name="button" ng-click="plansEdit.addItem(place)">Add to plan</button>
         </div>
       </div>
     </ul>
