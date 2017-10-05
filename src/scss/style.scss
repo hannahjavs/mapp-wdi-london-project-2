@@ -68,6 +68,26 @@ nav {
   border-radius: 5px;
 }
 
+.card-img-top {
+  width: 80%;
+  // padding-top: 10px;
+}
+
+.card-title {
+  margin-bottom: 0;
+  font-weight: bold;
+}
+.card {
+  padding: 10px 0;
+  font-size: 12px;
+  text-decoration: none;
+  list-style-type: none;
+}
+
+.placesCard {
+  text-decoration: none;
+}
+
 // COLUMN
 .right {
   border: 3px solid #053C5E;
