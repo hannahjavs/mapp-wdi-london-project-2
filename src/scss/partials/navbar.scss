@@ -1,0 +1,88 @@
+// animated nav bar buttons!
+.link-wrap {
+  border-radius: 3px;
+  margin-right: 10px;
+  position: relative;
+  width: 80px;
+  height: 40px;
+  overflow: hidden;
+  border: 1px solid rgb(234, 234, 234);
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  transition: 0.5s;
+  letter-spacing: 1px;
+}
+
+.link-wrap .btn1 {
+  text-decoration: none;
+  width: 101%;
+  height: 100%;
+  display: inline-block;
+  text-align: center;
+  line-height: 35px;
+  font-size: 16px;
+  letter-spacing: 1px;
+  background: #fff;
+  color: rgb(73, 73, 73);
+  font-weight: 300;
+  border: none;
+  font-family: 'Open Sans', sans-serif;
+
+  -webkit-mask: url("https://github.com/robin-dela/css-mask-animation/blob/master/img/nature-sprite-2.png?raw=true");
+  mask: url("https://github.com/robin-dela/css-mask-animation/blob/master/img/nature-sprite-2.png?raw=true");
+  -webkit-mask-size: 7100% 100%;
+  mask-size: 7100% 100%;
+  -webkit-animation: ani2 0.7s steps(70) forwards;
+  animation: ani2 0.7s steps(70) forwards;
+}
+
+// .link-wrap .btn1:hover {
+//   -webkit-animation: ani 0.7s steps(70) forwards;
+//   animation: ani 0.7s steps(70) forwards;
+// }
+
+.link-wrap {
+  cursor: pointer;
+  &.active {
+    .btn1 {
+      -webkit-animation: ani 0.7s steps(70) forwards;
+      animation: ani 0.7s steps(70) forwards;
+    }
+  }
+}
+
+.cover {
+  position: absolute;
+  background: rgb(73, 73, 73);
+  line-height: 35px;
+  height: 100%;
+  color: #fff;
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  width: 101%;
+  font-weight: 300;
+  font-size: 16px;
+  overflow: hidden;
+}
+
+@keyframes ani {
+  from {
+    -webkit-mask-position: 0 0;
+    mask-position: 0 0;
+  }
+  to {
+    -webkit-mask-position: 100% 0;
+    mask-position: 100% 0;
+  }
+}
+
+@keyframes ani2 {
+  from {
+    -webkit-mask-position: 100% 0;
+    mask-position: 100% 0;
+  }
+  to {
+    -webkit-mask-position: 0 0;
+    mask-position: 0 0;
+  }
+}

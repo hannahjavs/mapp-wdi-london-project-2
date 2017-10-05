@@ -4,6 +4,7 @@
   <base href="/" target="_blank">
   <meta charset="utf-8">
   <title>WDI Project 3</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
   <!-- Google Maps API Key -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -15,37 +16,9 @@
 </head>
 <body ng-controller="MainCtrl as main">
   <!-- <div class="container-fluid"> -->
-    <nav>
-      <div class="link-wrap" ui-sref="/" ui-sref-active="active">
-        <span class="cover">Home</span>
-        <a class="btn1 navItem">Home</a>
-      </div>
 
-      <div class="link-wrap" ng-if="!main.isAuthenticated()" ui-sref="login" ui-sref-active="active">
-        <span class="cover">Login</span>
-        <a class="btn1 navItem">Login</a>
-      </div>
-
-      <div class="link-wrap" ng-if="!main.isAuthenticated()" ui-sref="register" ui-sref-active="active">
-        <span class="cover">Register</span>
-        <a class="btn1 navItem">Register</a>
-      </div>
-
-      <div class="link-wrap" ng-if="main.isAuthenticated()">
-        <span class="cover">Logout</span>
-        <a class="btn1 navItem" href="#" ng-click="main.logout()">Logout</a>
-      </div>
-
-      <div class="link-wrap" ng-if="main.isAuthenticated()" ui-sref="usersShow({ id: main.getUserId() })" ui-sref-active="active">
-        <span class="cover">Profile</span>
-        <a class="btn1 navItem">Profile</a>
-      </div>
-
-      <div class="link-wrap" ng-if="main.isAuthenticated()" ui-sref="plansNew" ui-sref-active="active">
-        <span class="cover">Plan</span>
-        <a class="btn1">Plan</a>
-      </div>
-    </nav>
+    <!-- NAVBAR -->
+    <ng-include src="'/js/views/partials/_nav.html'"></ng-include>
 
     <!-- VIEWS LOADED -->
     <main ui-view></main>
