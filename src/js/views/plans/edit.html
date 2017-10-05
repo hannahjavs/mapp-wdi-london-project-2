@@ -1,7 +1,6 @@
 <!-- NAVBAR -->
 <ng-include src="'/js/views/partials/_nav.html'"></ng-include>
 
-
 <div ng-controller="PlansShowCtrl as plan"></div>
 
 <div class="container-fluid">
@@ -21,92 +20,56 @@
                 {{ item.place.address }}
               </div>
 
-                <span class="timeSet">Time: <input class="timeSetItem" type="time" time date="plansEdit.plan.date" ng-model="item.time">
+              <span class="timeSet">Time: <input class="timeSetItem" type="time" time date="plansEdit.plan.date" ng-model="item.time">
                 <button class="saveTime">+</button></span>
 
                 <div class="card-block">
 
-              <button class="removeEntry" ng-click="plansEdit.deleteItem(item)">Remove</button>
+                  <button class="removeEntry" ng-click="plansEdit.deleteItem(item)">Remove</button>
+                </div>
+              </form>
             </div>
-            </form>
-          </div>
-        </li>
-      </ul>
+          </li>
+        </ul>
 
-      <button type="button" name="button" ng-click="plansEdit.plansUpdate()">Save plan</button>
-      <a ui-sref="plansInvite({id: plansEdit.plan.id })">Send invites</a>
+        <button type="button" name="button" ng-click="plansEdit.plansUpdate()">Save plan</button>
+        <a ui-sref="plansInvite({id: plansEdit.plan.id })">Send invites</a>
+      </div>
+
+      <div class="center col-md-6">
+        <google-map
+        center="plansEdit.location"
+        places-results="plansEdit.placesResults"
+        radius="plansEdit.radius"
+        venue="plansEdit.venue"
+        price="plansEdit.price">
+      </google-map>
     </div>
-
-
-
-    <div class="center col-md-6">
-      <google-map
-      center="plansEdit.location"
-      places-results="plansEdit.placesResults"
-      radius="plansEdit.radius"
-<<<<<<< HEAD
-      venue="plansEdit.venue"
-      price="plansEdit.price">
-    </google-map>
-  </div>
-=======
-      establishment="plansEdit.establishment"
-      price="plansEdit.price"></google-map>
-    </div>
->>>>>>> development
 
     <div class="right col-md-3">
       <form>
 
-<<<<<<< HEAD
-      <div class="filter">
-        <label for="place">Location: </label>
-        <input class="search" autocomplete center="plansEdit.location" ng-change="plansEdit.autocomplete()" ng-model="plansEdit.place" name="place" id="place" />
-      </div>
-      <div class="filter" ng-repeat="(key, venue) in plansEdit.places">
-        <input type="radio"  ng-model="plansEdit.venue" value="{{ venue }}" name="venue">{{ key }}</input>
-      </div>
-=======
+
         <div class="filter">
           <label for="place">Location: </label>
           <input class="search" autocomplete center="plansEdit.location" ng-change="plansEdit.autocomplete()" ng-model="plansEdit.place" name="place" id="place" />
         </div>
-        <div class="filter">
-          <label for="establishment">Venue Type:</label>
-          <select name="establishment" id="establishment" ng-model="plansEdit.establishment">
-            <option selected disabled value="">Choose</option>
-            <option ng-repeat="(key, establishment) in plansEdit.places" value="{{ establishment }}" name="establishment">{{ key }}</option>
-          </select>
-          <button ng-click="plansEdit.selectEstablishment()" ng-model="plansEdit.establishment" ng-repeat="(key, establishment) in plansEdit.places" value="{{ establishment }}" name="establishment">{{ key }}</button>
+
+        <div class="filter" ng-repeat="(key, venue) in plansEdit.places">
+          <input type="radio"  ng-model="plansEdit.venue" value="{{ venue }}" name="venue">{{ key }}</input>
         </div>
->>>>>>> development
 
         <div class="filter">
           <label for="radius">Distance</label>
           <input class="slider" type="range" ng-model="plansEdit.radius" name="radius" step="100" min="200" max="2500" />
         </div>
 
-
-<<<<<<< HEAD
-      <div class="filter">
-        <label for="price">Price</label>
-        <input class="slider" type="range" id="price" ng-model="plansEdit.price" name="price" step="1" min="0" max="4"/>
-      </div>
-=======
         <div class="filter">
           <label for="price">Price</label>
-          <input class="slider" type="range" id="price" ng-model="plansEdit.price" name="price" step="1" min="0" max="4" ng-model-options="{ debounce: 250 }"/>
+          <input class="slider" type="range" id="price" ng-model="plansEdit.price" name="price" step="1" min="0" max="4"/>
         </div>
->>>>>>> development
-
-<<<<<<< HEAD
-    </form>
-=======
-
-
 
       </form>
->>>>>>> development
 
       <ul class="placesCard" ng-repeat="place in plansEdit.placesResults track by $index">
         <div class="card">

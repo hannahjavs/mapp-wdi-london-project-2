@@ -1,30 +1,18 @@
 <div class="homePage">
-  <h1>Itinerary App</h1>
   <!-- Here: {{ main.plan }} -->
 
-  <div class="container-fluid">
+  <div class="container-fluid home-container">
 
     <div class="row align-items-center homePageBtnRow">
-      <div class="col-lg-4 offset-lg-4">
-
-        <div class="row">
-          <div class="col-lg-6 createBtnCol">
+      <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2">
+        <h1>Itinerary App</h1>
+        <div class="homeBtns">
+          <div class="createBtnCol">
             <!-- CREATE PLAN BUTTON -->
             <button ng-click="main.showDetails = !main.showDetails" class="btn3">Create A Plan</button>
           </div>
 
-          <!-- DROP DOWN FORM -->
-          <form class="css-form auth" ng-submit="main.create()" ng-show="main.showDetails">
-            <div class="form-group">
-              <label>Name</label>
-              <input class="form-control" type="text" ng-model="main.plan.name">
-              <label>Date</label>
-              <input class="form-control" type="date" ng-model="main.plan.date">
-              <button>Create</button>
-            </div>
-          </form>
-
-          <div class="col-lg-6 userBtnCol">
+          <div class="userBtnCol">
             <!-- IF LOGGED IN -->
             <!-- REGISTER BUTTON -->
             <button type="button" class="btn2 btnGroup1" name="button" ng-if="!main.isAuthenticated()" ui-sref="register">Register</button>
@@ -34,12 +22,22 @@
 
             <!-- IF NOT LOGGED IN -->
             <!-- LOGIN BUTTON -->
-            <button type="button" class="btn2 btnGroup2" name="button" ng-if="!main.isAuthenticated()" ui-sref="login">login</button>
+            <button type="button" class="btn2 btnGroup2" name="button" ng-if="!main.isAuthenticated()" ui-sref="login">Login</button>
             <!-- LOGOUT BUTTON -->
-            <button type="button" class="btn2 btnGroup2" name="button" ng-if="main.isAuthenticated()" ng-click="main.logout()">logout</button>
+            <button type="button" class="btn2 btnGroup2" name="button" ng-if="main.isAuthenticated()" ng-click="main.logout()">Logout</button>
           </div>
-
         </div>
+          <!-- DROP DOWN FORM -->
+        <form class="css-form auth" ng-submit="main.create()" ng-show="main.showDetails">
+          <div class="form-group">
+            <label>Name</label>
+            <input class="form-control" type="text" ng-model="main.plan.name">
+            <label>Date</label>
+            <input class="form-control" type="date" ng-model="main.plan.date">
+            <button class="btn4">Create</button>
+          </div>
+        </form>
+
       </div>
     </div>
   </div>
