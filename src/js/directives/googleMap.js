@@ -4,8 +4,8 @@ angular
   .module('itineraryApp')
   .directive('googleMap', googleMap);
 
-googleMap.inject = ['$window', 'snazzymap'];
-function googleMap($window, snazzymap) {
+googleMap.inject = ['$window', 'snazzymap', 'debounce'];
+function googleMap($window, snazzymap, debounce) {
 
   return {
     restrict: 'E',
@@ -42,8 +42,8 @@ function googleMap($window, snazzymap) {
           }
         });
 
-        circle.setCenter({ lat: pos.coords.latitude, lng: pos.coords.longitude });
-        circle.setRadius(scope.radius);
+        // circle.setCenter({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+        // circle.setRadius(scope.radius);
       }
 
 
@@ -131,6 +131,7 @@ function googleMap($window, snazzymap) {
       }
 
       function getPlaces(latLng){
+        console.log('hola');
         removeMarkers();
         if(!scope.establishment) return false;
         placesService.nearbySearch({ // search places with the filters on the page
@@ -142,6 +143,7 @@ function googleMap($window, snazzymap) {
         }, (results) => {
           populateImages(results);
           markers = results.map(result => { // Set markers on map with the result of the search
+
             const marker = new google.maps.Marker({
               position: result.geometry.location,
               map: map,
@@ -182,19 +184,24 @@ function googleMap($window, snazzymap) {
       scope.$watch('center', () => { // get the center when you click
         if(!scope.center) return false;
         map.setCenter(scope.center);
+        circle.setCenter(scope.center); // Creating circle radius - setting center point
+        circle.setRadius(scope.radius); // Setting the circle radius
       });
 
-      scope.$watch('radius', () => {
-        circle.setRadius(scope.radius);
-        getPlaces(circle.getCenter());
-      });
+      scope.$watch('radius', () => circle.setRadius(scope.radius));
+
+      scope.$watch('radius', debounce(() => getPlaces(circle.getCenter()), 500));
 
       scope.$watch('price', () => {
         getPlaces(circle.getCenter());
       });
+
+
       scope.$watch('establishment', () => {
         getPlaces(circle.getCenter());
       });
+
+
 
     }
   };
