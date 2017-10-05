@@ -2,9 +2,14 @@
 <ng-include src="'/js/views/partials/_nav.html'"></ng-include>
 
 <div class="container">
-  <div class="card profilePic">
+  <div class="row">
 
-    <img class="card-img-top image-circle" ng-src="{{ usersShow.user.imageSRC }}">
+  <div class="card profilePic text-center">
+    <div class="cotainer">
+      <img class="card-img-top img-circle" ng-src="{{ usersShow.user.imageSRC }}">
+
+    </div>
+
 
   <div class="card-block">
     <h4 class="card-title">{{ usersShow.user.username }}</h4>
@@ -21,4 +26,5 @@
     <a ui-sref="plansShow({ id: plan.id })">{{ plan.name }}</a>
   </div>
 
+  </div>
 </div>

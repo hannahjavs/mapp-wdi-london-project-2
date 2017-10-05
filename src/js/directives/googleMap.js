@@ -21,8 +21,8 @@ function googleMap($window, snazzymap, debounce) {
     },
     link(scope, element) {
       let infowindow = null;
-      // let geolocationMarker = null;
-      // const colorArray = ['green'];
+      let geolocationMarker = null;
+      const colorArray = ['green'];
 
 
       // GEOLOCATION
@@ -52,7 +52,7 @@ function googleMap($window, snazzymap, debounce) {
         console.warn(`ERROR(${err.code}): ${err.message}`);
       }
 
-      navigator.geolocation.getCurrentPosition(success, error, options);
+      geolocationMarker = navigator.geolocation.getCurrentPosition(success, error, options);
 
       const map = new google.maps.Map(element[0], {
         center: { lat: 51.52, lng: -0.082 },
@@ -62,17 +62,17 @@ function googleMap($window, snazzymap, debounce) {
       const placesService = new google.maps.places.PlacesService(map);
 
 
-      // // DRAWING ROUTE LINE
-      // // const directionsService = new google.maps.DirectionsService(); // invoking line func.
-      // // const directionsDisplay = new google.maps.DirectionsRenderer({
-      // //   polylineOptions: {
-      // //     strokeColor: colorArray[0],
-      // //     strokeOpacity: 1.0
-      // //   },
-      // //   suppressMarkers: true
-      // // });
-      //
-      // directionsDisplay.setMap(map);
+      //DRAWING ROUTE LINE
+      const directionsService = new google.maps.DirectionsService(); // invoking line func.
+      const directionsDisplay = new google.maps.DirectionsRenderer({
+        polylineOptions: {
+          strokeColor: colorArray[0],
+          strokeOpacity: 1.0
+        },
+        suppressMarkers: true
+      });
+
+      directionsDisplay.setMap(map);
 
       // scope.placesResults = [];
 
@@ -127,11 +127,11 @@ function googleMap($window, snazzymap, debounce) {
 
         circle.setCenter(e.latLng); // Creating circle radius - setting center point
         circle.setRadius(scope.radius); // Setting the circle radius
-        // map.panTo(e.latLng); // Animation pan to location clicked
+        map.panTo(e.latLng); // Animation pan to location clicked
       }
 
       function getPlaces(latLng){
-        console.log('hola');
+
         removeMarkers();
         if(!scope.venue) return false;
         placesService.nearbySearch({ // search places with the filters on the page
@@ -158,15 +158,17 @@ function googleMap($window, snazzymap, debounce) {
               toggleInfoWindow();
             });
 
-            // marker.addListener('click', () => {
-            //   directionsService.route({
-            //     origin: geolocationMarker.getPosition(),
-            //     destination: marker.getPosition(),
-            //     travelMode: 'WALKING'
-            //   }, response => {
-            //     directionsDisplay.setDirections(response);
-            //   }, true);
-            // });
+            marker.addListener('click', () => {
+              console.log(marker);
+              console.log('hiya', geolocationMarker.getPosition());
+              directionsService.route({
+                origin: geolocationMarker.getPosition(),
+                destination: marker.getPosition(),
+                travelMode: 'WALKING'
+              }, response => {
+                directionsDisplay.setDirections(response);
+              }, true);
+            });
 
             return marker;
           });
