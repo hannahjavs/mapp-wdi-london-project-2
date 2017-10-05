@@ -1,0 +1,37 @@
+.events-show {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  .event-map {
+    padding-top: 100%;
+    background-color: grey;
+    margin-bottom: 20px;
+  }
+  .places {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    .place {
+      background-color: white;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid $brand;
+      margin-bottom: 5px;
+    }
+  }
+  .guests {
+    .guest {
+      background-color: white;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-bottom: 5px;
+    }
+  }
+  .weather {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    img {
+      width: 50%;
+    }
+  }
+}

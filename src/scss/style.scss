@@ -10,6 +10,7 @@ $white: #fff;
 @import 'partials/buttons';
 @import 'partials/footer';
 @import 'partials/navbar';
+@import 'partials/eventsShow';
 
 html {
   background-color: $white;
@@ -50,8 +51,13 @@ input, button {
   }
   h1 {
     margin-bottom: 30px;
+    font-size: 50px;
+    font-family: 'Quicksand', sans-serif;
+    img {
+      height: 100px;
+      margin-right: 25px;
+    }
   }
-  // background-image: url('http://desktopwalls.net/wp-content/uploads/2015/09/London%20Night%20Lights%20Aerial%204K%20Desktop%20Wallpaper.jpg');
 }
 
 h1 {
