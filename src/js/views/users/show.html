@@ -2,15 +2,23 @@
 <ng-include src="'/js/views/partials/_nav.html'"></ng-include>
 
 <div class="container">
-  <div class="pic"><img ng-src="{{ usersShow.user.imageSRC }}"></div>
+  <div class="card profilePic">
 
-  <form ng-submit="usersShow.update()">
-    <!-- Changed text input to a file input and added our directive attribute -->
-    <input type="file" base64 name="base64" id="base64" ng-model="usersShow.user.base64" class="form-control">
-    <!-- {{ usersShow.user.image }} -->
-    <button class="btn btn-primary">Save Profile Picture</button>
-  </form></div>
+    <img class="card-img-top image-circle" ng-src="{{ usersShow.user.imageSRC }}">
+
+  <div class="card-block">
+    <h4 class="card-title">{{ usersShow.user.username }}</h4>
+    <form ng-submit="usersShow.update()">
+      <!-- Changed text input to a file input and added our directive attribute -->
+      <input type="file" base64 name="base64" id="base64" ng-model="usersShow.user.base64" class="form-control">
+      <!-- {{ usersShow.user.image }} -->
+      <button class="btn btn-primary">Save Profile Picture</button>
+    </form>
+  </div>
+</div>
+
   <div class="pic" ng-repeat="plan in usersShow.user.plansCreated">
     <a ui-sref="plansShow({ id: plan.id })">{{ plan.name }}</a>
   </div>
+
 </div>
