@@ -1,9 +1,10 @@
 const rp = require('request-promise');
 
 function weatherProxy(req, res) {
+  console.log(req.query);
   // Create a new request promise
   rp({
-    url: `https://api.darksky.net/forecast/${process.env.DARK_SKIES_API_KEY}/51.5057,-0.12608?units=si`,
+    url: `https://api.darksky.net/forecast/${process.env.DARK_SKIES_API_KEY}/${req.query.lat},${req.query.lng}?units=si&time=${req.query.time}`, // /time (the time selected on plan creation)
     method: 'GET',
     json: true
   })
@@ -14,6 +15,3 @@ function weatherProxy(req, res) {
 module.exports = {
   proxy: weatherProxy
 };
-
-
-/// weather url needs /time on end. /time should be the date selected when the plan is created

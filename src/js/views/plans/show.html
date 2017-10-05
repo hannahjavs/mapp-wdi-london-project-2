@@ -1,10 +1,10 @@
 <h1>Plan Page {{ plansShow.plan.name }}</h1>
-
-    <h1>Weather in {{ main.weather.timezone }}</h1>
-    <img id="icon" ng-src="/images/{{ main.weather.currently.icon }}.png" />
-    <h2>Temperature: {{ main.weather.currently.apparentTemperature }}ºC</h2>
-    <h2>Summary: {{ main.weather.currently.summary }}</h2>
-    <h2>Humidity: {{ main.weather.currently.humidity }}</h2>
+{{ plansShow.plan.date }}
+    <h1>Weather in {{ plansShow.weather.timezone }}</h1>
+    <img id="icon" ng-src="/images/{{ plansShow.weather.currently.icon }}.png" />
+    <h2>Temperature: {{ plansShow.weather.currently.apparentTemperature }}ºC</h2>
+    <h2>Summary: {{ plansShow.weather.currently.summary }}</h2>
+    <h2>Humidity: {{ plansShow.weather.currently.humidity }}</h2>
 
     <div class="box" ng-repeat="item in plansShow.plan.items track by $index">
       <ul>
