@@ -39,11 +39,12 @@
             <option selected disabled value="">Choose</option>
             <option ng-repeat="(key, establishment) in plansEdit.places" value="{{ establishment }}" name="establishment">{{ key }}</option>
           </select>
+          <button ng-click="plansEdit.selectEstablishment()" ng-model="plansEdit.establishment" ng-repeat="(key, establishment) in plansEdit.places" value="{{ establishment }}" name="establishment">{{ key }}</button>
         </div>
 
         <div class="filter">
           <label for="radius">Distance</label>
-          <input class="slider" type="range" ng-model="plansEdit.radius" name="radius" step="100" min="200" max="2500" ng-model-options="{ debounce: 250 }"/>
+          <input class="slider" type="range" ng-model="plansEdit.radius" name="radius" step="100" min="200" max="2500" />
         </div>
 
         <div class="filter">
