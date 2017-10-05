@@ -1,17 +1,45 @@
 <div class="homePage">
-    <h1>Itinerary App</h1>
-</div>
+  <h1>Itinerary App</h1>
+  <!-- Here: {{ main.plan }} -->
 
-<!-- Here: {{ main.plan }} -->
+  <div class="container-fluid">
 
-<button ng-click="main.showDetails = !main.showDetails" ng-if="main.isAuthenticated()" class="btn1">Create A Plan</button>
+    <div class="row align-items-center homePageBtnRow">
+      <div class="col-lg-4 offset-lg-4">
 
-<form class="css-form auth" ng-submit="main.create()" ng-show="main.showDetails">
-  <div class="form-group">
-  <label>Name</label>
-  <input class="form-control" type="text" ng-model="main.plan.name">
-  <label>Date</label>
-  <input class="form-control" type="date" ng-model="main.plan.date">
-  <button>Create</button>
-</div>
-</form>
+        <div class="row">
+          <div class="col-lg-6 createBtnCol">
+            <!-- CREATE PLAN BUTTON -->
+            <button ng-click="main.showDetails = !main.showDetails" class="btn3">Create A Plan</button>
+          </div>
+
+          <!-- DROP DOWN FORM -->
+          <form class="css-form auth" ng-submit="main.create()" ng-show="main.showDetails">
+            <div class="form-group">
+              <label>Name</label>
+              <input class="form-control" type="text" ng-model="main.plan.name">
+              <label>Date</label>
+              <input class="form-control" type="date" ng-model="main.plan.date">
+              <button>Create</button>
+            </div>
+          </form>
+
+          <div class="col-lg-6 userBtnCol">
+            <!-- IF LOGGED IN -->
+            <!-- REGISTER BUTTON -->
+            <button type="button" class="btn2 btnGroup1" name="button" ng-if="!main.isAuthenticated()" ui-sref="register">Register</button>
+
+            <!-- PROFILE BUTTON -->
+            <button type="button" class="btn2 btnGroup1" name="button" ng-if="main.isAuthenticated()" ui-sref="usersShow({ id: main.getUserId() })">Profile</button>
+
+            <!-- IF NOT LOGGED IN -->
+            <!-- LOGIN BUTTON -->
+            <button type="button" class="btn2 btnGroup2" name="button" ng-if="!main.isAuthenticated()" ui-sref="login">login</button>
+            <!-- LOGOUT BUTTON -->
+            <button type="button" class="btn2 btnGroup2" name="button" ng-if="main.isAuthenticated()" ng-click="main.logout()">logout</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
