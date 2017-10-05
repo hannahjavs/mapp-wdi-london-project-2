@@ -1,13 +1,6 @@
 <!-- NAVBAR -->
 <ng-include src="'/js/views/partials/_nav.html'"></ng-include>
 
-<h1>Profile Page</h1>
-<!-- {{ usersShow.user }} -->
-
-<!-- Printing User Profile Picture -->
-
-
-
 <div class="container">
   <div class="pic"><img ng-src="{{ usersShow.user.imageSRC }}"></div>
 
@@ -19,7 +12,5 @@
   </form></div>
   <div class="pic" ng-repeat="plan in usersShow.user.plansCreated">
     <a ui-sref="plansShow({ id: plan.id })">{{ plan.name }}</a>
-    <a ui-sref="plansEdit({id: plansShow.plan.id })">Edit</a>
   </div>
-
 </div>
