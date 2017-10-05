@@ -1,5 +1,10 @@
 // Import all of your scss files here
 $brand: #e91e63;
+$save: #59BD5A;
+$footer: rgb(73, 73, 73);
+$edit: #d3d0d0;
+$background: #fafafa;
+$white: #fff;
 
 @import 'normalize/normalize';
 @import 'partials/buttons';
@@ -7,9 +12,9 @@ $brand: #e91e63;
 @import 'partials/navbar';
 
 html {
-  background-color: #FFF;
+  background-color: $white;
   font-family: 'Open Sans', sans-serif;
-  background: #fafafa;
+  background: $background;
 }
 
 html, body {
@@ -79,7 +84,7 @@ nav {
   height: 50px;
   display: flex;
   align-items: center;
-  background-color: white;
+  background-color: $white;
 }
 
 .one {
@@ -220,6 +225,13 @@ form {
   width: 300px;
   height: 650px;
 }
+
+.img-circle {
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+}
+
 
 .pic {
   margin: 10px;

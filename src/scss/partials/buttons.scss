@@ -1,6 +1,6 @@
 .btn.btn-primary {
   color: #fff;
-  background-color: rgb(73, 73, 73);
+  background-color: $footer;
 }
 
 button {
@@ -24,7 +24,7 @@ button {
 }
 
 .btn3 {
-  background-color: #d3d0d0;
+  background-color: $edit;
   width: 100%;
   height: 200px;
   text-transform: uppercase;
@@ -41,6 +41,22 @@ button {
   color: white;
   padding: 8px 10px;
   box-shadow: 0 3px 0 darken($brand, 20%);
+}
+
+.btn-save {
+  font-size: 10px;
+  color: #fff;
+  background-color: $save;
+  border-radius: 10px;
+  width: 20%;
+  height: 100%;
+}
+
+.btn-edit {
+  background-color: $brand;
+  border-radius: 10px;
+  width: 50%;
+  height: 95px;
 }
 
 .btnGroup1 {
