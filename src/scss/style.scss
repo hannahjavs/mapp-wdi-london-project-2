@@ -10,6 +10,7 @@ $white: #fff;
 @import 'partials/buttons';
 @import 'partials/footer';
 @import 'partials/navbar';
+@import 'partials/eventsShow';
 
 html {
   background-color: $white;
@@ -50,8 +51,13 @@ input, button {
   }
   h1 {
     margin-bottom: 30px;
+    font-size: 50px;
+    font-family: 'Quicksand', sans-serif;
+    img {
+      height: 100px;
+      margin-right: 25px;
+    }
   }
-  // background-image: url('http://desktopwalls.net/wp-content/uploads/2015/09/London%20Night%20Lights%20Aerial%204K%20Desktop%20Wallpaper.jpg');
 }
 
 h1 {
@@ -98,6 +104,9 @@ nav {
   width: 100%;
   border: 2px solid #4E5166;
   border-radius: 5px;
+}
+.map.ng-isolate-scope {
+  height: 84vh;
 }
 
 .planTitle {
@@ -157,11 +166,19 @@ nav {
 }
 
 // COLUMN
+
+.left, .right, .center {
+  margin: 8px 0;
+  height: calc(100vh - 131px);
+}
+
 .right {
   border: 3px solid #053C5E;
   border-radius: 6px;
   background: #FAFAFA;
   color: #053C5E;
+
+  overflow: scroll;
 }
 
 .left {
@@ -176,6 +193,28 @@ nav {
   margin: 20px 0;
   width: 100%;
   padding: 5px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  .radio {
+    width: calc(50% - 5px);
+    label {
+      border: 1px solid $brand;
+      background-color: white;
+      border-radius: 5px;
+      padding: 6px 8px;
+      margin-right: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+    input[type="radio"] {
+      display: none;
+      &:checked + label {
+        background-color: $brand;
+        color: white;
+      }
+    }
+  }
 }
 
 .search {
@@ -183,7 +222,13 @@ nav {
 }
 
 .slider {
-  width: 100%;
+  width: 85%;
+  height: 10px;
+}
+
+.plusMinus {
+  font-weight: bold;
+  padding-bottom: 3px;
 }
 
 .auth {
@@ -227,9 +272,9 @@ form {
 }
 
 .img-circle {
-    border-radius: 50%;
-    height: 200px;
-    width: 200px;
+  border-radius: 50%;
+  height:20em;
+  width:20em;
 }
 
 
@@ -239,6 +284,16 @@ form {
   height: 200px;
   width: 200px;
   background-color: grey;
+}
+.card{
+  width: 20rem;
+}
+.card-block{
+  margin-top: 5em;
+}
+.profilePic{
+
+  margin-top:5em;
 }
 
 // plan page

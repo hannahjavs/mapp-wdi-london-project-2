@@ -1,68 +1,38 @@
 <!-- NAVBAR -->
 <ng-include src="'/js/views/partials/_nav.html'"></ng-include>
 
-<h1>Plan Page {{ plansShow.plan.name }}</h1>
+<div class="container-fluid events-show">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="weather">
+        <h3>Weather in {{ plansShow.weather.timezone }}</h3>
+        <img id="icon" ng-src="/images/{{ plansShow.weather.currently.icon }}.png" />
+        <p>Temperature: {{ plansShow.weather.currently.apparentTemperature }}ºC</p>
+        <p>Summary: {{ plansShow.weather.currently.summary }}</p>
+      </div>
+      <simple-map items="plansShow.plan.items"></simple-map>
+    </div>
+    <div class="col-md-8">
+      <h1>Plan Page {{ plansShow.plan.name }}</h1>
+      <p>{{ plansShow.plan.date | date: 'fullDate' }}</p>
+      <a ui-sref="plansEdit({ id: plansShow.plan.id })" class="btn4" ng-if="main.isAuthenticated() && plansShow.plan.createdBy.id ===  main.getUserId()">Edit</a>
+      <div class="places">
+        <div class="place" ng-repeat="item in plansShow.plan.items track by $index">
+          <p><strong>Place name:</strong> <em>{{ item.place.name }}</em></p>
+          <p><strong>Place address:</strong> <em>{{ item.place.address }}</em></p>
+          <p><strong>Date:</strong> <em>{{ item.time | date:'medium'}}</em></p>
+        </div>
+      </div>
+      <h2>Invited:</h2>
+      <div class="guests row">
+        <div class="col-md-6" ng-repeat="guest in plansShow.plan.guests track by $index">
+          <div class="guest">
+            {{ guest.name }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <a ui-sref="plansEdit({id: plansShow.plan.id })">Edit</a>
-
-<p>{{ plansShow.plan.date | date: 'fullDate' }}</p>
-    <h1>Weather in {{ plansShow.weather.timezone }}</h1>
-    <img id="icon" ng-src="/images/{{ plansShow.weather.currently.icon }}.png" />
-    <h2>Temperature: {{ plansShow.weather.currently.apparentTemperature }}ºC</h2>
-    <h2>Summary: {{ plansShow.weather.currently.summary }}</h2>
-    <h2>Humidity: {{ plansShow.weather.currently.humidity }}</h2>
-
-    <div class="box" ng-repeat="item in plansShow.plan.items track by $index">
-      <ul>
-        <li><strong>Place name:</strong> <em>{{ plansShow.plan.items[$index].place.name }}</em></li>
-        <li><strong>Place address:</strong> <em>{{ plansShow.plan.items[$index].place.address }}</em></li>
-        <li><strong>Date:</strong> <em>{{ plansShow.plan.items[$index].time | date:'medium'}}</em></li>
-
-      </ul>
-    </div>
-
-    <div class="box" >
-      <ul>
-        <li ng-repeat="item in plansShow.plan.guests track by $index"><li><strong>People invited:</strong> <em>{{ plansShow.plan.guests[$index].name }}</em></li></li>
-
-      </ul>
-    </div>
-
-    {{ plansShow.plan }}
-
-
-<!--
-{"plan":
-  {
-    "name":"jelou",
-    "date":"2017-10-10T23:00:00.000Z",
-    "createdBy":
-      {
-        "email":"mike.hayden@ga.co",
-        "password":"$2a$08$Tblb5z43.Eb8hMwPe7jGy.NI3ABd450v7vP877YFb9/cN2X/Z9Z1m",
-        "username":"Mike",
-        "image":"df47af00-a7ac-11e7-9a39-9105edf75cdc.png",
-        "plansCreated":null,
-        "passwordConfirmation":null,
-        "plans":null,
-        "imageSRC":"https://s3-eu-west-1.amazonaws.com/willtds-wdi/df47af00-a7ac-11e7-9a39-9105edf75cdc.png",
-        "id":"59cf932215e92d1b6277dce8"
-      },
-      "guests":[],
-      "items":
-      [
-        {
-          "place":
-          {
-            "googlePlaceId":"ChIJEfqJek4bdkgRyQYJiqgSDew",
-            "name":"The Craft Beer Co.",
-            "address":"82 Leather Lane, London",
-            "reviews":[],
-            "location":
-            {
-              "lat":51.52127919999999,
-              "lng":-0.10968219999995199
-            },
-            "id":"59d4f8af7460fd11290fef6e"
-          },
-          "time":"2017-10-10T00:00:00.000Z",
-            "id":"59d4f8af7460fd11290fef6f"},{"place":{"googlePlaceId":"ChIJh9q2bE8bdkgRpzHKqYGtiJY","name":"The Eagle","address":"159 Farringdon Rd, London","reviews":[],"location":{"lat":51.5241354,"lng":-0.10978660000000673},"id":"59d4f8b07460fd11290fef70"},"time":"2017-10-10T01:01:00.000Z","id":"59d4f8b07460fd11290fef71"},{"place":{"googlePlaceId":"ChIJz3kMOkMbdkgRlV_8fjKe3Bw","name":"The Angel","address":"3-5 Islington High Street, London","reviews":[],"location":{"lat":51.5321787,"lng":-0.10640039999998407},"id":"59d4f8b27460fd11290fef72"},"time":"2017-10-10T02:03:00.000Z","id":"59d4f8b27460fd11290fef73"},{"place":{"googlePlaceId":"ChIJOaAsuLoEdkgROF_VPpSeJ9Y","name":"Tas Restaurant","address":"33 The Cut, London","reviews":[],"location":{"lat":51.50329299999999,"lng":-0.10640000000000782},"id":"59d4f8b67460fd11290fef74"},"time":"2017-10-10T04:03:00.000Z","id":"59d4f8b67460fd11290fef75"},{"place":{"googlePlaceId":"ChIJzee0vroEdkgRsWQAXWfSU5Q","name":"The Anchor & Hope","address":"36 The Cut, London","reviews":[],"location":{"lat":51.5034563,"lng":-0.10657779999996819},"id":"59d4f8b77460fd11290fef76"},"time":"2017-10-10T08:03:00.000Z","id":"59d4f8b77460fd11290fef77"},{"place":{"googlePlaceId":"ChIJdUTRSaUEdkgRtt99a8gdXPY","name":"Baltic Restaurant and Bar","address":"74 Blackfriars Road, London","reviews":[],"location":{"lat":51.50349279999999,"lng":-0.10487699999998767},"id":"59d4f8b87460fd11290fef78"},"time":"2017-10-10T11:01:00.000Z","id":"59d4f8b87460fd11290fef79"}],"id":"59d4f8a77460fd11290fef6d"} -->

@@ -10,6 +10,7 @@
          <button type="button" name="button">+</button>
       </ul>
     </div>
+
     <div class="center col-md-6">
       <google-map
         center="placesIndex.location"
@@ -32,7 +33,7 @@
           <label for="establishment">Type of establishment</label>
           <select name="establishment" id="establishment" ng-model="placesIndex.establishment">
             <option selected disabled value="">Choose</option>
-            <option ng-repeat="(key, establishment) in placesIndex.places" value="{{ establishment }}" name="establishment">{{ key }}</option>
+            <option class="radioBtns" ng-repeat="(key, establishment) in placesIndex.places" value="{{ establishment }}" name="establishment">{{ key }}</option>
           </select>
         </div>
 
