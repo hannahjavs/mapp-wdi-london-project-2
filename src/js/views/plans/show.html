@@ -11,9 +11,19 @@
         <li><strong>Place name:</strong> <em>{{ plansShow.plan.items[$index].place.name }}</em></li>
         <li><strong>Place address:</strong> <em>{{ plansShow.plan.items[$index].place.address }}</em></li>
         <li><strong>Date:</strong> <em>{{ plansShow.plan.items[$index].time | date:'medium'}}</em></li>
-        <li><strong>People invited:</strong> <em>{{ plansShow.plan.guests[0].name }}</em></li>
+
       </ul>
     </div>
+
+    <div class="box" >
+      <ul>
+        <li ng-repeat="item in plansShow.plan.guests track by $index"><li><strong>People invited:</strong> <em>{{ plansShow.plan.guests[$index].name }}</em></li></li>
+
+      </ul>
+    </div>
+
+    {{ plansShow.plan }}
+
 
 <!--
 {"plan":

@@ -7,15 +7,18 @@ function autocomplete(){
   return{
     restrict: 'A',
     scope: {
-      location: '='
+      center: '='
     },
     require: 'ngModel',
     link(scope, element, attrs, ngModel){
-      const input = document.querySelector('#place');
-      const autocomplete = new google.maps.places.Autocomplete(input,{ types: ['geocode'] });
+
+      const autocomplete = new google.maps.places.Autocomplete(element[0],{ types: ['geocode'] });
       autocomplete.addListener('place_changed', () => {
-        scope.location = autocomplete.getPlace().geometry.location.toJSON();
-        console.log(autocomplete.getPlace());
+        console.log('scope:',scope);
+        console.log('element:',element);
+        console.log('attrs:',attrs);
+        console.log('ngModel:',ngModel);
+        scope.center = autocomplete.getPlace().geometry.location.toJSON();
         ngModel.$setViewValue(element.val());
       });
     }
