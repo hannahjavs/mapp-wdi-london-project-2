@@ -14,3 +14,6 @@ function weatherProxy(req, res) {
 module.exports = {
   proxy: weatherProxy
 };
+
+
+/// weather url needs /time on end. /time should be the date selected when the plan is created
