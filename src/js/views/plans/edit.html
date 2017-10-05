@@ -1,7 +1,6 @@
 <!-- NAVBAR -->
 <ng-include src="'/js/views/partials/_nav.html'"></ng-include>
 
-
 <div ng-controller="PlansShowCtrl as plan"></div>
 
 <div class="container-fluid">
@@ -21,23 +20,21 @@
                 {{ item.place.address }}
               </div>
 
-                <span class="timeSet">Time: <input class="timeSetItem" type="time" time date="plansEdit.plan.date" ng-model="item.time">
+              <span class="timeSet">Time: <input class="timeSetItem" type="time" time date="plansEdit.plan.date" ng-model="item.time">
                 <button class="saveTime">+</button></span>
 
                 <div class="card-block">
 
-              <button class="removeEntry" ng-click="plansEdit.deleteItem(item)">Remove</button>
+                  <button class="removeEntry" ng-click="plansEdit.deleteItem(item)">Remove</button>
+                </div>
+              </form>
             </div>
-            </form>
-          </div>
-        </li>
-      </ul>
+          </li>
+        </ul>
 
-      <button type="button" name="button" ng-click="plansEdit.plansUpdate()">Save plan</button>
-      <a ui-sref="plansInvite({id: plansEdit.plan.id })">Send invites</a>
-    </div>
-
-
+        <button type="button" name="button" ng-click="plansEdit.plansUpdate()">Save plan</button>
+        <a ui-sref="plansInvite({id: plansEdit.plan.id })">Send invites</a>
+      </div>
 
     <div class="center col-md-6">
       <google-map
