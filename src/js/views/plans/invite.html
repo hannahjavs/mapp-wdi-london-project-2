@@ -5,20 +5,20 @@
   <div class="row">
     <div class="col-md-6 offset-md-3">
 
-      <h1>Invite</h1>
+      <h1 class="inviteHeader">Invite</h1>
 
       <div class="form-group">
-        <form class="form-control" ng-submit="plansInvite.addGuest()">
+        <form class="form-control inviteForm" ng-submit="plansInvite.addGuest()">
           <p>Name: <input type="text" ng-model="plansInvite.guest.name"></p>
           <p>Email: <input type="text" ng-model="plansInvite.guest.email"></p>
-          <button class="btn btn-primary guest" type="submit" name="button">Add Guest</button>
+          <button class="guest" type="submit" name="button">Add Guest</button>
         </form>
       </div>
 
-      <ul>
-        <li ng-repeat="guest in plansInvite.plan.guests track by $index">
+      <ul class="inviteWrap">
+        <li class="invites" ng-repeat="guest in plansInvite.plan.guests track by $index">
           {{ guest.name }} <span ng-if="guest.invited">Email sent</span>
-          <button class="btn btn-primary" type="submit" name="button" ng-click="plansInvite.deleteGuest(guest)">Remove Invite</button>
+          <button type="submit" name="button" ng-click="plansInvite.deleteGuest(guest)">X</button>
         </li>
       </ul>
 
