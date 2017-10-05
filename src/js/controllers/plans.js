@@ -40,11 +40,25 @@ function PlansNewCtrl(Plan , $state) {
   }
 }
 
-PlansShowCtrl.$inject = ['Plan', '$state'];
-function PlansShowCtrl(Plan, $state) {
+PlansShowCtrl.$inject = ['Plan', '$state', 'weather'];
+function PlansShowCtrl(Plan, $state, weather) {
   console.log($state.params.id);
   const vm = this;
-  vm.plan = Plan.get($state.params);
+  Plan.get($state.params)
+    .$promise
+    .then((plan) => {
+      vm.plan = plan;
+      // if a plan has no items, don't get the weather
+      if(!plan.items) return false;
+
+      const lat = vm.plan.items[0].place.location.lat;
+      const lng = vm.plan.items[0].place.location.lng;
+      const time = vm.plan.items[0].time;
+
+      weather.getForecast(lat, lng, time)
+        .then(data => vm.weather = data);
+    });
+
 }
 
 PlansEditCtrl.$inject = ['Plan', 'Item', '$state', '$scope'];

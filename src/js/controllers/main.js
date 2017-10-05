@@ -2,8 +2,8 @@ angular
   .module('itineraryApp')
   .controller('MainCtrl', MainCtrl);
 
-MainCtrl.$inject = ['$rootScope', '$state', '$auth', 'weather'];
-function MainCtrl($rootScope, $state, $auth, weather) {
+MainCtrl.$inject = ['$rootScope', '$state', '$auth'];
+function MainCtrl($rootScope, $state, $auth) {
   const vm = this;
 
   vm.isAuthenticated = $auth.isAuthenticated;
@@ -23,9 +23,6 @@ function MainCtrl($rootScope, $state, $auth, weather) {
       $state.go('login');
     }
   });
-
-  weather.getForecast()
-    .then(data => vm.weather = data);
 
   function getUserId() {
     return $auth.getPayload().userId;
