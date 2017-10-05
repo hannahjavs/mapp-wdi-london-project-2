@@ -1,6 +1,8 @@
 .btn.btn-primary {
   color: #fff;
-  background-color: $footer;
+  background-color: $brand;
+  border: none;
+  box-shadow: 0 3px 0 darken($brand, 20%);
 }
 
 button {
