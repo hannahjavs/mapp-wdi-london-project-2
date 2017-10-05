@@ -1,0 +1,25 @@
+// FOOTER
+footer {
+  height: 50px;
+  background-color: rgb(73, 73, 73);
+  color: #fff;
+
+  ul {
+    align-items: center;
+    display: flex;
+  }
+
+  img {
+    height: 30px;
+    display: block;
+    margin: 0 30px;
+  }
+  .github {
+    align-items: center;
+  }
+  a {
+    color: #fff;
+    display: block;
+    text-align: center;
+  }
+}
