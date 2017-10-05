@@ -14,7 +14,7 @@ function googleMap($window, debounce) {
     scope: {
       center: '=',
       placesResults: '=',
-      establishment: '=',
+      venue: '=',
       radius: '=',
       price: '=',
       user: '=' // Drawing route line
@@ -132,12 +132,12 @@ function googleMap($window, debounce) {
       function getPlaces(latLng){
         console.log('hola');
         removeMarkers();
-        if(!scope.establishment) return false;
+        if(!scope.venue) return false;
         placesService.nearbySearch({ // search places with the filters on the page
           location: latLng,
           radius: scope.radius,
           openNow: true,
-          type: scope.establishment,
+          type: scope.venue,
           maxPriceLevel: scope.price
         }, (results) => {
           populateImages(results);
@@ -189,14 +189,10 @@ function googleMap($window, debounce) {
 
       scope.$watch('radius', () => circle.setRadius(scope.radius));
 
-      scope.$watch('radius', debounce(() => getPlaces(circle.getCenter()), 500));
+      scope.$watch('radius', debounce(() => getPlaces(circle.getCenter()), 1500));
+      scope.$watch('price', debounce(() => getPlaces(circle.getCenter()), 1500));
 
-      scope.$watch('price', () => {
-        getPlaces(circle.getCenter());
-      });
-
-
-      scope.$watch('establishment', () => {
+      scope.$watch('venue', () => {
         getPlaces(circle.getCenter());
       });
 

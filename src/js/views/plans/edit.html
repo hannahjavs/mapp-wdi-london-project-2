@@ -20,7 +20,7 @@
       center="plansEdit.location"
       places-results="plansEdit.placesResults"
       radius="plansEdit.radius"
-      establishment="plansEdit.establishment"
+      venue="plansEdit.venue"
       price="plansEdit.price">
     </google-map>
   </div>
@@ -32,13 +32,8 @@
         <label for="place">Location: </label>
         <input class="search" autocomplete center="plansEdit.location" ng-change="plansEdit.autocomplete()" ng-model="plansEdit.place" name="place" id="place" />
       </div>
-      <div class="filter">
-        <label for="establishment">Venue Type:</label>
-        <select name="establishment" id="establishment" ng-model="plansEdit.establishment">
-          <option selected disabled value="">Choose</option>
-          <option ng-repeat="(key, establishment) in plansEdit.places" value="{{ establishment }}" name="establishment">{{ key }}</option>
-        </select>
-        <button ng-click="plansEdit.selectEstablishment()" ng-model="plansEdit.establishment" ng-repeat="(key, establishment) in plansEdit.places" value="{{ establishment }}" name="establishment">{{ key }}</button>
+      <div class="filter" ng-repeat="(key, venue) in plansEdit.places">
+        <input type="radio"  ng-model="plansEdit.venue" value="{{ venue }}" name="venue">{{ key }}</input>
       </div>
 
       <div class="filter">
@@ -49,7 +44,7 @@
 
       <div class="filter">
         <label for="price">Price</label>
-        <input class="slider" type="range" id="price" ng-model="plansEdit.price" name="price" step="1" min="0" max="4" ng-model-options="{ debounce: 250 }"/>
+        <input class="slider" type="range" id="price" ng-model="plansEdit.price" name="price" step="1" min="0" max="4"/>
       </div>
 
 
