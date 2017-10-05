@@ -74,6 +74,22 @@ function addGuestRoute(req, res, next) {
     .catch(next);
 }
 
+function deleteGuestRoute(req, res, next) {
+  Plan
+    .findById(req.params.id)
+    .exec()
+    .then((plan) => {
+      if(!plan) return res.notFound();
+
+      const guest = plan.guests.id(req.params.guestId);
+      guest.remove();
+
+      return plan.save();
+    })
+    .then(() => res.status(204).end())
+    .catch(next);
+}
+
 // add deleteGuestRoute
 
 module.exports = {
@@ -82,5 +98,6 @@ module.exports = {
   show: showRoute,
   delete: deleteRoute,
   update: updateRoute,
-  addGuest: addGuestRoute
+  addGuest: addGuestRoute,
+  deleteGuest: deleteGuestRoute
 };
