@@ -50,6 +50,8 @@ router.route('/users/:id')
 router.route('/plans/:id/guests')
   .post(plans.addGuest);
 
+router.route('/plans/:id/guests/:guestId')
+  .delete(secureRoute, plans.deleteGuest);
 // add delete route here
 
 router.route('/register')

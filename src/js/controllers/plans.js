@@ -131,7 +131,7 @@ function PlansEditCtrl(Plan, Item, $state, $scope) {
   vm.updateTime = updateTime;
 }
 
-PlansIndexCtrl.$inject = ['Plan', 'Guest', '$state'];
+PlansInviteCtrl.$inject = ['Plan', 'Guest', '$state'];
 function PlansInviteCtrl(Plan, Guest, $state) {
   const vm = this;
   vm.plan = Plan.get($state.params);
@@ -161,5 +161,18 @@ function PlansInviteCtrl(Plan, Guest, $state) {
 
   vm.send = send;
 
-  // deleteGuest
+  function deleteGuest(guest) {
+    console.log('clicked');
+    Guest
+      .delete({ planId: vm.plan.id, id: guest.id })
+      .$promise
+      .then(() => {
+        // locate the guest in the array of guests
+        const index = vm.plan.guests.indexOf(guest);
+        // splice it from the array, take 1 element starting from that index
+        vm.plan.guests.splice(index, 1);
+      });
+  }
+  vm.deleteGuest = deleteGuest;
+
 }
