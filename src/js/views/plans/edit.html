@@ -2,15 +2,13 @@
 <ng-include src="'/js/views/partials/_nav.html'"></ng-include>
 
 
-<h1 ng-controller="PlansShowCtrl as plan">Event: {{ plansEdit.plan.name }}</h1>
+<div ng-controller="PlansShowCtrl as plan"></div>
 
 <div class="container-fluid">
   <div class="row">
 
-
-
     <div class="left col-md-3">
-
+      <h2 class="planTitle">{{ plansEdit.plan.name }}</h2>
       <ul class="planItem">
         <li class="form-control" ng-repeat="item in plansEdit.plan.items">
           <div class="card">
@@ -27,7 +25,7 @@
                 <button class="saveTime">+</button></span>
 
                 <div class="card-block">
-                  
+
               <button class="removeEntry" ng-click="plansEdit.deleteItem(item)">Remove</button>
             </div>
             </form>
