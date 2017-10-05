@@ -272,9 +272,7 @@ form {
 }
 
 .img-circle {
-    border-radius: 50%;
-    height: 200px;
-    width: 200px;
+  border-radius: 50%;
 }
 
 
@@ -284,6 +282,13 @@ form {
   height: 200px;
   width: 200px;
   background-color: grey;
+}
+.card{
+  width: 20rem;
+}
+.profilePic{
+  left: 33%;
+  margin-top:5em;
 }
 
 // plan page
