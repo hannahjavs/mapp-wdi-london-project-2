@@ -11,17 +11,25 @@
 
     <div class="left col-md-3">
 
-      <ul>
-        <li class="form-control auth" ng-repeat="item in plansEdit.plan.items">
+      <ul class="planItem">
+        <li class="form-control" ng-repeat="item in plansEdit.plan.items">
           <div class="card">
 
             <form ng-submit="plansEdit.updateTime(item)">
-              <div class="card-title">
+              <div class="card-title l">
                 {{ item.place.name }}
               </div>
-              <input type="time" time date="plansEdit.plan.date" ng-model="item.time">
-              <button ng-click="plansEdit.deleteItem(item)">Delete</button>
-              <button>Save</button>
+              <div class="card-text l">
+                {{ item.place.address }}
+              </div>
+
+                <span class="timeSet">Time: <input class="timeSetItem" type="time" time date="plansEdit.plan.date" ng-model="item.time">
+                <button class="saveTime">+</button></span>
+
+                <div class="card-block">
+                  
+              <button class="removeEntry" ng-click="plansEdit.deleteItem(item)">Remove</button>
+            </div>
             </form>
           </div>
         </li>
