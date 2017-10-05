@@ -1,4 +1,9 @@
-<h1 ng-controller="PlansShowCtrl as plan">Welcome to: {{ plan.name }}</h1>
+<!-- NAVBAR -->
+<ng-include src="'/js/views/partials/_nav.html'"></ng-include>
+
+
+<h1 ng-controller="PlansShowCtrl as plan">Event: {{ plansEdit.plan.name }}</h1>
+
 <div class="container-fluid">
   <div class="row">
 
@@ -8,12 +13,17 @@
 
       <ul>
         <li class="form-control auth" ng-repeat="item in plansEdit.plan.items">
-          <form ng-submit="plansEdit.updateTime(item)">
-            {{ item.place.name }}
-            <input type="time" time date="plansEdit.plan.date" ng-model="item.time">
-            <button ng-click="plansEdit.deleteItem(item)">Delete</button>
-            <button>Save</button>
-          </form>
+          <div class="card">
+
+            <form ng-submit="plansEdit.updateTime(item)">
+              <div class="card-title">
+                {{ item.place.name }}
+              </div>
+              <input type="time" time date="plansEdit.plan.date" ng-model="item.time">
+              <button ng-click="plansEdit.deleteItem(item)">Delete</button>
+              <button>Save</button>
+            </form>
+          </div>
         </li>
       </ul>
 

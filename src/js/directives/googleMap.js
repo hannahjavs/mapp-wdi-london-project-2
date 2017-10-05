@@ -4,8 +4,8 @@ angular
   .module('itineraryApp')
   .directive('googleMap', googleMap);
 
-googleMap.inject = ['$window', 'debounce'];
-function googleMap($window, debounce) {
+googleMap.inject = ['$window', 'snazzymap', 'debounce'];
+function googleMap($window, snazzymap, debounce) {
 
   return {
     restrict: 'E',
@@ -56,7 +56,8 @@ function googleMap($window, debounce) {
 
       const map = new google.maps.Map(element[0], {
         center: { lat: 51.52, lng: -0.082 },
-        zoom: 13
+        zoom: 13,
+        styles: snazzymap
       });
       const placesService = new google.maps.places.PlacesService(map);
 
