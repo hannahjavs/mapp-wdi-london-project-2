@@ -81,6 +81,12 @@ button {
   }
 }
 
+.guest {
+  padding: 5px;
+  font-size: 12px;
+}
+
+
 @media only screen and (max-width: 576px) {
   .homeBtns {
     display: flex;

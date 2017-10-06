@@ -10,8 +10,7 @@
       <h2 class="planTitle">{{ plansEdit.plan.name }}</h2>
       <ul class="planItem">
         <li class="form-control" ng-repeat="item in plansEdit.plan.items">
-          <div class="card">
-
+          <div class="card" id="cardItem">
             <form ng-submit="plansEdit.updateTime(item)">
               <div class="card-title l">
                 {{ item.place.name }}
@@ -19,73 +18,69 @@
               <div class="card-text l">
                 {{ item.place.address }}
               </div>
+              <span class="timeSet">Time: <input class="timeSetItem" type="time"  date="plansEdit.plan.date" ng-model="item.time">
+                <button class="saveTime">+</button>
+              </span>
+              <!-- <div class="card-block"> -->
+                <button class="removeEntry" ng-click="plansEdit.deleteItem(item)">Remove</button>
+              <!-- </div> -->
+            </form>
+          </div>
+        </li>
+      </ul>
+      <button type="button" name="button" ng-click="plansEdit.plansUpdate()">Save plan</button>
+      <a ui-sref="plansInvite({id: plansEdit.plan.id })">Send invites</a>
+    </div>
 
-              <span class="timeSet">Time: <input class="timeSetItem" type="time" time date="plansEdit.plan.date" ng-model="item.time"></input>
-                <button class="saveTime">+</button></span>
+      <div class="center col-md-6">
+        <google-map
+        center="plansEdit.location"
+        places-results="plansEdit.placesResults"
+        radius="plansEdit.radius"
+        venue="plansEdit.venue"
+        price="plansEdit.price"></google-map>
+      </div>
 
-                <div class="card-block">
 
-                  <button class="removeEntry" ng-click="plansEdit.deleteItem(item)">Remove</button>
-                </div>
-              </form>
+      <div class="right col-md-3">
+        <form>
+          <div class="filter">
+            <label for="place">Location: </label>
+            <input class="search" autocomplete center="plansEdit.location" ng-change="plansEdit.autocomplete()" ng-model="plansEdit.place" name="place" id="place">
+          </div>
+          <div class="filter">
+            <div class="radio" ng-repeat="(key, venue) in plansEdit.places">
+              <input type="radio"  ng-model="plansEdit.venue" value="{{ venue }}" name="venue" id="{{ key }}"><label for="{{ key }}">{{ key }}</label>
             </div>
-          </li>
+          </div>
+
+          <div class="range">
+            <label for="radius">Distance</label>
+            <div class="plusMinus"> - <input class="slider" type="range" ng-model="plansEdit.radius" name="radius" step="100" min="200" max="2500"> + </div>
+          </div>
+
+          <div class="range">
+            <label for="price">Price</label>
+            <div class="plusMinus"> - <input class="slider" type="range" id="price" ng-model="plansEdit.price" name="price" step="1" min="0" max="4"> + </div>
+          </div>
+
+
+        </form>
+
+        <ul class="placesCard" ng-repeat="place in plansEdit.placesResults track by $index">
+          <div class="card">
+            <li><img class="card-img-top" src="{{ place.imageUrl }}"></li>
+            <div class="card-title">
+              <li>{{ place.name }}</li>
+            </div>
+            <div class="card-text">
+              <li>Average rating: {{ place.rating }}</li>
+              <li>{{ place.vicinity }}</li>
+              <button type="button" name="button" ng-click="plansEdit.addItem(place)">Add to plan</button>
+            </div>
+          </div>
         </ul>
 
-        <button type="button" name="button" ng-click="plansEdit.plansUpdate()">Save plan</button>
-        <a ui-sref="plansInvite({id: plansEdit.plan.id })">Send invites</a>
       </div>
-
-    <div class="center col-md-6">
-      <google-map
-      center="plansEdit.location"
-      places-results="plansEdit.placesResults"
-      radius="plansEdit.radius"
-      venue="plansEdit.venue"
-      price="plansEdit.price">
-    </google-map>
-  </div>
-
-
-    <div class="right col-md-3">
-      <form>
-      <div class="filter">
-        <label for="place">Location: </label>
-        <input class="search" autocomplete center="plansEdit.location" ng-change="plansEdit.autocomplete()" ng-model="plansEdit.place" name="place" id="place"></input>
-      </div>
-      <div class="filter">
-        <div class="radio" ng-repeat="(key, venue) in plansEdit.places">
-          <input type="radio"  ng-model="plansEdit.venue" value="{{ venue }}" name="venue" id="{{ key }}"></input><label for="{{ key }}">{{ key }}</label>
-        </div>
-      </div>
-
-        <div class="range">
-          <label for="radius">Distance</label>
-          <div class="plusMinus"> - <input class="slider" type="range" ng-model="plansEdit.radius" name="radius" step="100" min="200" max="2500"></input> + </div>
-        </div>
-
-      <div class="range">
-        <label for="price">Price</label>
-        <div class="plusMinus"> - <input class="slider" type="range" id="price" ng-model="plansEdit.price" name="price" step="1" min="0" max="4"></input> + </div>
-      </div>
-
-
-      </form>
-
-      <ul class="placesCard" ng-repeat="place in plansEdit.placesResults track by $index">
-        <div class="card">
-          <li><img class="card-img-top" src="{{ place.imageUrl }}"/></li>
-          <div class="card-title">
-            <li>{{ place.name }}</li>
-          </div>
-          <div class="card-text">
-            <li>Average rating: {{ place.rating }}</li>
-            <li>{{ place.vicinity }}</li>
-            <button type="button" name="button" ng-click="plansEdit.addItem(place)">Add to plan</button>
-          </div>
-        </div>
-      </ul>
-
     </div>
   </div>
-</div>
