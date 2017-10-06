@@ -5,7 +5,7 @@
   <div class="row">
     <div class="col-md-4">
       <div class="weather" ng-if="plansShow.plan.items.length">
-        <h3 class="planTitle">Weather in {{ plansShow.weather.timezone }}</h3>
+        <h3 class="planTitle showTitle">Weather in {{ plansShow.weather.timezone }}</h3>
         <img id="icon" ng-src="/images/{{ plansShow.weather.currently.icon }}.png" />
         <p class="planTitle">Temperature: {{ plansShow.weather.currently.apparentTemperature }}ºC</p>
         <p class="planTitle">Summary: {{ plansShow.weather.currently.summary }}</p>
@@ -13,7 +13,7 @@
       <simple-map items="plansShow.plan.items"></simple-map>
     </div>
     <div class="col-md-8">
-      <h1 class="planTitle">{{ plansShow.plan.name }}</h1>
+      <h1 class="planTitle showTitle">{{ plansShow.plan.name }}</h1>
       <p class="planTitle">{{ plansShow.plan.date | date: 'fullDate' }}</p>
       <a ui-sref="plansEdit({ id: plansShow.plan.id })" class="btn4" ng-if="main.isAuthenticated() && plansShow.plan.createdBy.id ===  main.getUserId()">Edit</a>
       <div class="places">
@@ -23,7 +23,7 @@
           <p class="planTitle"><strong>Date:</strong> <em>{{ item.time | date:'shortTime' | lowercase }}</em></p>
         </div>
       </div>
-      <h2 class="planTitle">Invited:</h2>
+      <h2 class="planTitle showTitle">Invited:</h2>
       <div class="guests row">
         <div class="col-md-6" ng-repeat="guest in plansShow.plan.guests track by $index">
           <div class="guest">

@@ -254,6 +254,10 @@ nav {
   }
 }
 
+.showTitle {
+  color: $brand;
+}
+
 // FORMS
 .css-form {
   margin-top: 50px;
@@ -286,15 +290,6 @@ form {
   margin:10px;
   font-family: 'Open Sans', sans-serif;
 }
-
-.planTitle {
-  color: $brand;
-}
-.planTitle:hover {
-  color: $footer;
-  text-decoration: none;
-}
-
 
 .img-circle {
   border-radius: 50%;
