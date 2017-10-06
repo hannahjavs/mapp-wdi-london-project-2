@@ -1,51 +1,54 @@
-// FOOTER
+// // FOOTER
+// footer {
+//   align-items: center;
+//   background-color: rgb(73, 73, 73);
+//   color: #fff;
+//   ul {
+//     height: 65px;
+//     align-items: center;
+//     justify-content: center;
+//     display: flex;
+//     margin: 0;
+//     li {
+//       .itinerary-logo {
+//         font-family: Pacifico,cursive;
+//       }
+//       .github {
+//         align-items: center;
+//       }
+//     }
+//   }
+//   img {
+//     height: 30px;
+//     display: block;
+//     margin: 0 30px;
+//   }
+//   a {
+//     color: #fff;
+//     display: block;
+//     text-align: center;
+//   }
+// }
+
+
 footer {
-  align-items: center;
-  background-color: rgb(73, 73, 73);
-  color: #fff;
-  ul {
-    height: 65px;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    margin: 0;
+
+  color:white;
+
+  .content{
+    margin-left: 33%;
     li {
       .itinerary-logo {
         font-family: Pacifico,cursive;
       }
-      .github {
-        align-items: center;
-      }
     }
   }
-  img {
-    height: 30px;
-    display: block;
-    margin: 0 30px;
+
+  #github-center{
+    margin-left: 45%
   }
-  a {
-    color: #fff;
-    display: block;
-    text-align: center;
+  img{
+    width: 2em;
+    height: 2em;
   }
 }
-
-
-// footer {
-//   align-items: center;
-//   justify-content: center;
-//   display: flex;
-//   color:white;
-//
-//   .content{
-//     margin-left: 33%;
-//   }
-//
-//   #github-center{
-//     margin-left: 45%
-//   }
-//   img{
-//     width: 2em;
-//     height: 2em;
-//   }
-// }
