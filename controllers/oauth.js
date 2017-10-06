@@ -18,7 +18,7 @@ function facebook(req, res, next) {
     .then(token => {
       return rp({
         method: 'GET',
-        url: 'https://graph.facebook.com/v2.5/me?fields=id,email,name,picture',
+        url: 'https://graph.facebook.com/v2.5/me?fields=id,email,name,picture.type(large)',
         qs: token,
         json: true
       });

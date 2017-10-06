@@ -6,7 +6,14 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <p>Hey <%= guest.name %>, you're invited to <%= plan.name %>. Click <a href="<%= url %>/plans/<%= plan.id %>">here</a> to view the details.</p>
+    <header>
+      <img src="https://i.imgur.com/XAp90nF.png">
+    </header>
+    <p>
+      Hey <%= guest.name %>, you're invited to <strong><%= plan.name %></strong>!
+      <br><br>
+      Click <a href="<%= url %>/plans/<%= plan.id %>">here</a> to view the details.
+    </p>
 
   </body>
 </html>

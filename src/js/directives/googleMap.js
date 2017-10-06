@@ -100,11 +100,11 @@ function googleMap($window, snazzymap, debounce) {
 
       // Creating circle
       const circle = new google.maps.Circle({
-        strokeColor: 'green',
+        strokeColor: '#e91e63',
         strokeOpacity: 0.8,
         strokeWeight: 2,
-        fillColor: 'green',
-        fillOpacity: 0.35,
+        fillColor: '#e91e63',
+        fillOpacity: 0.25,
         draggable: true,
         map: map
       });

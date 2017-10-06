@@ -4,7 +4,7 @@
 <div class="container-fluid events-show">
   <div class="row">
     <div class="col-md-4">
-      <div class="weather">
+      <div class="weather" ng-if="plansShow.plan.items.length">
         <h3 class="planTitle">Weather in {{ plansShow.weather.timezone }}</h3>
         <img id="icon" ng-src="/images/{{ plansShow.weather.currently.icon }}.png" />
         <p class="planTitle">Temperature: {{ plansShow.weather.currently.apparentTemperature }}ºC</p>
