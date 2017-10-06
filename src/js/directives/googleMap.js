@@ -22,7 +22,7 @@ function googleMap($window, snazzymap, debounce) {
     link(scope, element) {
       let infowindow = null;
       let geolocationMarker = null;
-      const colorArray = ['green'];
+      const colorArray = ['#e91e63'];
 
 
       // GEOLOCATION
@@ -31,7 +31,7 @@ function googleMap($window, snazzymap, debounce) {
       };
       function success(pos) {
 
-        new $window.google.maps.Marker({
+        geolocationMarker = new $window.google.maps.Marker({
           position: { lat: pos.coords.latitude, lng: pos.coords.longitude },
           map: map,
           title: 'You\'re here',
@@ -52,7 +52,7 @@ function googleMap($window, snazzymap, debounce) {
         console.warn(`ERROR(${err.code}): ${err.message}`);
       }
 
-      geolocationMarker = navigator.geolocation.getCurrentPosition(success, error, options);
+      navigator.geolocation.getCurrentPosition(success, error, options);
 
       const map = new google.maps.Map(element[0], {
         center: { lat: 51.52, lng: -0.082 },
