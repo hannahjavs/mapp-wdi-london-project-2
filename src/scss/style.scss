@@ -277,7 +277,6 @@ form {
   height: 650px;
 }
 
-
 .profilePicture{
   left:33%;
   margin:10px;
@@ -287,6 +286,15 @@ form {
   margin:10px;
   font-family: 'Open Sans', sans-serif;
 }
+
+.planTitle {
+  color: $brand;
+}
+.planTitle:hover {
+  color: $footer;
+  text-decoration: none;
+}
+
 
 .img-circle {
   border-radius: 50%;
