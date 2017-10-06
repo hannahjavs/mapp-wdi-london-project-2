@@ -277,6 +277,17 @@ form {
   height: 650px;
 }
 
+
+.profilePicture{
+  left:33%;
+  margin:10px;
+}
+
+.plans{
+  margin:10px;
+  font-family: 'Open Sans', sans-serif;
+}
+
 .img-circle {
   border-radius: 50%;
   height:20em;
@@ -286,9 +297,10 @@ form {
 .pic {
   margin: 10px;
   display: inline-block;
-  height: 200px;
-  width: 200px;
+  height: 100vw;
+  width: 100vw;
   background-color: grey;
+  display: inline;
 }
 
 // plan page
