@@ -47,7 +47,7 @@
             <input class="search" autocomplete center="plansEdit.location" ng-change="plansEdit.autocomplete()" ng-model="plansEdit.place" name="place" id="place">
           </div>
           <div class="filter">
-            <div class="radio" ng-repeat="(key, venue) in plansEdit.places">
+              <div class="radio" ng-repeat="(key, venue) in plansEdit.places">
               <input type="radio"  ng-model="plansEdit.venue" value="{{ venue }}" name="venue" id="{{ key }}"><label for="{{ key }}">{{ key }}</label>
             </div>
           </div>
