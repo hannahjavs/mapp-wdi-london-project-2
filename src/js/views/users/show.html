@@ -8,7 +8,7 @@
         <img class="card-img-top img-circle" ng-src="{{ usersShow.user.imageSRC }}">
       </div>
       <div class="card-block cards">
-        <h4 class="card-title">{{ usersShow.user.username }}</h4>
+        <h4 class="card-title planTitle">{{ usersShow.user.username }}</h4>
         <form ng-submit="usersShow.update()">
           <!-- Changed text input to a file input and added our directive attribute -->
           <input type="file" base64 name="base64" id="base64" ng-model="usersShow.user.base64" class="form-control">
@@ -19,13 +19,13 @@
     </div>
   </div>
   <div class="text-center">
-    <h2>SAVED PLANS</h2>
+    <h2 class="planTitle">SAVED PLANS</h2>
   </div>
   <div class="container">
   <div class="row">
     <div class="card text-center col order-$index+1 plans" ng-repeat="plan in usersShow.user.plansCreated track by $index">
-      <h3><a ui-sref="plansShow({ id: plan.id })">{{ plan.name }}</a></h3>
-      <h3 ui-sref="plansShow({ id: plan.id })">{{ plan.date | date:"MM/dd/yyyy 'at' h:mma" }}</h3>
+      <a class="planTitle" ui-sref="plansShow({ id: plan.id })">{{ plan.name }}</a>
+      <p ui-sref="plansShow({ id: plan.id })">{{ plan.date | date:"MM/dd/yyyy 'at' h:mma" }}</p>
 
     </div>
   </div>
