@@ -98,11 +98,9 @@ nav {
 
 // places
 .map {
-  border: 3px solid #053C5E;
-  border-radius: 6px;
+  border: 1px solid black;
   height: calc(100vh - 100px);
   width: 100%;
-  border: 2px solid #4E5166;
   border-radius: 5px;
 }
 
@@ -112,6 +110,7 @@ nav {
 
 .planTitle {
   margin-top: 5px;
+  font-family: 'Quicksand', sans-serif;
 }
 
 .planItem {
@@ -179,16 +178,16 @@ nav {
 }
 
 .right {
-  border: 3px solid #053C5E;
+  border: 1px solid black;
   border-radius: 6px;
   background: #FAFAFA;
-  color: #053C5E;
+  color: black;
 
   overflow: scroll;
 }
 
 .left {
-  border: 3px solid #053C5E;
+  border: 1px solid black;
   border-radius: 6px;
   background: #fff;
   border-radius: 5px;
@@ -206,7 +205,8 @@ nav {
     width: calc(50% - 5px);
     label {
       border: 1px solid $brand;
-      background-color: white;
+      background-color: $brand;
+      color:white;
       border-radius: 5px;
       padding: 6px 8px;
       margin-right: 5px;
@@ -216,8 +216,8 @@ nav {
     input[type="radio"] {
       display: none;
       &:checked + label {
-        background-color: $brand;
-        color: white;
+        background-color: white;
+        color: black;
       }
     }
   }
@@ -312,14 +312,6 @@ form {
 }
 
 // invite page
-
-.weather {
-  border: 1px solid #ccc;
-}
-
-.event-map {
-  border: 1px solid #ccc;
-}
 
 .inviteHeader {
   margin: 15px 0;
