@@ -22,7 +22,7 @@ function googleMap($window, snazzymap, debounce) {
     link(scope, element) {
       let infowindow = null;
       let geolocationMarker = null;
-      const colorArray = ['green'];
+      const colorArray = ['#e91e63'];
 
 
       // GEOLOCATION
