@@ -9,16 +9,16 @@ mongoose.connect(dbURI, { useMongoClient: true });
 
 Plan.collection.drop();
 Place.collection.drop();
-// User.collection.drop();
+User.collection.drop();
 
 // Seeds here
-// User
-//   .create([{
-//     username: 'will',
-//     email: 'w@w.com',
-//     password: 'password',
-//     passwordConfirmation: 'password'
-//   }])
-//   .then((users) => console.log(`${users.length} users created!`))
-//   .catch((err) => console.log(err))
-//   .finally(() => mongoose.connection.close());
+User
+  .create([{
+    username: 'will',
+    email: 'w@w.com',
+    password: 'password',
+    passwordConfirmation: 'password'
+  }])
+  .then((users) => console.log(`${users.length} users created!`))
+  .catch((err) => console.log(err))
+  .finally(() => mongoose.connection.close());
