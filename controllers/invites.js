@@ -46,7 +46,7 @@ function sendInvite(guest, next) {
 
     transporter.sendMail({
       from: '"Plan App 🎸" <willhandanapp@gmail.com>',
-      to: locals.guest.email,
+      to: guest.email,
       subject: `${locals.guest.name}, you're invited!`,
       html: result.html,
       text: result.text
