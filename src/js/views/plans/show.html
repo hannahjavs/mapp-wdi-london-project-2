@@ -20,7 +20,7 @@
         <div class="place" ng-repeat="item in plansShow.plan.items track by $index">
           <p><strong>Place name:</strong> <em>{{ item.place.name }}</em></p>
           <p><strong>Place address:</strong> <em>{{ item.place.address }}</em></p>
-          <p><strong>Date:</strong> <em>{{ item.time | date:'medium'}}</em></p>
+          <p><strong>Date:</strong> <em>{{ item.time | date:'shortTime' | lowercase }}</em></p>
         </div>
       </div>
       <h2>Invited:</h2>
