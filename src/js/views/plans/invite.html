@@ -17,7 +17,7 @@
 
       <ul class="inviteWrap">
         <li class="invites" ng-repeat="guest in plansInvite.plan.guests track by $index">
-          <span ng-if="guest.invited">sent to: {{ guest.name }}</span>
+          {{ guest.name }} <span class="sent" ng-if="guest.invited">sent</span>
           <button type="submit" name="button" ng-click="plansInvite.deleteGuest(guest)">X</button>
         </li>
       </ul>

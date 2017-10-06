@@ -79,7 +79,11 @@ function PlansEditCtrl(Plan, Item, $state, $scope) {
     Gallery: 'art_gallery',
     Cafe: 'cafe',
     Casino: 'casino',
-    Club: 'night_club'
+    Club: 'night_club',
+    Restaurant: 'restaurant',
+    Sports: 'stadium',
+    Museum: 'museum',
+    Park: 'park'
   };
 
   vm.plansUpdate = plansUpdate;

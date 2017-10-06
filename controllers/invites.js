@@ -68,6 +68,7 @@ function updateUser(guest) {
 
       const guestToUpdate = plan.guests.id(guest.id);
       guestToUpdate.invited = true;
+      console.log(guestToUpdate);
       return plan.save();
     });
 }
